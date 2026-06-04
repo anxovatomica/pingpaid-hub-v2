@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelance Tax Calculator 2026 — PingPaid</title>
+<meta name="description" content="Free freelance tax calculator for 2026. Calculate self-employment tax, quarterly payments, and deductions. No signup.">
+<meta property="og:title" content="Free Freelance Tax Calculator 2026">
+<meta property="og:description" content="Calculate self-employment tax, quarterly payments, and deductions. No signup.">
+<style>
+:root{--brand:#0070f3;--bg:#fafafa;--card:#fff;--text:#111;--muted:#666;--border:#e5e5e5;--accent:#00c853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px}
+h1{font-size:2.2em;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.4em;margin:32px 0 16px;color:var(--brand)}
+.meta{color:var(--muted);font-size:.9em;margin-bottom:24px}
+input,select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:1em;margin-bottom:16px;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--brand)}
+button{background:var(--brand);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:1em;font-weight:600}
+button:hover{background:#0051a8}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.result{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:24px;border-radius:12px;margin:20px 0;text-align:center}
+.result .amount{font-size:2.5em;font-weight:700}
+.result .label{font-size:.9em;opacity:.9}
+.breakdown{background:#f8f9fa;padding:20px;border-radius:12px;margin:16px 0}
+.breakdown h3{margin-bottom:12px;color:var(--brand)}
+.breakdown-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee}
+.breakdown-item.total{font-weight:700;border-top:2px solid var(--brand);border-bottom:none;margin-top:8px;padding-top:12px}
+.deductions{background:#e8f5e9;padding:16px;border-radius:12px;margin:16px 0;border-left:4px solid var(--accent)}
+.deductions h4{color:var(--accent);margin-bottom:8px}
+.cta{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:20px;border-radius:12px;text-align:center;margin:32px 0;font-weight:600}
+.cta a{color:#fff;font-size:1.1em}
+.tip{background:#d1ecf1;border-left:4px solid #17a2b8;padding:16px;border-radius:8px;margin:16px 0}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>💰 Freelance Tax Calculator 2026</h1>
+<div class="meta">Calculate self-employment tax, quarterly payments, and deductions</div>
+
+<div class="grid">
+<div>
+<label>Annual Freelance Income ($)</label>
+<input type="number" id="income" value="60000" step="1000">
+</div>
+<div>
+<label>Business Expenses ($)</label>
+<input type="number" id="expenses" value="12000" step="500">
+</div>
+</div>
+
+<div class="grid">
+<div>
+<label>Filing Status</label>
+<select id="filingStatus">
+<option value="single">Single</option>
+<option value="married">Married Filing Jointly</option>
+<option value="head">Head of Household</option>
+</select>
+</div>
+<div>
+<label>State</label>
+<select id="state">
+<option value="0">No State Income Tax</option>
+<option value="5">Low Tax State (~5%)</option>
+<option value="7">Average Tax State (~7%)</option>
+<option value="10">High Tax State (~10%)</option>
+</select>
+</div>
+</div>
+
+<div class="grid">
+<div>
+<label>Other Deductions ($)</label>
+<input type="number" id="otherDeductions" value="0" step="500">
+</div>
+<div>
+<label>Estimated Tax Payments Made ($)</label>
+<input type="number" id="payments" value="0" step="500">
+</div>
+</div>
+
+<button onclick="calculate()">Calculate Taxes</button>
+
+<div class="result" id="result" style="display:none">
+<div class="label">Estimated Tax Owed</div>
+<div class="amount" id="totalTax">$0</div>
+</div>
+
+<div class="breakdown" id="breakdown" style="display:none">
+<h3>Tax Breakdown</h3>
+<div class="breakdown-item">
+<span>Net Income (after expenses)</span>
+<span id="netIncome">$0</span>
+</div>
+<div class="breakdown-item">
+<span>Self-Employment Tax (15.3%)</span>
+<span id="seTax">$0</span>
+</div>
+<div class="breakdown-item">
+<span>Federal Income Tax</span>
+<span id="federalTax">$0</span>
+</div>
+<div class="breakdown-item">
+<span>State Income Tax</span>
+<span id="stateTax">$0</span>
+</div>
+<div class="breakdown-item">
+<span>Quarterly Payment (each)</span>
+<span id="quarterly">$0</span>
+</div>
+<div class="breakdown-item total">
+<span>Total Tax Owed</span>
+<span id="totalTaxBreakdown">$0</span>
+</div>
+</div>
+
+<div class="deductions" id="deductions" style="display:none">
+<h4>💡 Common Deductions You Might Be Missing</h4>
+<ul style="margin-left:20px;margin-top:8px">
+<li>Home office (up to 300 sq ft at $5/sq ft = $1,500)</li>
+<li>Internet (50% if used for business)</li>
+<li>Software subscriptions (Adobe, Figma, GitHub, etc.)</li>
+<li>Professional development (courses, books, conferences)</li>
+<li>Health insurance premiums (100% deductible)</li>
+<li>Retirement contributions (SEP-IRA up to 25% of income)</li>
+<li>Business meals (50% deductible)</li>
+<li>Phone bill (percentage used for business)</li>
+</ul>
+</div>
+
+<div class="tip">
+<strong>⚠️ Important:</strong> This is an estimate. Tax laws change. Consult a CPA for your exact situation. Set aside 25-30% of every payment for taxes.
+</div>
+
+<div class="cta">
+<a href="https://anxovatomica.github.io/expense-tracker.html">💳 Track Your Expenses (Free Tool)</a>
+</div>
+
+</div>
+</div>
+
+<script>
+function calculate(){
+  const income = parseFloat(document.getElementById('income').value) || 0;
+  const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+  const filingStatus = document.getElementById('filingStatus').value;
+  const stateRate = parseFloat(document.getElementById('state').value) || 0;
+  const otherDeductions = parseFloat(document.getElementById('otherDeductions').value) || 0;
+  const payments = parseFloat(document.getElementById('payments').value) || 0;
+  
+  const netIncome = income - expenses;
+  const seTax = netIncome * 0.153;
+  
+  // Simplified federal tax brackets for 2026 (single)
+  let federalTax = 0;
+  const taxableIncome = netIncome - otherDeductions;
+  
+  if (filingStatus === 'single') {
+    if (taxableIncome > 609350) federalTax += (taxableIncome - 609350) * 0.37;
+    if (taxableIncome > 243725) federalTax += Math.min(taxableIncome - 243725, 609350 - 243725) * 0.35;
+    if (taxableIncome > 191950) federalTax += Math.min(taxableIncome - 191950, 243725 - 191950) * 0.32;
+    if (taxableIncome > 100525) federalTax += Math.min(taxableIncome - 100525, 191950 - 100525) * 0.24;
+    if (taxableIncome > 47150) federalTax += Math.min(taxableIncome - 47150, 100525 - 47150) * 0.22;
+    if (taxableIncome > 11600) federalTax += Math.min(taxableIncome - 11600, 47150 - 11600) * 0.12;
+    federalTax += Math.min(taxableIncome, 11600) * 0.10;
+  } else if (filingStatus === 'married') {
+    // Married brackets (roughly double single)
+    if (taxableIncome > 731200) federalTax += (taxableIncome - 731200) * 0.37;
+    if (taxableIncome > 487450) federalTax += Math.min(taxableIncome - 487450, 731200 - 487450) * 0.35;
+    if (taxableIncome > 383900) federalTax += Math.min(taxableIncome - 383900, 487450 - 383900) * 0.32;
+    if (taxableIncome > 201050) federalTax += Math.min(taxableIncome - 201050, 383900 - 201050) * 0.24;
+    if (taxableIncome > 94300) federalTax += Math.min(taxableIncome - 94300, 201050 - 94300) * 0.22;
+    if (taxableIncome > 23200) federalTax += Math.min(taxableIncome - 23200, 94300 - 23200) * 0.12;
+    federalTax += Math.min(taxableIncome, 23200) * 0.10;
+  } else {
+    // Head of household (simplified)
+    if (taxableIncome > 609350) federalTax += (taxableIncome - 609350) * 0.37;
+    if (taxableIncome > 243725) federalTax += Math.min(taxableIncome - 243725, 609350 - 243725) * 0.35;
+    if (taxableIncome > 191950) federalTax += Math.min(taxableIncome - 191950, 243725 - 191950) * 0.32;
+    if (taxableIncome > 100525) federalTax += Math.min(taxableIncome - 100525, 191950 - 100525) * 0.24;
+    if (taxableIncome > 63100) federalTax += Math.min(taxableIncome - 63100, 100525 - 63100) * 0.22;
+    if (taxableIncome > 16550) federalTax += Math.min(taxableIncome - 16550, 63100 - 16550) * 0.12;
+    federalTax += Math.min(taxableIncome, 16550) * 0.10;
+  }
+  
+  const stateTax = taxableIncome * (stateRate / 100);
+  const totalTax = seTax + federalTax + stateTax - payments;
+  const quarterly = totalTax / 4;
+  
+  document.getElementById('netIncome').textContent = `$${netIncome.toFixed(0)}`;
+  document.getElementById('seTax').textContent = `$${seTax.toFixed(0)}`;
+  document.getElementById('federalTax').textContent = `$${federalTax.toFixed(0)}`;
+  document.getElementById('stateTax').textContent = `$${stateTax.toFixed(0)}`;
+  document.getElementById('quarterly').textContent = `$${quarterly.toFixed(0)}`;
+  document.getElementById('totalTaxBreakdown').textContent = `$${totalTax.toFixed(0)}`;
+  document.getElementById('totalTax').textContent = `$${totalTax.toFixed(0)}`;
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('breakdown').style.display = 'block';
+  document.getElementById('deductions').style.display = 'block';
+}
+</script>
+</body>
+</html>
