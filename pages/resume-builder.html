@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelance Resume Builder — PingPaid</title>
+<meta name="description" content="Free resume builder for freelancers. Create a professional resume highlighting your skills, projects, and achievements. Download as PDF. No signup.">
+<meta property="og:title" content="Free Freelance Resume Builder">
+<meta property="og:description" content="Create a professional freelance resume. Download as PDF. No signup.">
+<style>
+:root{--brand:#0070f3;--bg:#fafafa;--card:#fff;--text:#111;--muted:#666;--border:#e5e5e5;--accent:#00c853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px}
+h1{font-size:2.2em;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.4em;margin:32px 0 16px;color:var(--brand)}
+.meta{color:var(--muted);font-size:.9em;margin-bottom:24px}
+input,textarea,select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:1em;margin-bottom:16px;font-family:inherit}
+input:focus,textarea:focus{outline:none;border-color:var(--brand)}
+label{display:block;margin-bottom:6px;font-weight:600;font-size:.9em}
+button{background:var(--brand);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:1em;font-weight:600}
+button:hover{background:#0051a8}
+.half{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.half{grid-template-columns:1fr}}
+.preview{background:#1e293b;color:#e2e8f0;padding:24px;border-radius:12px;margin:20px 0;overflow:auto;max-height:400px;font-family:monospace;font-size:.85em;line-height:1.5}
+.cta{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:20px;border-radius:12px;text-align:center;margin:32px 0;font-weight:600}
+.cta a{color:#fff;font-size:1.1em}
+.tip{background:#d1ecf1;border-left:4px solid #17a2b8;padding:16px;border-radius:8px;margin:16px 0}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>📄 Freelance Resume Builder</h1>
+<div class="meta">Fill in your details → Get a professional resume → Download as HTML</div>
+
+<div class="half">
+<div>
+<label>Full Name</label>
+<input type="text" id="name" placeholder="Jane Doe" oninput="update()">
+</div>
+<div>
+<label>Job Title</label>
+<input type="text" id="title" placeholder="Full-Stack Developer" oninput="update()">
+</div>
+</div>
+
+<div class="half">
+<div>
+<label>Email</label>
+<input type="email" id="email" placeholder="jane@example.com" oninput="update()">
+</div>
+<div>
+<label>Phone</label>
+<input type="tel" id="phone" placeholder="+1 (555) 123-4567" oninput="update()">
+</div>
+</div>
+
+<div class="half">
+<div>
+<label>Location</label>
+<input type="text" id="location" placeholder="San Francisco, CA" oninput="update()">
+</div>
+<div>
+<label>Website/Portfolio</label>
+<input type="url" id="website" placeholder="https://janedoe.dev" oninput="update()">
+</div>
+</div>
+
+<div>
+<label>Professional Summary (2-3 sentences)</label>
+<textarea id="summary" rows="3" placeholder="Results-driven full-stack developer with 5 years of experience building scalable web applications. Specialized in React, Node.js, and AWS. Helped 20+ startups launch their products." oninput="update()"></textarea>
+</div>
+
+<div>
+<label>Skills (comma-separated)</label>
+<input type="text" id="skills" placeholder="React, Node.js, TypeScript, AWS, PostgreSQL, Docker, GraphQL" oninput="update()">
+</div>
+
+<div class="half">
+<div>
+<label>Experience 1: Title</label>
+<input type="text" id="exp1Title" placeholder="Senior Frontend Developer" oninput="update()">
+</div>
+<div>
+<label>Experience 1: Company</label>
+<input type="text" id="exp1Company" placeholder="TechCorp Inc" oninput="update()">
+</div>
+</div>
+<div class="half">
+<div>
+<label>Experience 1: Dates</label>
+<input type="text" id="exp1Dates" placeholder="2022 - Present" oninput="update()">
+</div>
+<div>
+<label>Experience 1: Location</label>
+<input type="text" id="exp1Location" placeholder="Remote" oninput="update()">
+</div>
+</div>
+<div>
+<label>Experience 1: Description (bullet points, one per line)</label>
+<textarea id="exp1Desc" rows="3" placeholder="Built React component library used by 5 teams
+Reduced bundle size by 40% through code splitting
+Mentored 3 junior developers" oninput="update()"></textarea>
+</div>
+
+<div class="half">
+<div>
+<label>Experience 2: Title</label>
+<input type="text" id="exp2Title" placeholder="Freelance Web Developer" oninput="update()">
+</div>
+<div>
+<label>Experience 2: Company</label>
+<input type="text" id="exp2Company" placeholder="Self-Employed" oninput="update()">
+</div>
+</div>
+<div class="half">
+<div>
+<label>Experience 2: Dates</label>
+<input type="text" id="exp2Dates" placeholder="2019 - 2022" oninput="update()">
+</div>
+<div>
+<label>Experience 2: Location</label>
+<input type="text" id="exp2Location" placeholder="Remote" oninput="update()">
+</div>
+</div>
+<div>
+<label>Experience 2: Description (bullet points, one per line)</label>
+<textarea id="exp2Desc" rows="3" placeholder="Delivered 15+ web projects for startups and agencies
+Increased client conversion rates by average of 35%
+Maintained 100% client satisfaction rating" oninput="update()"></textarea>
+</div>
+
+<div class="half">
+<div>
+<label>Education: Degree</label>
+<input type="text" id="degree" placeholder="B.S. Computer Science" oninput="update()">
+</div>
+<div>
+<label>Education: School</label>
+<input type="text" id="school" placeholder="University of California, Berkeley" oninput="update()">
+</div>
+</div>
+<div class="half">
+<div>
+<label>Education: Dates</label>
+<input type="text" id="eduDates" placeholder="2015 - 2019" oninput="update()">
+</div>
+<div>
+<label>Education: Location</label>
+<input type="text" id="eduLocation" placeholder="Berkeley, CA" oninput="update()">
+</div>
+</div>
+
+<div class="tip">
+<strong>💡 Pro tip:</strong> Quantify your achievements. "Increased conversion by 40%" beats "Improved website performance."
+</div>
+
+<button onclick="download()">📥 Download Resume HTML</button>
+
+<h2>Preview</h2>
+<div class="preview" id="preview"></div>
+
+</div>
+</div>
+
+<script>
+function update(){
+  const name = document.getElementById('name').value || 'Your Name';
+  const title = document.getElementById('title').value || 'Your Job Title';
+  const email = document.getElementById('email').value || 'your@email.com';
+  const phone = document.getElementById('phone').value || '';
+  const location = document.getElementById('location').value || 'Your Location';
+  const website = document.getElementById('website').value || '#';
+  const summary = document.getElementById('summary').value || 'Your professional summary goes here.';
+  const skills = document.getElementById('skills').value || 'Skill 1, Skill 2, Skill 3';
+  const skillsHtml = skills.split(',').map(s => s.trim()).filter(Boolean).map(s => `<span class="skill">${s}</span>`).join(' ');
+  
+  const exp1Title = document.getElementById('exp1Title').value;
+  const exp1Company = document.getElementById('exp1Company').value;
+  const exp1Dates = document.getElementById('exp1Dates').value;
+  const exp1Location = document.getElementById('exp1Location').value;
+  const exp1Desc = document.getElementById('exp1Desc').value;
+  const exp1Bullets = exp1Desc ? exp1Desc.split('\n').map(line => line.trim()).filter(Boolean).map(line => `<li>${line}</li>`).join('') : '';
+  
+  const exp2Title = document.getElementById('exp2Title').value;
+  const exp2Company = document.getElementById('exp2Company').value;
+  const exp2Dates = document.getElementById('exp2Dates').value;
+  const exp2Location = document.getElementById('exp2Location').value;
+  const exp2Desc = document.getElementById('exp2Desc').value;
+  const exp2Bullets = exp2Desc ? exp2Desc.split('\n').map(line => line.trim()).filter(Boolean).map(line => `<li>${line}</li>`).join('') : '';
+  
+  const degree = document.getElementById('degree').value;
+  const school = document.getElementById('school').value;
+  const eduDates = document.getElementById('eduDates').value;
+  const eduLocation = document.getElementById('eduLocation').value;
+  
+  const exp1Html = exp1Title ? `
+<div class="exp">
+<div class="exp-header">
+<div class="exp-title">${exp1Title}</div>
+<div class="exp-date">${exp1Dates || ''}</div>
+</div>
+<div class="exp-company">${exp1Company || ''} ${exp1Location ? `· ${exp1Location}` : ''}</div>
+${exp1Bullets ? `<ul>${exp1Bullets}</ul>` : ''}
+</div>` : '';
+  
+  const exp2Html = exp2Title ? `
+<div class="exp">
+<div class="exp-header">
+<div class="exp-title">${exp2Title}</div>
+<div class="exp-date">${exp2Dates || ''}</div>
+</div>
+<div class="exp-company">${exp2Company || ''} ${exp2Location ? `· ${exp2Location}` : ''}</div>
+${exp2Bullets ? `<ul>${exp2Bullets}</ul>` : ''}
+</div>` : '';
+  
+  const eduHtml = degree ? `
+<div class="exp">
+<div class="exp-header">
+<div class="exp-title">${degree}</div>
+<div class="exp-date">${eduDates || ''}</div>
+</div>
+<div class="exp-company">${school || ''} ${eduLocation ? `· ${eduLocation}` : ''}</div>
+</div>` : '';
+  
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${name} — Resume</title>
+<style>
+body{font-family:system-ui,-apple-system,sans-serif;max-width:800px;margin:40px auto;padding:20px;color:#333;line-height:1.6}
+h1{font-size:2.2em;margin-bottom:4px;color:#0070f3}
+h2{font-size:1.3em;margin:24px 0 12px;color:#0070f3;border-bottom:2px solid #0070f3;padding-bottom:4px}
+.subtitle{font-size:1.1em;color:#666;margin-bottom:8px}
+.contact{display:flex;flex-wrap:wrap;gap:16px;font-size:.9em;color:#666;margin-bottom:16px}
+.contact a{color:#0070f3;text-decoration:none}
+.summary{margin-bottom:16px}
+.skills{margin:12px 0}
+.skill{background:#e3f2fd;color:#0070f3;padding:4px 12px;border-radius:12px;font-size:.85em;font-weight:600;display:inline-block;margin:0 4px 4px 0}
+.exp{margin-bottom:16px}
+.exp-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.exp-title{font-weight:700;font-size:1.1em}
+.exp-date{color:#666;font-size:.9em}
+.exp-company{color:#666;font-size:.9em;margin-bottom:8px}
+ul{margin:4px 0;padding-left:20px}
+li{margin-bottom:4px}
+</style>
+</head>
+<body>
+<h1>${name}</h1>
+<div class="subtitle">${title}</div>
+<div class="contact">
+<span>${location}</span>
+<span>·</span>
+<a href="mailto:${email}">${email}</a>
+${phone ? `<span>·</span><span>${phone}</span>` : ''}
+${website !== '#' ? `<span>·</span><a href="${website}" target="_blank">${website}</a>` : ''}
+</div>
+
+<div class="summary">${summary}</div>
+
+<div class="skills">${skillsHtml}</div>
+
+<h2>Experience</h2>
+${exp1Html}
+${exp2Html}
+
+<h2>Education</h2>
+${eduHtml}
+
+</body>
+</html>`;
+
+  document.getElementById('preview').textContent = html;
+  window.resumeHTML = html;
+}
+
+function download(){
+  if(!window.resumeHTML) update();
+  const blob = new Blob([window.resumeHTML], {type: 'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'resume.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+update();
+</script>
+</body>
+</html>
