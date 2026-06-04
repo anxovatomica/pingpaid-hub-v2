@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelance Pricing Calculator — PingPaid</title>
+<meta name="description" content="Calculate your freelance hourly rate and project pricing. Factor in expenses, taxes, and profit margin. No signup.">
+<meta property="og:title" content="Freelance Pricing Calculator">
+<meta property="og:description" content="Factor in expenses, taxes, and profit margin.">
+<style>
+:root{--brand:#0070f3;--bg:#fafafa;--card:#fff;--text:#111;--muted:#666;--border:#e5e5e5;--accent:#00c853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px}
+h1{font-size:2.2em;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.4em;margin:32px 0 16px;color:var(--brand)}
+.meta{color:var(--muted);font-size:.9em;margin-bottom:24px}
+input,select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:1em;margin-bottom:16px;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--brand)}
+button{background:var(--brand);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:1em;font-weight:600}
+button:hover{background:#0051a8}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.result{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:24px;border-radius:12px;margin:20px 0;text-align:center}
+.result .amount{font-size:2.5em;font-weight:700}
+.result .label{font-size:.9em;opacity:.9}
+.breakdown{background:#f8f9fa;padding:20px;border-radius:12px;margin:16px 0}
+.breakdown h3{margin-bottom:12px;color:var(--brand)}
+.breakdown-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee}
+.breakdown-item.total{font-weight:700;border-top:2px solid var(--brand);border-bottom:none;margin-top:8px;padding-top:12px}
+.tip{background:#d1ecf1;border-left:4px solid #17a2b8;padding:16px;border-radius:8px;margin:16px 0}
+.cta{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:20px;border-radius:12px;text-align:center;margin:32px 0;font-weight:600}
+.cta a{color:#fff;font-size:1.1em}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>💰 Pricing Calculator</h1>
+<div class="meta">Calculate your rate · Factor in expenses · Add profit margin</div>
+
+<p>Most freelancers undercharge. This calculator helps you price for profit, not just survival.</p>
+
+<div class="grid">
+<div>
+<label>Annual Target Income ($)</label>
+<input type="number" id="targetIncome" value="80000" step="1000">
+</div>
+<div>
+<label>Billable Hours per Week</label>
+<input type="number" id="billableHours" value="25" step="1">
+</div>
+</div>
+
+<div class="grid">
+<div>
+<label>Weeks Worked per Year</label>
+<input type="number" id="weeksWorked" value="48" step="1">
+</div>
+<div>
+<label>Business Expenses per Year ($)</label>
+<input type="number" id="expenses" value="15000" step="1000">
+</div>
+</div>
+
+<div class="grid">
+<div>
+<label>Tax Rate (%)</label>
+<input type="number" id="taxRate" value="25" step="1">
+</div>
+<div>
+<label>Profit Margin (%)</label>
+<input type="number" id="profitMargin" value="20" step="5">
+</div>
+</div>
+
+<button onclick="calculate()">Calculate My Rate</button>
+
+<div class="result" id="result" style="display:none">
+<div class="label">Minimum Hourly Rate</div>
+<div class="amount" id="hourlyRate">$0</div>
+</div>
+
+<div class="breakdown" id="breakdown" style="display:none">
+<h3>Rate Breakdown</h3>
+<div class="breakdown-item">
+<span>Target Income</span>
+<span id="targetDisplay">$0</span>
+</div>
+<div class="breakdown-item">
+<span>Business Expenses</span>
+<span id="expensesDisplay">$0</span>
+</div>
+<div class="breakdown-item">
+<span>Taxes</span>
+<span id="taxesDisplay">$0</span>
+</div>
+<div class="breakdown-item">
+<span>Profit Margin</span>
+<span id="profitDisplay">$0</span>
+</div>
+<div class="breakdown-item total">
+<span>Total Revenue Needed</span>
+<span id="totalRevenue">$0</span>
+</div>
+<div class="breakdown-item">
+<span>Billable Hours per Year</span>
+<span id="totalHours">0</span>
+</div>
+<div class="breakdown-item total">
+<span>Minimum Hourly Rate</span>
+<span id="rateDisplay">$0</span>
+</div>
+</div>
+
+<div class="tip">
+<strong>💡 Pro tip:</strong> If your calculated rate seems high, you're not overcharging — you've been undercharging. The market will tell you if you're wrong. Test it with one new client.
+</div>
+
+<div class="cta">
+<a href="https://anxovatomica.github.io/hourly-rate-calc/">⏱️ Detailed Hourly Rate Calculator</a>
+</div>
+
+</div>
+</div>
+
+<script>
+function calculate(){
+  const targetIncome = parseFloat(document.getElementById('targetIncome').value) || 0;
+  const billableHours = parseFloat(document.getElementById('billableHours').value) || 0;
+  const weeksWorked = parseFloat(document.getElementById('weeksWorked').value) || 0;
+  const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+  const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+  const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
+  
+  const totalHours = billableHours * weeksWorked;
+  const taxes = targetIncome * (taxRate / 100);
+  const profit = targetIncome * (profitMargin / 100);
+  const totalRevenue = targetIncome + expenses + taxes + profit;
+  const hourlyRate = totalRevenue / totalHours;
+  
+  document.getElementById('targetDisplay').textContent = '$' + targetIncome.toFixed(0);
+  document.getElementById('expensesDisplay').textContent = '$' + expenses.toFixed(0);
+  document.getElementById('taxesDisplay').textContent = '$' + taxes.toFixed(0);
+  document.getElementById('profitDisplay').textContent = '$' + profit.toFixed(0);
+  document.getElementById('totalRevenue').textContent = '$' + totalRevenue.toFixed(0);
+  document.getElementById('totalHours').textContent = totalHours.toFixed(0) + ' hours';
+  document.getElementById('rateDisplay').textContent = '$' + hourlyRate.toFixed(0) + '/hour';
+  document.getElementById('hourlyRate').textContent = '$' + hourlyRate.toFixed(0) + '/hour';
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('breakdown').style.display = 'block';
+}
+</script>
+</body>
+</html>
