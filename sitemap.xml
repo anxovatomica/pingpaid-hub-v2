@@ -1,115 +1,223 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/pages/tools.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/tools.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/about.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/about.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/changelog.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/changelog.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/faq.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/faq.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/privacy.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/privacy.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/terms.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/terms.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/lead-magnet.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/lead-magnet.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/404.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/404.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/top-invoice-generators.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/top-invoice-generators.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/freelancer-toolkit.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/freelancer-toolkit.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/late-fees-guide.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/late-fees-guide.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/invoice-guide.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/invoice-guide.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/pricing-guide.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/pricing-guide.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/comparison.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/comparison.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/invoice-template.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/invoice-template.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/invoice-tips.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/invoice-tips.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://anxovatomica.github.io/pingpaid-growth-tools/blog/freelancer-money.html</loc>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/freelancer-money.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/late-fees-legal.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/charge-worth.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/contract-checklist.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/proposal-guide.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/client-red-flags.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/find-clients.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/difficult-clients.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/pricing-first-project.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/blog/tax-guide.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/expense-tracker.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/quote-generator.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/time-log.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/portfolio-builder.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/email-templates.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/freelance-rates.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/free-tools-directory.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/press-kit.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://anxovatomica.github.io/pingpaid-hub-v2/pages/widget-embed.html</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
