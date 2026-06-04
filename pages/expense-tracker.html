@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Tracker for Freelancers — PingPaid</title>
+<meta name="description" content="Free expense tracker for freelancers. Track business expenses, categorize receipts, calculate tax deductions. No signup, local storage only.">
+<meta property="og:title" content="Free Expense Tracker for Freelancers">
+<meta property="og:description" content="Track expenses, categorize receipts, calculate tax deductions. No signup.">
+<style>
+:root{--brand:#0070f3;--bg:#fafafa;--card:#fff;--text:#111;--muted:#666;--border:#e5e5e5;--accent:#00c853;--danger:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px}
+h1{font-size:2.2em;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.4em;margin:32px 0 16px;color:var(--brand)}
+.meta{color:var(--muted);font-size:.9em;margin-bottom:24px}
+input,select,textarea{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:1em;margin-bottom:8px;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--brand)}
+button{background:var(--brand);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:1em;font-weight:600}
+button:hover{background:#0051a8}
+button.secondary{background:#334155}
+button.secondary:hover{background:#475569}
+button.danger{background:var(--danger)}
+button.danger:hover{background:#dc2626}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9em}
+th,td{padding:10px;text-align:left;border-bottom:1px solid var(--border)}
+th{background:#f8f9fa;font-weight:600}
+tr:hover{background:#f8f9fa}
+.total{font-size:1.3em;font-weight:700;color:var(--accent);text-align:right;margin:16px 0}
+.grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;align-items:end;margin-bottom:16px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.cta{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:20px;border-radius:12px;text-align:center;margin:32px 0;font-weight:600}
+.cta a{color:#fff;font-size:1.1em}
+.tip{background:#d1ecf1;border-left:4px solid #17a2b8;padding:16px;border-radius:8px;margin:16px 0}
+.category-tag{background:#e3f2fd;color:var(--brand);padding:2px 10px;border-radius:12px;font-size:.75em;font-weight:600;display:inline-block}
+.category-tag.food{background:#fff3e0;color:#ff9800}
+.category-tag.transport{background:#f3e5f5;color:#9c27b0}
+.category-tag.software{background:#e8f5e9;color:#4caf50}
+.category-tag.marketing{background:#fce4ec;color:#e91e63}
+.category-tag.office{background:#f5f5f5;color:#607d8b}
+.category-tag.other{background:#e0f2f1;color:#009688}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>💰 Expense Tracker</h1>
+<div class="meta">Track business expenses · Categorize receipts · Calculate tax deductions · All local storage</div>
+
+<h2>Add Expense</h2>
+<div class="grid">
+<div>
+<label>Description</label>
+<input type="text" id="desc" placeholder="Laptop, software subscription, client dinner...">
+</div>
+<div>
+<label>Amount ($)</label>
+<input type="number" id="amount" placeholder="0.00" step="0.01">
+</div>
+<div>
+<label>Category</label>
+<select id="category">
+<option value="software">Software</option>
+<option value="equipment">Equipment</option>
+<option value="food">Food & Travel</option>
+<option value="transport">Transport</option>
+<option value="marketing">Marketing</option>
+<option value="office">Office</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div>
+<label>Date</label>
+<input type="date" id="date">
+</div>
+</div>
+<button onclick="addExpense()">➕ Add Expense</button>
+<button class="secondary" onclick="downloadCSV()">📥 Download CSV</button>
+<button class="danger" onclick="clearAll()">🗑️ Clear All</button>
+
+<div class="tip">
+<strong>💡 Tax Tip:</strong> In most countries, business expenses are tax-deductible. Keep receipts for 6-7 years. Categories like software, equipment, and marketing are typically 100% deductible.
+</div>
+
+<h2>Expenses</h2>
+<table id="expenseTable">
+<thead>
+<tr><th>Description</th><th>Category</th><th>Date</th><th>Amount</th><th>Action</th></tr>
+</thead>
+<tbody id="expenseBody">
+</tbody>
+</table>
+
+<div class="total" id="total">Total: $0.00</div>
+
+<h2>By Category</h2>
+<div id="categorySummary"></div>
+
+<div class="cta">
+<a href="https://anxovatomica.github.io/invoice-generator/">📝 Generate an Invoice (Free, 30 seconds)</a>
+</div>
+
+</div>
+</div>
+
+<script>
+let expenses = JSON.parse(localStorage.getItem('expenses') || '[]');
+document.getElementById('date').valueAsDate = new Date();
+render();
+
+function addExpense(){
+  const desc = document.getElementById('desc').value.trim();
+  const amount = parseFloat(document.getElementById('amount').value);
+  const category = document.getElementById('category').value;
+  const date = document.getElementById('date').value;
+  
+  if(!desc || !amount || amount <= 0){
+    alert('Please enter a valid description and amount');
+    return;
+  }
+  
+  expenses.push({id: Date.now(), desc, amount, category, date});
+  localStorage.setItem('expenses', JSON.stringify(expenses));
+  
+  document.getElementById('desc').value = '';
+  document.getElementById('amount').value = '';
+  render();
+}
+
+function deleteExpense(id){
+  expenses = expenses.filter(e => e.id !== id);
+  localStorage.setItem('expenses', JSON.stringify(expenses));
+  render();
+}
+
+function render(){
+  const tbody = document.getElementById('expenseBody');
+  if(expenses.length === 0){
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#666">No expenses yet. Add your first one above! 📊</td></tr>';
+  } else {
+    tbody.innerHTML = expenses.slice().reverse().map(e => `
+      <tr>
+        <td>${e.desc}</td>
+        <td><span class="category-tag ${e.category}">${e.category}</span></td>
+        <td>${e.date}</td>
+        <td>$${e.amount.toFixed(2)}</td>
+        <td><button class="danger" style="padding:4px 8px;font-size:.8em" onclick="deleteExpense(${e.id})">Delete</button></td>
+      </tr>
+    `).join('');
+  }
+  
+  const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+  document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+  
+  // Category summary
+  const cats = {};
+  expenses.forEach(e => {
+    cats[e.category] = (cats[e.category] || 0) + e.amount;
+  });
+  
+  const catHtml = Object.entries(cats).map(([cat, amt]) => `
+    <div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee">
+      <span><span class="category-tag ${cat}">${cat}</span></span>
+      <span style="font-weight:600">$${amt.toFixed(2)}</span>
+    </div>
+  `).join('');
+  
+  document.getElementById('categorySummary').innerHTML = catHtml || '<p style="color:#666">No expenses yet.</p>';
+}
+
+function downloadCSV(){
+  if(expenses.length === 0){
+    alert('No expenses to download');
+    return;
+  }
+  const csv = [
+    'Date,Description,Category,Amount',
+    ...expenses.map(e => `${e.date},"${e.desc}",${e.category},${e.amount.toFixed(2)}`)
+  ].join('\n');
+  
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `expenses-${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function clearAll(){
+  if(!confirm('Delete ALL expenses? This cannot be undone.')) return;
+  expenses = [];
+  localStorage.removeItem('expenses');
+  render();
+}
+</script>
+</body>
+</html>
