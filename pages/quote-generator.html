@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Quote Generator for Freelancers — PingPaid</title>
+<meta name="description" content="Free project quote generator for freelancers. Build professional quotes with line items, taxes, discounts, and payment terms. Download as PDF. No signup.">
+<meta property="og:title" content="Free Project Quote Generator">
+<meta property="og:description" content="Professional quotes with line items, taxes, discounts. Download PDF. No signup.">
+<style>
+:root{--brand:#0070f3;--bg:#fafafa;--card:#fff;--text:#111;--muted:#666;--border:#e5e5e5;--accent:#00c853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px}
+h1{font-size:2.2em;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.4em;margin:32px 0 16px;color:var(--brand)}
+h3{font-size:1.1em;margin:20px 0 8px}
+.meta{color:var(--muted);font-size:.9em;margin-bottom:24px}
+input,select,textarea{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:1em;margin-bottom:8px;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--brand)}
+button{background:var(--brand);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:1em;font-weight:600}
+button:hover{background:#0051a8}
+button.secondary{background:#334155}
+button.secondary:hover{background:#475569}
+button.success{background:var(--accent)}
+button.success:hover{background:#00b248}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.line-item{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:center;margin-bottom:8px;padding:8px;background:#f8f9fa;border-radius:8px}
+.line-item input{margin-bottom:0}
+.total{font-size:1.5em;font-weight:700;color:var(--accent);text-align:right;margin:16px 0}
+.quote-preview{background:#1e293b;color:#e2e8f0;padding:24px;border-radius:12px;margin:20px 0;font-family:system-ui,sans-serif}
+.quote-preview h2{color:#60a5fa;margin-bottom:16px}
+.quote-preview table{width:100%;border-collapse:collapse;color:#cbd5e1;font-size:.9em}
+.quote-preview th,.quote-preview td{padding:8px;text-align:left;border-bottom:1px solid #334155}
+.quote-preview th{color:#94a3b8}
+.quote-preview .total-line{font-size:1.2em;font-weight:700;color:#fff}
+.cta{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:20px;border-radius:12px;text-align:center;margin:32px 0;font-weight:600}
+.cta a{color:#fff;font-size:1.1em}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>📋 Project Quote Generator</h1>
+<div class="meta">Build professional quotes · Line items · Taxes · Discounts · Download PDF</div>
+
+<div class="grid">
+<div>
+<label>Your Name / Company</label>
+<input type="text" id="fromName" placeholder="Your Company LLC">
+</div>
+<div>
+<label>Client Name</label>
+<input type="text" id="toName" placeholder="Client Company Inc">
+</div>
+</div>
+
+<div class="grid">
+<div>
+<label>Project Title</label>
+<input type="text" id="projectTitle" placeholder="Website Redesign">
+</div>
+<div>
+<label>Quote Number</label>
+<input type="text" id="quoteNumber" placeholder="Q-2026-001">
+</div>
+</div>
+
+<div class="grid">
+<div>
+<label>Valid Until</label>
+<input type="date" id="validUntil">
+</div>
+<div>
+<label>Tax Rate (%)</label>
+<input type="number" id="taxRate" value="0" step="0.01">
+</div>
+</div>
+
+<div class="grid">
+<div>
+<label>Discount (%)</label>
+<input type="number" id="discountRate" value="0" step="0.01">
+</div>
+<div>
+<label>Payment Terms</label>
+<select id="paymentTerms">
+<option value="Net 15">Net 15 (15 days)</option>
+<option value="Net 30">Net 30 (30 days)</option>
+<option value="Net 45">Net 45 (45 days)</option>
+<option value="50% upfront, 50% on delivery">50% upfront, 50% on delivery</option>
+<option value="100% upfront">100% upfront</option>
+</select>
+</div>
+</div>
+
+<h2>Line Items</h2>
+<div id="lineItems">
+<div class="line-item">
+<input type="text" placeholder="Description" class="desc">
+<input type="number" placeholder="Qty" class="qty" value="1">
+<input type="number" placeholder="Rate" class="rate" step="0.01">
+<input type="text" placeholder="Total" class="total" readonly>
+<button class="danger" onclick="removeLine(this)" style="padding:4px 8px;font-size:.8em">✕</button>
+</div>
+</div>
+<button class="secondary" onclick="addLine()">➕ Add Line Item</button>
+
+<div class="total" id="grandTotal">Total: $0.00</div>
+
+<div class="grid">
+<button class="success" onclick="downloadPDF()">📄 Download PDF</button>
+<button class="secondary" onclick="downloadHTML()">🌐 Download HTML</button>
+</div>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+// Set default valid until to 30 days from now
+const d = new Date();
+d.setDate(d.getDate() + 30);
+document.getElementById('validUntil').valueAsDate = d;
+
+function addLine(){
+  const div = document.createElement('div');
+  div.className = 'line-item';
+  div.innerHTML = `
+    <input type="text" placeholder="Description" class="desc">
+    <input type="number" placeholder="Qty" class="qty" value="1">
+    <input type="number" placeholder="Rate" class="rate" step="0.01">
+    <input type="text" placeholder="Total" class="total" readonly>
+    <button class="danger" onclick="removeLine(this)" style="padding:4px 8px;font-size:.8em">✕</button>
+  `;
+  document.getElementById('lineItems').appendChild(div);
+  attachListeners();
+}
+
+function removeLine(btn){
+  btn.parentElement.remove();
+  calculate();
+}
+
+function attachListeners(){
+  document.querySelectorAll('.line-item input').forEach(input => {
+    input.removeEventListener('input', calculate);
+    input.addEventListener('input', calculate);
+  });
+}
+
+function calculate(){
+  let subtotal = 0;
+  document.querySelectorAll('.line-item').forEach(row => {
+    const qty = parseFloat(row.querySelector('.qty').value) || 0;
+    const rate = parseFloat(row.querySelector('.rate').value) || 0;
+    const total = qty * rate;
+    row.querySelector('.total').value = total.toFixed(2);
+    subtotal += total;
+  });
+  
+  const discountRate = parseFloat(document.getElementById('discountRate').value) || 0;
+  const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+  
+  const discount = subtotal * (discountRate / 100);
+  const afterDiscount = subtotal - discount;
+  const tax = afterDiscount * (taxRate / 100);
+  const grandTotal = afterDiscount + tax;
+  
+  document.getElementById('grandTotal').innerHTML = `
+    Subtotal: $${subtotal.toFixed(2)}<br>
+    ${discount > 0 ? `Discount (${discountRate}%): -$${discount.toFixed(2)}<br>` : ''}
+    ${tax > 0 ? `Tax (${taxRate}%): $${tax.toFixed(2)}<br>` : ''}
+    <strong>Total: $${grandTotal.toFixed(2)}</strong>
+  `;
+}
+
+async function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  const fromName = document.getElementById('fromName').value || 'Your Company';
+  const toName = document.getElementById('toName').value || 'Client';
+  const projectTitle = document.getElementById('projectTitle').value || 'Project Quote';
+  const quoteNumber = document.getElementById('quoteNumber').value || 'Q-001';
+  const validUntil = document.getElementById('validUntil').value || 'N/A';
+  const paymentTerms = document.getElementById('paymentTerms').value || 'Net 30';
+  
+  // Header
+  doc.setFontSize(24);
+  doc.text('QUOTE', 20, 20);
+  doc.setFontSize(10);
+  doc.setTextColor(100);
+  doc.text(`Quote #: ${quoteNumber}`, 20, 30);
+  doc.text(`Valid Until: ${validUntil}`, 20, 35);
+  doc.text(`Payment Terms: ${paymentTerms}`, 20, 40);
+  
+  // From/To
+  doc.setTextColor(0);
+  doc.setFontSize(12);
+  doc.text('From:', 20, 55);
+  doc.setFontSize(10);
+  doc.text(fromName, 20, 62);
+  
+  doc.setFontSize(12);
+  doc.text('To:', 110, 55);
+  doc.setFontSize(10);
+  doc.text(toName, 110, 62);
+  
+  // Project
+  doc.setFontSize(14);
+  doc.text(projectTitle, 20, 75);
+  
+  // Line items table
+  let y = 90;
+  doc.setFontSize(10);
+  doc.setFillColor(240, 240, 240);
+  doc.rect(20, y-5, 170, 8, 'F');
+  doc.text('Description', 25, y);
+  doc.text('Qty', 100, y);
+  doc.text('Rate', 120, y);
+  doc.text('Total', 150, y);
+  y += 12;
+  
+  let subtotal = 0;
+  document.querySelectorAll('.line-item').forEach(row => {
+    const desc = row.querySelector('.desc').value || 'Item';
+    const qty = parseFloat(row.querySelector('.qty').value) || 0;
+    const rate = parseFloat(row.querySelector('.rate').value) || 0;
+    const total = qty * rate;
+    subtotal += total;
+    
+    doc.text(desc, 25, y);
+    doc.text(qty.toString(), 100, y);
+    doc.text(`$${rate.toFixed(2)}`, 120, y);
+    doc.text(`$${total.toFixed(2)}`, 150, y);
+    y += 8;
+  });
+  
+  // Totals
+  y += 5;
+  const discountRate = parseFloat(document.getElementById('discountRate').value) || 0;
+  const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+  const discount = subtotal * (discountRate / 100);
+  const afterDiscount = subtotal - discount;
+  const tax = afterDiscount * (taxRate / 100);
+  const grandTotal = afterDiscount + tax;
+  
+  doc.setFontSize(11);
+  doc.text(`Subtotal: $${subtotal.toFixed(2)}`, 120, y);
+  y += 6;
+  if(discount > 0){
+    doc.text(`Discount (${discountRate}%): -$${discount.toFixed(2)}`, 120, y);
+    y += 6;
+  }
+  if(tax > 0){
+    doc.text(`Tax (${taxRate}%): $${tax.toFixed(2)}`, 120, y);
+    y += 6;
+  }
+  doc.setFontSize(13);
+  doc.setTextColor(0, 112, 243);
+  doc.text(`Total: $${grandTotal.toFixed(2)}`, 120, y);
+  
+  // Footer
+  doc.setFontSize(9);
+  doc.setTextColor(100);
+  doc.text('Generated by PingPaid — https://anxovatomica.github.io/pingpaid-growth-tools/', 20, 280);
+  
+  doc.save(`quote-${quoteNumber}.pdf`);
+}
+
+function downloadHTML(){
+  const fromName = document.getElementById('fromName').value || 'Your Company';
+  const toName = document.getElementById('toName').value || 'Client';
+  const projectTitle = document.getElementById('projectTitle').value || 'Project Quote';
+  const quoteNumber = document.getElementById('quoteNumber').value || 'Q-001';
+  const validUntil = document.getElementById('validUntil').value || 'N/A';
+  const paymentTerms = document.getElementById('paymentTerms').value || 'Net 30';
+  
+  let lines = '';
+  let subtotal = 0;
+  document.querySelectorAll('.line-item').forEach(row => {
+    const desc = row.querySelector('.desc').value || 'Item';
+    const qty = parseFloat(row.querySelector('.qty').value) || 0;
+    const rate = parseFloat(row.querySelector('.rate').value) || 0;
+    const total = qty * rate;
+    subtotal += total;
+    lines += `<tr><td>${desc}</td><td>${qty}</td><td>$${rate.toFixed(2)}</td><td>$${total.toFixed(2)}</td></tr>`;
+  });
+  
+  const discountRate = parseFloat(document.getElementById('discountRate').value) || 0;
+  const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+  const discount = subtotal * (discountRate / 100);
+  const afterDiscount = subtotal - discount;
+  const tax = afterDiscount * (taxRate / 100);
+  const grandTotal = afterDiscount + tax;
+  
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Quote ${quoteNumber}</title><style>
+body{font-family:system-ui,sans-serif;max-width:800px;margin:40px auto;padding:20px;color:#333}
+h1{color:#0070f3}h2{color:#666;font-size:1.2em}table{width:100%;border-collapse:collapse;margin:20px 0}th,td{padding:10px;text-align:left;border-bottom:1px solid #eee}th{background:#f5f5f5;font-weight:600}.total{font-size:1.3em;font-weight:700;color:#0070f3;text-align:right;margin:20px 0}
+</style></head><body>
+<h1>QUOTE</h1>
+<p><strong>Quote #:</strong> ${quoteNumber}<br>
+<strong>Valid Until:</strong> ${validUntil}<br>
+<strong>Payment Terms:</strong> ${paymentTerms}</p>
+<p><strong>From:</strong> ${fromName}<br>
+<strong>To:</strong> ${toName}</p>
+<h2>${projectTitle}</h2>
+<table><thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th></tr></thead>
+<tbody>${lines}</tbody></table>
+<div class="total">Subtotal: $${subtotal.toFixed(2)}<br>
+${discount > 0 ? `Discount (${discountRate}%): -$${discount.toFixed(2)}<br>` : ''}
+${tax > 0 ? `Tax (${taxRate}%): $${tax.toFixed(2)}<br>` : ''}
+Total: $${grandTotal.toFixed(2)}</div>
+<p style="color:#666;font-size:.9em">Generated by PingPaid</p>
+</body></html>`;
+  
+  const blob = new Blob([html], {type: 'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `quote-${quoteNumber}.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+attachListeners();
+</script>
+</body>
+</html>
