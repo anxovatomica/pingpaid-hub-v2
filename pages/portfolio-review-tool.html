@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelance Portfolio Review Tool — PingPaid</title>
+<meta name="description" content="Review your freelance portfolio against 20 criteria. Get a score and actionable improvements.">
+<meta property="og:title" content="Freelance Portfolio Review Tool">
+<meta property="og:description" content="Review against 20 criteria. Get a score and actionable improvements.">
+<style>
+:root{--brand:#0070f3;--bg:#fafafa;--card:#fff;--text:#111;--muted:#666;--border:#e5e5e5;--accent:#00c853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px}
+h1{font-size:2.2em;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.4em;margin:32px 0 16px;color:var(--brand)}
+h3{font-size:1.1em;margin:20px 0 8px}
+p{margin-bottom:16px}
+.meta{color:var(--muted);font-size:.9em;margin-bottom:24px}
+a{color:var(--brand);text-decoration:none}
+ul{margin-left:24px;margin-bottom:16px}
+li{margin-bottom:8px}
+.checklist-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-bottom:1px solid #f0f0f0;cursor:pointer}
+.checklist-item:hover{background:#f8f9fa}
+.checklist-item input[type=checkbox]{margin-top:4px;width:18px;height:18px;cursor:pointer}
+.checklist-item .item-text{flex:1}
+.checklist-item .item-name{font-weight:600}
+.checklist-item .item-desc{font-size:.9em;color:var(--muted)}
+.score{display:flex;justify-content:center;gap:40px;margin:24px 0;padding:24px;background:#f8f9fa;border-radius:12px}
+.score-box{text-align:center}
+.score-box .number{font-size:3em;font-weight:700;color:var(--brand)}
+.score-box .label{font-size:.9em;color:var(--muted)}
+.result{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:24px;border-radius:12px;margin:24px 0;text-align:center}
+.result .score-text{font-size:1.5em;font-weight:700}
+.result .score-desc{font-size:.9em;opacity:.9}
+.tip{background:#d1ecf1;border-left:4px solid #17a2b8;padding:16px;border-radius:8px;margin:16px 0}
+.cta{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:20px;border-radius:12px;text-align:center;margin:32px 0;font-weight:600}
+.cta a{color:#fff;font-size:1.1em}
+.category{margin:24px 0}
+.category h3{padding:12px;background:#f8f9fa;border-radius:8px;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>🔍 Portfolio Review Tool</h1>
+<div class="meta">Check 20 criteria · Get a score · Actionable improvements</div>
+
+<p>Review your portfolio against what actually converts clients. Check what you have, get a score, and see what to improve.</p>
+
+<div class="score">
+<div class="score-box">
+<div class="number" id="score">0/20</div>
+<div class="label">Your Score</div>
+</div>
+<div class="score-box">
+<div class="number" id="percentage">0%</div>
+<div class="label">Completion</div>
+</div>
+</div>
+
+<div class="category">
+<h3>📱 First Impressions</h3>
+<div class="checklist-item"><input type="checkbox" id="c1"><div class="item-text"><div class="item-name">Clear headline stating what you do</div><div class="item-desc">Visitors should know in 3 seconds what you do</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c2"><div class="item-text"><div class="item-name">Professional headshot or photo</div><div class="item-desc">People hire people, not faceless services</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c3"><div class="item-text"><div class="item-name">Easy contact method (email, form, or link)</div><div class="item-desc">Don't make them hunt for it</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c4"><div class="item-text"><div class="item-name">Mobile-friendly design</div><div class="item-desc">60% of visitors are on mobile</div></div></div>
+</div>
+
+<div class="category">
+<h3>🎯 Portfolio Content</h3>
+<div class="checklist-item"><input type="checkbox" id="c5"><div class="item-text"><div class="item-name">3-5 strong case studies (not just images)</div><div class="item-desc">Show problem, process, and result</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c6"><div class="item-text"><div class="item-name">Before/after or measurable results</div><div class="item-desc">"Increased conversion by 40%" beats "I designed a website"</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c7"><div class="item-text"><div class="item-name">Client testimonials with names and photos</div><div class="item-desc">Anonymous testimonials are worthless</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c8"><div class="item-text"><div class="item-name">Niche specialization (not generalist)</div><div class="item-desc">"I help SaaS companies with onboarding" beats "I do web design"</div></div></div>
+</div>
+
+<div class="category">
+<h3>💡 Trust Signals</h3>
+<div class="checklist-item"><input type="checkbox" id="c9"><div class="item-text"><div class="item-name">Pricing transparency (ranges or starting rates)</div><div class="item-desc">Eliminates price-shock objections</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c10"><div class="item-text"><div class="item-name">Process explanation (how you work)</div><div class="item-desc">Reduces uncertainty for new clients</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c11"><div class="item-text"><div class="item-name">FAQ section addressing common concerns</div><div class="item-desc">"What if I don't like the design?" etc.</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c12"><div class="item-text"><div class="item-name">About page with personality</div><div class="item-desc">Not a resume. A story. Why you do this.</div></div></div>
+</div>
+
+<div class="category">
+<h3>🚀 Conversion Optimization</h3>
+<div class="checklist-item"><input type="checkbox" id="c13"><div class="item-text"><div class="item-name">Clear call-to-action (CTA) on every page</div><div class="item-desc">"Hire me" or "Book a call" — not just "Contact"</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c14"><div class="item-text"><div class="item-name">Social proof (logos, client count, years)</div><div class="item-desc">"Trusted by 50+ companies" or "5 years experience"</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c15"><div class="item-text"><div class="item-name">Blog or content showing expertise</div><div class="item-desc">Positions you as authority, not commodity</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c16"><div class="item-text"><div class="item-name">Easy booking/scheduling link</div><div class="item-desc">Calendly, Cal.com, or similar</div></div></div>
+</div>
+
+<div class="category">
+<h3>🎨 Design & UX</h3>
+<div class="checklist-item"><input type="checkbox" id="c17"><div class="item-text"><div class="item-name">Fast loading speed (under 3 seconds)</div><div class="item-desc">Slow sites lose 40% of visitors</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c18"><div class="item-text"><div class="item-name">Consistent branding and color scheme</div><div class="item-desc">Looks professional, not template-y</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c19"><div class="item-text"><div class="item-name">Easy navigation (3 clicks max to contact)</div><div class="item-desc">Don't make them hunt for how to hire you</div></div></div>
+<div class="checklist-item"><input type="checkbox" id="c20"><div class="item-text"><div class="item-name">No broken links or placeholder content</div><div class="item-desc">"Lorem ipsum" kills credibility instantly</div></div></div>
+</div>
+
+<div class="result" id="result" style="display:none">
+<div class="score-text" id="scoreText">Score: 0/20</div>
+<div class="score-desc" id="scoreDesc">Keep improving!</div>
+</div>
+
+<div class="tip">
+<strong>💡 Pro tip:>>/strong> Score 16+? Your portfolio is solid. Score 12-15? Good foundation, patch the gaps. Score under 12? Rebuild from scratch using these criteria.
+</div>
+
+<div class="cta">
+<a href="https://anxovatomica.github.io/portfolio-builder.html">🎨 Build Your Portfolio (Free Tool)</a>
+</div>
+
+</div>
+</div>
+
+<script>
+const checkboxes = document.querySelectorAll('input[type=checkbox]');
+const scoreEl = document.getElementById('score');
+const percentageEl = document.getElementById('percentage');
+const resultEl = document.getElementById('result');
+const scoreTextEl = document.getElementById('scoreText');
+const scoreDescEl = document.getElementById('scoreDesc');
+
+function updateScore() {
+  const checked = document.querySelectorAll('input[type=checkbox]:checked').length;
+  const total = checkboxes.length;
+  const percentage = Math.round((checked / total) * 100);
+  
+  scoreEl.textContent = checked + '/' + total;
+  percentageEl.textContent = percentage + '%';
+  
+  resultEl.style.display = 'block';
+  scoreTextEl.textContent = 'Score: ' + checked + '/' + total;
+  
+  if (checked >= 16) {
+    scoreDescEl.textContent = 'Excellent! Your portfolio is client-ready. 🎉';
+    resultEl.style.background = 'linear-gradient(135deg, #00c853, #0070f3)';
+  } else if (checked >= 12) {
+    scoreDescEl.textContent = 'Good foundation. Patch the gaps to convert more clients.';
+    resultEl.style.background = 'linear-gradient(135deg, #ff9800, #f57c00)';
+  } else {
+    scoreDescEl.textContent = 'Needs work. Rebuild using these criteria as a checklist.';
+    resultEl.style.background = 'linear-gradient(135deg, #f44336, #d32f2f)';
+  }
+}
+
+checkboxes.forEach(cb => cb.addEventListener('change', updateScore));
+</script>
+</body>
+</html>
