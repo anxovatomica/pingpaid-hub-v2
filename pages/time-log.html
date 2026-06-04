@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Log Calculator for Freelancers — PingPaid</title>
+<meta name="description" content="Free time log calculator for freelancers. Track billable hours, calculate earnings, export timesheets. No signup, local storage only.">
+<meta property="og:title" content="Free Time Log Calculator for Freelancers">
+<meta property="og:description" content="Track billable hours, calculate earnings, export timesheets. No signup.">
+<style>
+:root{--brand:#0070f3;--bg:#fafafa;--card:#fff;--text:#111;--muted:#666;--border:#e5e5e5;--accent:#00c853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px}
+h1{font-size:2.2em;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.4em;margin:32px 0 16px;color:var(--brand)}
+.meta{color:var(--muted);font-size:.9em;margin-bottom:24px}
+input,select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:1em;margin-bottom:8px;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--brand)}
+button{background:var(--brand);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:1em;font-weight:600}
+button:hover{background:#0051a8}
+button.secondary{background:#334155}
+button.secondary:hover{background:#475569}
+button.danger{background:#ef4444}
+button.danger:hover{background:#dc2626}
+.time-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr auto;gap:8px;align-items:center;margin-bottom:8px;padding:8px;background:#f8f9fa;border-radius:8px}
+.time-row input{margin-bottom:0}
+.total{font-size:1.5em;font-weight:700;color:var(--accent);text-align:right;margin:16px 0}
+.summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:16px 0}
+.stat-card{background:#f8f9fa;padding:16px;border-radius:8px;text-align:center}
+.stat-card .number{font-size:1.8em;font-weight:700;color:var(--brand)}
+.stat-card .label{font-size:.85em;color:var(--muted)}
+.cta{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:20px;border-radius:12px;text-align:center;margin:32px 0;font-weight:600}
+.cta a{color:#fff;font-size:1.1em}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>⏱️ Time Log Calculator</h1>
+<div class="meta">Track billable hours · Calculate earnings · Export timesheets · All local storage</div>
+
+<div class="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+<div>
+<label>Your Hourly Rate ($)</label>
+<input type="number" id="hourlyRate" placeholder="85" step="0.01" value="85">
+</div>
+<div>
+<label>Currency</label>
+<select id="currency">
+<option value="$">USD ($)</option>
+<option value="€">EUR (€)</option>
+<option value="£">GBP (£)</option>
+<option value="C$">CAD (C$)</option>
+<option value="A$">AUD (A$)</option>
+</select>
+</div>
+</div>
+
+<h2>Add Time Entry</h2>
+<div class="time-row">
+<input type="text" id="taskDesc" placeholder="Task description">
+<input type="date" id="taskDate">
+<input type="time" id="startTime" placeholder="Start">
+<input type="time" id="endTime" placeholder="End">
+<input type="text" id="breakTime" placeholder="Break (min)" value="0">
+<button class="secondary" onclick="addEntry()">➕</button>
+</div>
+
+<div style="margin-bottom:16px">
+<button class="secondary" onclick="downloadCSV()">📥 Download CSV</button>
+<button class="danger" onclick="clearAll()">🗑️ Clear All</button>
+</div>
+
+<div class="summary">
+<div class="stat-card">
+<div class="number" id="totalHours">0.0</div>
+<div class="label">Total Hours</div>
+</div>
+<div class="stat-card">
+<div class="number" id="totalEarnings">$0.00</div>
+<div class="label">Total Earnings</div>
+</div>
+<div class="stat-card">
+<div class="number" id="avgRate">$0.00</div>
+<div class="label">Avg/Hour</div>
+</div>
+</div>
+
+<h2>Time Entries</h2>
+<div id="entriesList"></div>
+
+<div class="cta">
+<a href="https://anxovatomica.github.io/invoice-generator/">📝 Generate an Invoice for These Hours (Free)</a>
+</div>
+</div>
+</div>
+
+<script>
+let entries = JSON.parse(localStorage.getItem('timeEntries') || '[]');
+document.getElementById('taskDate').valueAsDate = new Date();
+render();
+
+function addEntry(){
+  const desc = document.getElementById('taskDesc').value.trim();
+  const date = document.getElementById('taskDate').value;
+  const start = document.getElementById('startTime').value;
+  const end = document.getElementById('endTime').value;
+  const breakMin = parseInt(document.getElementById('breakTime').value) || 0;
+  
+  if(!desc || !start || !end){
+    alert('Please fill in description, start time, and end time');
+    return;
+  }
+  
+  const startMin = timeToMinutes(start);
+  const endMin = timeToMinutes(end);
+  let diffMin = endMin - startMin - breakMin;
+  if(diffMin < 0) diffMin += 24 * 60;
+  
+  const hours = diffMin / 60;
+  const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
+  const earnings = hours * rate;
+  const currency = document.getElementById('currency').value;
+  
+  entries.push({id: Date.now(), desc, date, start, end, breakMin, hours, earnings, currency, rate});
+  localStorage.setItem('timeEntries', JSON.stringify(entries));
+  
+  document.getElementById('taskDesc').value = '';
+  document.getElementById('startTime').value = '';
+  document.getElementById('endTime').value = '';
+  document.getElementById('breakTime').value = '0';
+  render();
+}
+
+function timeToMinutes(time){
+  const [h, m] = time.split(':').map(Number);
+  return h * 60 + m;
+}
+
+function deleteEntry(id){
+  entries = entries.filter(e => e.id !== id);
+  localStorage.setItem('timeEntries', JSON.stringify(entries));
+  render();
+}
+
+function render(){
+  const list = document.getElementById('entriesList');
+  if(entries.length === 0){
+    list.innerHTML = '<p style="text-align:center;color:#666;padding:40px">No time entries yet. Add your first one above! ⏱️</p>';
+  } else {
+    list.innerHTML = entries.slice().reverse().map(e => `
+      <div class="time-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr auto">
+        <div>${e.desc}</div>
+        <div>${e.date}</div>
+        <div>${e.start}</div>
+        <div>${e.end}</div>
+        <div>${e.hours.toFixed(2)}h</div>
+        <div>${e.currency}${e.earnings.toFixed(2)}</div>
+        <button class="danger" style="padding:4px 8px;font-size:.8em" onclick="deleteEntry(${e.id})">✕</button>
+      </div>
+    `).join('');
+  }
+  
+  const totalHours = entries.reduce((sum, e) => sum + e.hours, 0);
+  const totalEarnings = entries.reduce((sum, e) => sum + e.earnings, 0);
+  const avgRate = totalHours > 0 ? totalEarnings / totalHours : 0;
+  const currency = entries.length > 0 ? entries[0].currency : '$';
+  
+  document.getElementById('totalHours').textContent = totalHours.toFixed(1);
+  document.getElementById('totalEarnings').textContent = `${currency}${totalEarnings.toFixed(2)}`;
+  document.getElementById('avgRate').textContent = `${currency}${avgRate.toFixed(2)}`;
+}
+
+function downloadCSV(){
+  if(entries.length === 0){
+    alert('No entries to download');
+    return;
+  }
+  const csv = [
+    'Date,Description,Start,End,Break (min),Hours,Earnings',
+    ...entries.map(e => `${e.date},"${e.desc}",${e.start},${e.end},${e.breakMin},${e.hours.toFixed(2)},${e.currency}${e.earnings.toFixed(2)}`)
+  ].join('\n');
+  
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `timesheet-${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function clearAll(){
+  if(!confirm('Delete ALL time entries? This cannot be undone.')) return;
+  entries = [];
+  localStorage.removeItem('timeEntries');
+  render();
+}
+</script>
+</body>
+</html>
