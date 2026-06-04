@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anxovatomica.github.io/pingpaid-growth-tools/sitemap.xml

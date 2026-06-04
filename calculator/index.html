@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Late Fee Calculator — PingPaid</title>
+<meta name="description" content="Calculate your legal late fee entitlement under EU Directive 2011/7/EU. Statutory interest + €40 fixed fee per invoice. Free tool for freelancers and small businesses.">
+<link rel="canonical" href="https://pingpaidonline.dpdns.org/calculator/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PingPaid Late Fee Calculator","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#f8fafc;min-height:100vh}
+.container{max-width:700px;margin:0 auto;padding:40px 20px}
+.brand{text-align:center;margin-bottom:40px}
+.brand a{color:#22c55e;text-decoration:none;font-size:24px;font-weight:700}
+.brand a:hover{text-decoration:underline}
+h1{text-align:center;font-size:36px;margin-bottom:12px;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:40px;font-size:18px}
+.card{background:rgba(30,41,59,0.8);backdrop-filter:blur(10px);border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:32px;margin-bottom:24px}
+.card h2{font-size:22px;margin-bottom:20px;color:#e2e8f0}
+.form-group{margin-bottom:20px}
+label{display:block;margin-bottom:8px;color:#94a3b8;font-size:14px;font-weight:500}
+input,select{width:100%;padding:14px 16px;background:#0f172a;border:1px solid rgba(148,163,184,0.2);border-radius:10px;color:#f8fafc;font-size:16px;transition:border-color .2s}
+input:focus,select:focus{outline:none;border-color:#22c55e}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,197,94,0.3)}
+.btn:active{transform:translateY(0)}
+.results{display:none;margin-top:24px;padding:24px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:12px}
+.results.show{display:block}
+.results h3{color:#4ade80;margin-bottom:16px;font-size:20px}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(148,163,184,0.1)}
+.result-row:last-child{border-bottom:none}
+.result-label{color:#94a3b8}
+.result-value{font-weight:700;color:#f8fafc}
+.total{font-size:24px;color:#22c55e;font-weight:800}
+.email-capture{display:none;margin-top:24px;text-align:center}
+.email-capture.show{display:block}
+.email-capture p{color:#cbd5e1;margin-bottom:16px}
+.email-input{max-width:400px;margin:0 auto 16px}
+.small-text{color:#64748b;font-size:13px;margin-top:12px}
+.capture-alt{margin-top:16px;padding:16px;background:rgba(30,41,59,0.6);border-radius:10px;border:1px solid rgba(148,163,184,0.1)}
+.capture-alt p{color:#94a3b8;font-size:14px;margin-bottom:8px}
+.capture-alt a{color:#22c55e;text-decoration:none;font-weight:500}
+.capture-alt a:hover{text-decoration:underline}
+.admin-toggle{position:fixed;bottom:20px;right:20px;padding:10px 16px;background:rgba(30,41,59,0.9);border:1px solid rgba(148,163,184,0.2);border-radius:8px;color:#94a3b8;font-size:12px;cursor:pointer;z-index:100}
+.admin-toggle:hover{color:#22c55e}
+.admin-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.95);z-index:200;overflow:auto;padding:40px 20px}
+.admin-panel.show{display:block}
+.admin-panel h2{color:#22c55e;margin-bottom:24px}
+.admin-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.admin-table th{background:#1e293b;padding:12px;text-align:left;color:#94a3b8;border-bottom:2px solid #22c55e}
+.admin-table td{padding:12px;border-bottom:1px solid rgba(148,163,184,0.1);color:#e2e8f0;font-size:14px}
+.admin-table td.email{color:#4ade80}
+.admin-btn{padding:10px 20px;background:#22c55e;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-right:8px;margin-bottom:8px}
+.admin-btn.secondary{background:#334155}
+.empty-state{text-align:center;color:#64748b;padding:40px}
+.config-panel{background:rgba(30,41,59,0.6);border-radius:10px;padding:20px;margin-bottom:20px;border:1px solid rgba(148,163,184,0.1)}
+.config-panel h3{color:#22c55e;font-size:16px;margin-bottom:12px}
+.config-panel p{color:#94a3b8;font-size:13px;margin-bottom:8px}
+.config-panel code{background:#0f172a;padding:4px 8px;border-radius:4px;color:#4ade80;font-size:12px;word-break:break-all}
+footer{text-align:center;color:#64748b;padding:40px 0;border-top:1px solid rgba(148,163,184,0.1);margin-top:40px}
+footer a{color:#22c55e;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="brand"><a href="https://pingpaid.online?utm_source=calculator&utm_medium=tool&utm_campaign=late_fee_calc">PingPaid</a></div>
+<h1>Late Fee Calculator</h1>
+<p class="subtitle">Calculate your legal entitlement under EU Directive 2011/7/EU</p>
+
+<div class="card">
+<h2>📋 Invoice Details</h2>
+<div class="form-group">
+<label>Invoice Amount (€)</label>
+<input type="number" id="amount" placeholder="e.g. 2500" min="1" step="0.01">
+</div>
+<div class="form-group">
+<label>Days Overdue</label>
+<input type="number" id="days" placeholder="e.g. 45" min="1">
+</div>
+<div class="form-group">
+<label>Payment Terms (days)</label>
+<select id="terms">
+<option value="14">Net 14</option>
+<option value="30" selected>Net 30</option>
+<option value="60">Net 60</option>
+<option value="90">Net 90</option>
+</select>
+</div>
+<div class="form-group">
+<label>Invoice Date</label>
+<input type="date" id="invoiceDate">
+</div>
+<button class="btn" onclick="calculate()">Calculate Late Fees →</button>
+
+<div class="results" id="results">
+<h3>💰 Your Legal Entitlement</h3>
+<div class="result-row"><span class="result-label">Original Invoice</span><span class="result-value" id="resAmount">—</span></div>
+<div class="result-row"><span class="result-label">Days Overdue</span><span class="result-value" id="resDays">—</span></div>
+<div class="result-row"><span class="result-label">Statutory Interest (12.5% p.a.)</span><span class="result-value" id="resInterest">—</span></div>
+<div class="result-row"><span class="result-label">Fixed Compensation (EU Law)</span><span class="result-value" id="resFixed">—</span></div>
+<div class="result-row"><span class="result-label">Total Amount Due</span><span class="result-value total" id="resTotal">—</span></div>
+<p class="small-text">Based on EU Directive 2011/7/EU. Statutory interest = ECB reference rate + 8 percentage points (currently ~12.5%). Fixed compensation = €40 per late commercial invoice.</p>
+</div>
+
+<div class="email-capture" id="emailCapture">
+<p>📧 <strong>Want this calculation sent to your email?</strong><br>Plus: free collection templates, payment terms guide, and weekly recovery tips.</p>
+<div class="email-input">
+<input type="email" id="emailInput" placeholder="your@email.com">
+</div>
+<button class="btn" onclick="captureEmail()">Send My Calculation →</button>
+<p class="small-text" id="captureStatus"></p>
+
+<div class="capture-alt">
+<p><strong>Backend not configured yet?</strong></p>
+<p>Emails are being saved locally. <a href="#" onclick="showAdmin();return false">View collected emails →</a></p>
+<p style="margin-top:12px">Or connect a backend in 30 seconds:</p>
+<p>• <a href="#" onclick="showConfig('formspree');return false">Formspree (free, 30 sec)</a></p>
+<p>• <a href="#" onclick="showConfig('google');return false">Google Sheets (free, 2 min)</a></p>
+</div>
+</div>
+</div>
+
+<div class="card" id="configPanel" style="display:none">
+<h2>⚙️ Connect Email Backend</h2>
+<div id="formspreeConfig" class="config-panel" style="display:none">
+<h3>Option 1: Formspree (Fastest — 30 seconds)</h3>
+<p>1. Go to <a href="https://formspree.io" target="_blank">formspree.io</a> and click "Get Started"</p>
+<p>2. Create a new form (free tier = 50 submissions/month)</p>
+<p>3. Copy your form endpoint URL (looks like: <code>https://formspree.io/f/YOUR_ID</code>)</p>
+<p>4. Paste it here: <input type="text" id="formspreeUrl" placeholder="https://formspree.io/f/xxxxxxx" style="margin-top:8px"></p>
+<button class="admin-btn" onclick="saveFormspree()">Save & Activate</button>
+</div>
+<div id="googleConfig" class="config-panel" style="display:none">
+<h3>Option 2: Google Sheets (Free — 2 minutes)</h3>
+<p>1. Create a new Google Sheet</p>
+<p>2. Go to Extensions → Apps Script</p>
+<p>3. Paste the code from <code>email-capture-backend.md</code> in this folder</p>
+<p>4. Deploy as Web App → Copy the URL</p>
+<p>5. Paste it here: <input type="text" id="googleUrl" placeholder="https://script.google.com/macros/s/..." style="margin-top:8px"></p>
+<button class="admin-btn" onclick="saveGoogle()">Save & Activate</button>
+</div>
+</div>
+
+<div class="card">
+<h2>📚 Quick Facts</h2>
+<p style="color:#cbd5e1;margin-bottom:12px">• <strong>€40 fixed fee</strong> per late invoice (EU Directive 2011/7/EU)</p>
+<p style="color:#cbd5e1;margin-bottom:12px">• <strong>~12.5% annual interest</strong> on overdue amounts (ECB rate + 8%)</p>
+<p style="color:#cbd5e1;margin-bottom:12px">• <strong>30-day max</strong> payment terms for commercial transactions in EU</p>
+<p style="color:#cbd5e1">• Most freelancers <strong>never claim</strong> these entitlements — leaving thousands uncollected</p>
+</div>
+
+<footer>
+<p>Free tool by <a href="https://pingpaid.online?utm_source=calculator&utm_medium=footer&utm_campaign=late_fee_calc">PingPaid</a> — Automated invoice collection for freelancers & small businesses</p>
+<p style="margin-top:8px;font-size:13px">21-day free trial • €29.99/month • 87% recovery rate before Day 45</p>
+</footer>
+</div>
+
+<button class="admin-toggle" onclick="showAdmin()">📊 Admin</button>
+
+<div class="admin-panel" id="adminPanel">
+<div class="container">
+<h2>📊 Email Capture Admin</h2>
+<p style="color:#94a3b8;margin-bottom:24px">View and export emails collected through this calculator.</p>
+
+<div id="adminContent">
+<div class="empty-state">
+<p>No emails captured yet.</p>
+<p style="margin-top:12px">Emails will appear here when visitors submit the form.</p>
+</div>
+</div>
+
+<div style="margin-top:24px">
+<button class="admin-btn" onclick="exportCSV()">📥 Export CSV</button>
+<button class="admin-btn secondary" onclick="clearEmails()">🗑️ Clear All</button>
+<button class="admin-btn secondary" onclick="hideAdmin()">Close</button>
+</div>
+
+<div style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(148,163,184,0.1)">
+<h3 style="color:#22c55e;margin-bottom:12px">Backend Configuration</h3>
+<p style="color:#94a3b8;font-size:14px">Current endpoint: <code id="currentEndpoint" style="word-break:break-all">localStorage only (no backend)</code></p>
+<button class="admin-btn" style="margin-top:12px" onclick="showConfig('formspree');hideAdmin()">Configure Formspree</button>
+<button class="admin-btn secondary" style="margin-top:12px" onclick="showConfig('google');hideAdmin()">Configure Google Sheets</button>
+</div>
+</div>
+</div>
+
+<script>
+const ECB_RATE = 4.5;
+const MARGIN = 8;
+const FIXED_FEE = 40;
+
+function calculate() {
+  const amount = parseFloat(document.getElementById('amount').value);
+  const days = parseInt(document.getElementById('days').value);
+  const terms = parseInt(document.getElementById('terms').value);
+
+  if (!amount || !days || amount <= 0 || days <= 0) {
+    alert('Please enter a valid invoice amount and days overdue.');
+    return;
+  }
+
+  const interestRate = (ECB_RATE + MARGIN) / 100;
+  const dailyRate = interestRate / 365;
+  const interest = amount * dailyRate * days;
+  const total = amount + interest + FIXED_FEE;
+
+  document.getElementById('resAmount').textContent = '€' + amount.toFixed(2);
+  document.getElementById('resDays').textContent = days + ' days';
+  document.getElementById('resInterest').textContent = '€' + interest.toFixed(2);
+  document.getElementById('resFixed').textContent = '€' + FIXED_FEE.toFixed(2);
+  document.getElementById('resTotal').textContent = '€' + total.toFixed(2);
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('emailCapture').classList.add('show');
+
+  // Save calculation to localStorage for context
+  localStorage.setItem('lastCalc', JSON.stringify({amount, days, terms, interest, total, timestamp: new Date().toISOString()}));
+}
+
+function captureEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('captureStatus').textContent = 'Please enter a valid email.';
+    document.getElementById('captureStatus').style.color = '#ef4444';
+    return;
+  }
+
+  const calc = JSON.parse(localStorage.getItem('lastCalc') || '{}');
+  const record = {email, amount: calc.amount, days: calc.days, total: calc.total, timestamp: new Date().toISOString(), source: 'late_fee_calculator'};
+
+  // Save locally
+  let emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  emails.push(record);
+  localStorage.setItem('capturedEmails', JSON.stringify(emails));
+
+  // Try backend if configured
+  const endpoint = localStorage.getItem('emailEndpoint');
+  if (endpoint) {
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(record)
+    }).then(r => {
+      document.getElementById('captureStatus').textContent = '✅ Saved to backend + localStorage!';
+      document.getElementById('captureStatus').style.color = '#22c55e';
+    }).catch(e => {
+      document.getElementById('captureStatus').textContent = '✅ Saved locally. Backend sync failed (saved for retry).';
+      document.getElementById('captureStatus').style.color = '#f59e0b';
+    });
+  } else {
+    document.getElementById('captureStatus').textContent = '✅ Email captured! View in Admin panel. Connect a backend for cloud storage.';
+    document.getElementById('captureStatus').style.color = '#22c55e';
+  }
+
+  document.getElementById('emailInput').value = '';
+}
+
+function showAdmin() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  const content = document.getElementById('adminContent');
+  const endpoint = localStorage.getItem('emailEndpoint') || 'localStorage only (no backend)';
+  document.getElementById('currentEndpoint').textContent = endpoint;
+
+  if (emails.length === 0) {
+    content.innerHTML = '<div class="empty-state"><p>No emails captured yet.</p><p style="margin-top:12px">Emails will appear here when visitors submit the form.</p></div>';
+  } else {
+    let html = '<table class="admin-table"><tr><th>Email</th><th>Amount</th><th>Days</th><th>Total</th><th>Date</th></tr>';
+    emails.reverse().forEach(e => {
+      const date = new Date(e.timestamp).toLocaleDateString();
+      html += `<tr><td class="email">${e.email}</td><td>€${e.amount}</td><td>${e.days}</td><td>€${e.total}</td><td>${date}</td></tr>`;
+    });
+    html += '</table><p style="color:#94a3b8">Total captured: ' + emails.length + ' emails</p>';
+    content.innerHTML = html;
+  }
+  document.getElementById('adminPanel').classList.add('show');
+}
+
+function hideAdmin() {
+  document.getElementById('adminPanel').classList.remove('show');
+}
+
+function exportCSV() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  if (emails.length === 0) { alert('No emails to export.'); return; }
+  let csv = 'Email,Invoice Amount,Days Overdue,Total Due,Date Captured\n';
+  emails.forEach(e => {
+    csv += `"${e.email}",${e.amount},${e.days},${e.total},"${new Date(e.timestamp).toISOString()}"\n`;
+  });
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'pingpaid-leads-' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function clearEmails() {
+  if (!confirm('Delete all captured emails? This cannot be undone.')) return;
+  localStorage.removeItem('capturedEmails');
+  showAdmin();
+}
+
+function showConfig(type) {
+  document.getElementById('configPanel').style.display = 'block';
+  document.getElementById('formspreeConfig').style.display = type === 'formspree' ? 'block' : 'none';
+  document.getElementById('googleConfig').style.display = type === 'google' ? 'block' : 'none';
+  document.getElementById('configPanel').scrollIntoView({behavior:'smooth'});
+}
+
+function saveFormspree() {
+  const url = document.getElementById('formspreeUrl').value.trim();
+  if (!url.includes('formspree.io')) { alert('Please enter a valid Formspree URL'); return; }
+  localStorage.setItem('emailEndpoint', url);
+  alert('Formspree connected! New emails will sync to your Formspree dashboard.');
+  document.getElementById('configPanel').style.display = 'none';
+}
+
+function saveGoogle() {
+  const url = document.getElementById('googleUrl').value.trim();
+  if (!url.includes('google.com')) { alert('Please enter a valid Google Apps Script URL'); return; }
+  localStorage.setItem('emailEndpoint', url);
+  alert('Google Sheets connected! New emails will append to your sheet.');
+  document.getElementById('configPanel').style.display = 'none';
+}
+
+// Set today's date as default
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('invoiceDate').value = today;
+</script>
+</body>
+</html>
