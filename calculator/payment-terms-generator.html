@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Payment Terms Generator — PingPaid</title>
+<meta name="description" content="Generate professional payment terms text and legal clauses by country. Free tool for freelancers and small businesses.">
+<meta name="keywords" content="payment terms generator, invoice payment terms, legal payment clauses, freelance payment terms template">
+<link rel="canonical" href="https://pingpaidonline.dpdns.org/calculator/payment-terms-generator.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PingPaid Payment Terms Generator","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#f8fafc;min-height:100vh}
+.container{max-width:700px;margin:0 auto;padding:40px 20px}
+.brand{text-align:center;margin-bottom:40px}
+.brand a{color:#22c55e;text-decoration:none;font-size:24px;font-weight:700}
+.brand a:hover{text-decoration:underline}
+h1{text-align:center;font-size:36px;margin-bottom:12px;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:40px;font-size:18px}
+.card{background:rgba(30,41,59,0.8);backdrop-filter:blur(10px);border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:32px;margin-bottom:24px}
+.card h2{font-size:22px;margin-bottom:20px;color:#e2e8f0}
+.form-group{margin-bottom:20px}
+label{display:block;margin-bottom:8px;color:#94a3b8;font-size:14px;font-weight:500}
+input,select,textarea{width:100%;padding:14px 16px;background:#0f172a;border:1px solid rgba(148,163,184,0.2);border-radius:10px;color:#f8fafc;font-size:16px;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#22c55e}
+textarea{min-height:120px;resize:vertical;font-size:15px;line-height:1.6}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,197,94,0.3)}
+.btn:active{transform:translateY(0)}
+.btn-secondary{width:100%;padding:14px;background:#334155;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;margin-top:12px;transition:background .2s}
+.btn-secondary:hover{background:#475569}
+.results{display:none;margin-top:24px;padding:24px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:12px}
+.results.show{display:block}
+.results h3{color:#4ade80;margin-bottom:16px;font-size:20px}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(148,163,184,0.1)}
+.result-row:last-child{border-bottom:none}
+.result-label{color:#94a3b8}
+.result-value{font-weight:700;color:#f8fafc}
+.total{font-size:24px;color:#22c55e;font-weight:800}
+.email-capture{display:none;margin-top:24px;text-align:center}
+.email-capture.show{display:block}
+.email-capture p{color:#cbd5e1;margin-bottom:16px}
+.email-input{max-width:400px;margin:0 auto 16px}
+.small-text{color:#64748b;font-size:13px;margin-top:12px}
+.capture-alt{margin-top:16px;padding:16px;background:rgba(30,41,59,0.6);border-radius:10px;border:1px solid rgba(148,163,184,0.1)}
+.capture-alt p{color:#94a3b8;font-size:14px;margin-bottom:8px}
+.capture-alt a{color:#22c55e;text-decoration:none;font-weight:500}
+.capture-alt a:hover{text-decoration:underline}
+.admin-toggle{position:fixed;bottom:20px;right:20px;padding:10px 16px;background:rgba(30,41,59,0.9);border:1px solid rgba(148,163,184,0.2);border-radius:8px;color:#94a3b8;font-size:12px;cursor:pointer;z-index:100}
+.admin-toggle:hover{color:#22c55e}
+.admin-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.95);z-index:200;overflow:auto;padding:40px 20px}
+.admin-panel.show{display:block}
+.admin-panel h2{color:#22c55e;margin-bottom:24px}
+.admin-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.admin-table th{background:#1e293b;padding:12px;text-align:left;color:#94a3b8;border-bottom:2px solid #22c55e}
+.admin-table td{padding:12px;border-bottom:1px solid rgba(148,163,184,0.1);color:#e2e8f0;font-size:14px}
+.admin-table td.email{color:#4ade80}
+.admin-btn{padding:10px 20px;background:#22c55e;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-right:8px;margin-bottom:8px}
+.admin-btn.secondary{background:#334155}
+.empty-state{text-align:center;color:#64748b;padding:40px}
+.terms-box{background:#0f172a;border:1px solid rgba(148,163,184,0.2);border-radius:10px;padding:20px;margin-top:16px;font-size:15px;line-height:1.7;color:#cbd5e1;white-space:pre-wrap}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+footer{text-align:center;color:#64748b;padding:40px 0;border-top:1px solid rgba(148,163,184,0.1);margin-top:40px}
+footer a{color:#22c55e;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="brand"><a href="https://pingpaid.online?utm_source=calculator&utm_medium=tool&utm_campaign=payment_terms">PingPaid</a></div>
+<h1>Payment Terms Generator</h1>
+<p class="subtitle">Generate professional payment terms + legal clauses tailored to your country</p>
+
+<div class="card">
+<h2>⚙️ Settings</h2>
+<div class="row">
+<div class="form-group">
+<label>Country / Jurisdiction</label>
+<select id="country">
+<option value="eu">EU (Directive 2011/7/EU)</option>
+<option value="us">United States</option>
+<option value="uk">United Kingdom</option>
+<option value="spain">Spain</option>
+<option value="germany">Germany</option>
+<option value="france">France</option>
+<option value="custom">Custom / International</option>
+</select>
+</div>
+<div class="form-group">
+<label>Payment Deadline</label>
+<select id="deadline">
+<option value="7">Net 7 (7 days)</option>
+<option value="14">Net 14 (14 days)</option>
+<option value="30" selected>Net 30 (30 days)</option>
+<option value="60">Net 60 (60 days)</option>
+</select>
+</div>
+</div>
+<div class="row">
+<div class="form-group">
+<label>Accepted Payment Methods</label>
+<input type="text" id="paymentMethods" placeholder="e.g. Bank transfer, PayPal, Stripe" value="Bank transfer, PayPal, Credit card">
+</div>
+<div class="form-group">
+<label>Currency</label>
+<select id="currency">
+<option value="EUR" selected>EUR (€)</option>
+<option value="USD">USD ($)</option>
+<option value="GBP">GBP (£)</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label>Include Late Fee Clause?</label>
+<select id="lateFee">
+<option value="yes" selected>Yes — include statutory late fees</option>
+<option value="no">No — friendly terms only</option>
+</select>
+</div>
+</div>
+
+<div class="card">
+<button class="btn" onclick="generate()">Generate Payment Terms →</button>
+
+<div class="results" id="results">
+<h3>📄 Generated Payment Terms</h3>
+<div class="terms-box" id="termsText"></div>
+<button class="btn-secondary" onclick="copyTerms()">📋 Copy to Clipboard</button>
+<button class="btn-secondary" onclick="downloadTerms()">💾 Download as .txt</button>
+</div>
+
+<div class="email-capture" id="emailCapture">
+<p>📧 <strong>Want these terms + templates sent to your email?</strong><br>Plus: a full legal guide for your country.</p>
+<div class="email-input">
+<input type="email" id="emailInput" placeholder="your@email.com">
+</div>
+<button class="btn" onclick="captureEmail()">Send My Terms →</button>
+<p class="small-text" id="captureStatus"></p>
+<div class="capture-alt">
+<p>Emails saved locally. <a href="#" onclick="showAdmin();return false">View collected emails →</a></p>
+</div>
+</div>
+</div>
+
+<footer>
+<p>Built by <a href="https://pingpaid.online?utm_source=calculator&utm_medium=footer&utm_campaign=payment_terms">PingPaid</a> — automated invoice collection</p>
+<p style="margin-top:8px;font-size:13px"><a href="./">← Back to Calculator Hub</a></p>
+</footer>
+</div>
+
+<button class="admin-toggle" onclick="showAdmin()">📊 Admin</button>
+<div class="admin-panel" id="adminPanel">
+<div class="container">
+<h2>📊 Email Capture Admin</h2>
+<div id="adminContent"><div class="empty-state"><p>No emails captured yet.</p></div></div>
+<div style="margin-top:24px">
+<button class="admin-btn" onclick="exportCSV()">📥 Export CSV</button>
+<button class="admin-btn secondary" onclick="clearEmails()">🗑️ Clear All</button>
+<button class="admin-btn secondary" onclick="hideAdmin()">Close</button>
+</div>
+</div>
+</div>
+
+<script>
+const TEMPLATES = {
+  eu: `PAYMENT TERMS
+
+1. Payment is due within {{DEADLINE}} days from the invoice date.
+
+2. Accepted payment methods: {{METHODS}}.
+
+3. Late payments will incur statutory interest at the rate set by the European Central Bank reference rate plus 8 percentage points, pursuant to EU Directive 2011/7/EU on combating late payment in commercial transactions.
+
+4. A fixed compensation fee of €40 per late invoice will be charged to cover recovery costs, as provided by the aforementioned Directive.
+
+5. Payment should be made in {{CURRENCY}}. The client is responsible for any bank transfer fees or currency conversion charges.
+
+6. In the event of a dispute, the parties agree to attempt good-faith negotiation before resorting to legal proceedings.`,
+  us: `PAYMENT TERMS
+
+1. Payment is due within {{DEADLINE}} days from the invoice date.
+
+2. Accepted payment methods: {{METHODS}}.
+
+3. A late payment fee of 1.5% per month (18% APR) will be applied to all overdue balances. Additionally, the client agrees to pay all reasonable collection costs, including attorney fees, should legal action be required.
+
+4. Payment should be made in {{CURRENCY}}. The client is responsible for any processing or wire transfer fees.
+
+5. Work remains the intellectual property of the contractor until full payment is received. A license to use the deliverables is granted only upon payment in full.
+
+6. Disputes shall be resolved under the laws of the state of the contractor's principal place of business.`,
+  uk: `PAYMENT TERMS
+
+1. Payment is due within {{DEADLINE}} days from the invoice date.
+
+2. Accepted payment methods: {{METHODS}}.
+
+3. Late payments will incur interest at the statutory rate of 8% above the Bank of England base rate, plus a fixed sum for recovery costs under the Late Payment of Commercial Debts (Interest) Act 1998:
+   - £40 for debts up to £1,000
+   - £70 for debts between £1,000 and £10,000
+   - £100 for debts over £10,000
+
+4. Payment should be made in {{CURRENCY}}. The client is responsible for any bank charges.
+
+5. All work remains the property of the contractor until full payment is received.
+
+6. This contract is governed by the laws of England and Wales.`,
+  spain: `CONDICIONES DE PAGO
+
+1. El pago debe realizarse dentro de los {{DEADLINE}} días naturales desde la fecha de factura.
+
+2. Métodos de pago aceptados: {{METHODS}}.
+
+3. Conforme a la Ley 3/2004 de medidas de lucha contra la morosidad en las operaciones comerciales, los pagos fuera de plazo devengarán intereses de demora calculados conforme al tipo de interés legal del dinero vigente, más 8 puntos porcentuales.
+
+4. Se aplicará una indemnización por daños de 40€ por cada factura pagada fuera de plazo.
+
+5. El pago se realizará en {{CURRENCY}}. El cliente asumirá las comisiones bancarias.
+
+6. En caso de disputa, se aplicará la legislación española y la jurisdicción de los tribunales del domicilio del prestador.`,
+  germany: `ZAHLUNGSBEDINGUNGEN
+
+1. Zahlung ist innerhalb von {{DEADLINE}} Tagen ab Rechnungsdatum fällig.
+
+2. Akzeptierte Zahlungsmethoden: {{METHODS}}.
+
+3. Gemäß § 288 BGB werden bei Zahlungsverzug Verzugszinsen in Höhe von 9 Prozentpunkten über dem Basiszinssatz erhoben. Bei Geschäften zwischen Unternehmern (§ 271a BGB) beträgt der Zinssatz 9 Prozentpunkte über dem Basiszinssatz.
+
+4. Eine Pauschale für Bearbeitungskosten in Höhe von 40€ wird bei jeder überfälligen Rechnung fällig (§ 286 BGB i.V.m. § 288 BGB).
+
+5. Zahlung erfolgt in {{CURRENCY}}. Der Kunde trägt etwaige Bankgebühren.
+
+6. Es gilt deutsches Recht. Gerichtsstand ist der Sitz des Auftragnehmers.`,
+  france: `CONDITIONS DE PAIEMENT
+
+1. Le paiement est dû dans les {{DEADLINE}} jours suivant la date de facture.
+
+2. Moyens de paiement acceptés : {{METHODS}}.
+
+3. Conformément aux articles L.441-6 et D.441-5 du Code de commerce, les paiements en retard entraînent des pénalités de retard calculées au taux d'intérêt appliqué par la Banque centrale européenne à son opération de refinancement la plus récente majoré de 10 points de pourcentage.
+
+4. Une indemnité forfaitaire pour frais de recouvrement de 40€ sera appliquée pour chaque facture en retard.
+
+5. Le paiement s'effectue en {{CURRENCY}}. Le client est responsable des frais bancaires.
+
+6. En cas de litige, les parties seront soumises à la juridiction compétente du siège du prestataire.`,
+  custom: `PAYMENT TERMS
+
+1. Payment is due within {{DEADLINE}} days from the invoice date.
+
+2. Accepted payment methods: {{METHODS}}.
+
+3. Late payments will incur interest at the rate of [INSERT RATE]% per annum, plus any reasonable collection costs incurred.
+
+4. Payment should be made in {{CURRENCY}}. The client is responsible for any bank or transfer fees.
+
+5. All work remains the intellectual property of the contractor until full payment is received.
+
+6. In the event of a dispute, parties agree to seek amicable resolution before pursuing legal action.`
+};
+
+function generate() {
+  const country = document.getElementById('country').value;
+  const deadline = document.getElementById('deadline').value;
+  const methods = document.getElementById('paymentMethods').value;
+  const currency = document.getElementById('currency').value;
+  const lateFee = document.getElementById('lateFee').value;
+
+  let text = TEMPLATES[country] || TEMPLATES.custom;
+  text = text.replace(/{{DEADLINE}}/g, deadline);
+  text = text.replace(/{{METHODS}}/g, methods);
+  text = text.replace(/{{CURRENCY}}/g, currency);
+
+  if (lateFee === 'no') {
+    text = text.replace(/3\. .*(\n|$)/gm, '3. Friendly reminder: we appreciate prompt payment to maintain a smooth working relationship.\n');
+  }
+
+  document.getElementById('termsText').textContent = text;
+  document.getElementById('results').classList.add('show');
+  document.getElementById('emailCapture').classList.add('show');
+  localStorage.setItem('lastTerms', JSON.stringify({country, deadline, text: text.substring(0, 200), timestamp: new Date().toISOString()}));
+}
+function copyTerms() {
+  const text = document.getElementById('termsText').textContent;
+  navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard!'));
+}
+function downloadTerms() {
+  const text = document.getElementById('termsText').textContent;
+  const blob = new Blob([text], {type: 'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'payment-terms-' + document.getElementById('country').value + '.txt'; a.click(); URL.revokeObjectURL(url);
+}
+function captureEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) { document.getElementById('captureStatus').textContent = 'Please enter a valid email.'; document.getElementById('captureStatus').style.color = '#ef4444'; return; }
+  const last = JSON.parse(localStorage.getItem('lastTerms') || '{}');
+  const record = {email, country: last.country, deadline: last.deadline, timestamp: new Date().toISOString(), source: 'payment_terms_generator'};
+  let emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  emails.push(record);
+  localStorage.setItem('capturedEmails', JSON.stringify(emails));
+  document.getElementById('captureStatus').textContent = '✅ Email captured! View in Admin panel.';
+  document.getElementById('captureStatus').style.color = '#22c55e';
+  document.getElementById('emailInput').value = '';
+}
+function showAdmin() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  const content = document.getElementById('adminContent');
+  if (emails.length === 0) { content.innerHTML = '<div class="empty-state"><p>No emails captured yet.</p></div>'; }
+  else {
+    let html = '<table class="admin-table"><tr><th>Email</th><th>Country</th><th>Deadline</th><th>Date</th></tr>';
+    emails.reverse().forEach(e => { html += `<tr><td class="email">${e.email}</td><td>${e.country}</td><td>${e.deadline} days</td><td>${new Date(e.timestamp).toLocaleDateString()}</td></tr>`; });
+    html += '</table><p style="color:#94a3b8">Total: ' + emails.length + ' emails</p>';
+    content.innerHTML = html;
+  }
+  document.getElementById('adminPanel').classList.add('show');
+}
+function hideAdmin() { document.getElementById('adminPanel').classList.remove('show'); }
+function exportCSV() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  if (emails.length === 0) { alert('No emails to export.'); return; }
+  let csv = 'Email,Country,Deadline,Date\n';
+  emails.forEach(e => { csv += `"${e.email}",${e.country},${e.deadline},"${e.timestamp}"\n`; });
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'pingpaid-terms-leads-' + new Date().toISOString().split('T')[0] + '.csv'; a.click(); URL.revokeObjectURL(url);
+}
+function clearEmails() { if (!confirm('Delete all captured emails?')) return; localStorage.removeItem('capturedEmails'); showAdmin(); }
+</script>
+</body>
+</html>

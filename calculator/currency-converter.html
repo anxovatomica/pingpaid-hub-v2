@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Currency Converter — PingPaid</title>
+<meta name="description" content="Real-time currency converter for international freelancers. Convert EUR, USD, GBP, and more using live exchange rates.">
+<meta name="keywords" content="currency converter, freelance currency exchange, EUR to USD, real time exchange rates, international freelancer">
+<link rel="canonical" href="https://pingpaidonline.dpdns.org/calculator/currency-converter.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PingPaid Currency Converter","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#f8fafc;min-height:100vh}
+.container{max-width:700px;margin:0 auto;padding:40px 20px}
+.brand{text-align:center;margin-bottom:40px}
+.brand a{color:#22c55e;text-decoration:none;font-size:24px;font-weight:700}
+.brand a:hover{text-decoration:underline}
+h1{text-align:center;font-size:36px;margin-bottom:12px;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:40px;font-size:18px}
+.card{background:rgba(30,41,59,0.8);backdrop-filter:blur(10px);border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:32px;margin-bottom:24px}
+.card h2{font-size:22px;margin-bottom:20px;color:#e2e8f0}
+.form-group{margin-bottom:20px}
+label{display:block;margin-bottom:8px;color:#94a3b8;font-size:14px;font-weight:500}
+input,select{width:100%;padding:14px 16px;background:#0f172a;border:1px solid rgba(148,163,184,0.2);border-radius:10px;color:#f8fafc;font-size:16px;transition:border-color .2s}
+input:focus,select:focus{outline:none;border-color:#22c55e}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,197,94,0.3)}
+.btn:active{transform:translateY(0)}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.results{display:none;margin-top:24px;padding:24px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:12px}
+.results.show{display:block}
+.results h3{color:#4ade80;margin-bottom:16px;font-size:20px}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(148,163,184,0.1)}
+.result-row:last-child{border-bottom:none}
+.result-label{color:#94a3b8}
+.result-value{font-weight:700;color:#f8fafc}
+.total{font-size:24px;color:#22c55e;font-weight:800}
+.email-capture{display:none;margin-top:24px;text-align:center}
+.email-capture.show{display:block}
+.email-capture p{color:#cbd5e1;margin-bottom:16px}
+.email-input{max-width:400px;margin:0 auto 16px}
+.small-text{color:#64748b;font-size:13px;margin-top:12px}
+.capture-alt{margin-top:16px;padding:16px;background:rgba(30,41,59,0.6);border-radius:10px;border:1px solid rgba(148,163,184,0.1)}
+.capture-alt p{color:#94a3b8;font-size:14px;margin-bottom:8px}
+.capture-alt a{color:#22c55e;text-decoration:none;font-weight:500}
+.capture-alt a:hover{text-decoration:underline}
+.admin-toggle{position:fixed;bottom:20px;right:20px;padding:10px 16px;background:rgba(30,41,59,0.9);border:1px solid rgba(148,163,184,0.2);border-radius:8px;color:#94a3b8;font-size:12px;cursor:pointer;z-index:100}
+.admin-toggle:hover{color:#22c55e}
+.admin-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.95);z-index:200;overflow:auto;padding:40px 20px}
+.admin-panel.show{display:block}
+.admin-panel h2{color:#22c55e;margin-bottom:24px}
+.admin-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.admin-table th{background:#1e293b;padding:12px;text-align:left;color:#94a3b8;border-bottom:2px solid #22c55e}
+.admin-table td{padding:12px;border-bottom:1px solid rgba(148,163,184,0.1);color:#e2e8f0;font-size:14px}
+.admin-table td.email{color:#4ade80}
+.admin-btn{padding:10px 20px;background:#22c55e;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-right:8px;margin-bottom:8px}
+.admin-btn.secondary{background:#334155}
+.empty-state{text-align:center;color:#64748b;padding:40px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.swap-btn{display:flex;align-items:center;justify-content:center;padding:10px;background:#334155;border:none;border-radius:8px;color:#94a3b8;font-size:20px;cursor:pointer;margin:8px auto;width:48px;height:48px;transition:background .2s}
+.swap-btn:hover{background:#475569;color:#22c55e}
+.rate-info{text-align:center;color:#64748b;font-size:13px;margin-top:8px}
+footer{text-align:center;color:#64748b;padding:40px 0;border-top:1px solid rgba(148,163,184,0.1);margin-top:40px}
+footer a{color:#22c55e;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="brand"><a href="https://pingpaid.online?utm_source=calculator&utm_medium=tool&utm_campaign=currency">PingPaid</a></div>
+<h1>Currency Converter</h1>
+<p class="subtitle">Real-time exchange rates for international freelancers — EUR, USD, GBP, and more</p>
+
+<div class="card">
+<h2>💱 Convert</h2>
+<div class="form-group">
+<label>Amount</label>
+<input type="number" id="amount" placeholder="e.g. 1000" min="0" step="0.01">
+</div>
+<div class="row">
+<div class="form-group">
+<label>From</label>
+<select id="fromCurrency">
+<option value="EUR" selected>EUR — Euro</option>
+<option value="USD">USD — US Dollar</option>
+<option value="GBP">GBP — British Pound</option>
+<option value="CHF">CHF — Swiss Franc</option>
+<option value="JPY">JPY — Japanese Yen</option>
+<option value="CAD">CAD — Canadian Dollar</option>
+<option value="AUD">AUD — Australian Dollar</option>
+<option value="SEK">SEK — Swedish Krona</option>
+<option value="NOK">NOK — Norwegian Krone</option>
+<option value="DKK">DKK — Danish Krone</option>
+<option value="PLN">PLN — Polish Zloty</option>
+<option value="CZK">CZK — Czech Koruna</option>
+</select>
+</div>
+<div class="form-group">
+<label>To</label>
+<select id="toCurrency">
+<option value="EUR">EUR — Euro</option>
+<option value="USD" selected>USD — US Dollar</option>
+<option value="GBP">GBP — British Pound</option>
+<option value="CHF">CHF — Swiss Franc</option>
+<option value="JPY">JPY — Japanese Yen</option>
+<option value="CAD">CAD — Canadian Dollar</option>
+<option value="AUD">AUD — Australian Dollar</option>
+<option value="SEK">SEK — Swedish Krona</option>
+<option value="NOK">NOK — Norwegian Krone</option>
+<option value="DKK">DKK — Danish Krone</option>
+<option value="PLN">PLN — Polish Zloty</option>
+<option value="CZK">CZK — Czech Koruna</option>
+</select>
+</div>
+</div>
+<button class="swap-btn" onclick="swapCurrencies()" title="Swap currencies">⇅</button>
+<p class="rate-info" id="rateInfo">Rates from exchangerate-api.com</p>
+</div>
+
+<div class="card">
+<button class="btn" id="convertBtn" onclick="convert()">Convert →</button>
+
+<div class="results" id="results">
+<h3>💰 Conversion Result</h3>
+<div class="result-row"><span class="result-label">Amount</span><span class="result-value" id="resAmount">—</span></div>
+<div class="result-row"><span class="result-label">Exchange Rate</span><span class="result-value" id="resRate">—</span></div>
+<div class="result-row"><span class="result-label">Converted Amount</span><span class="result-value total" id="resConverted">—</span></div>
+<div class="result-row"><span class="result-label">Last Updated</span><span class="result-value" id="resUpdated">—</span></div>
+<p class="small-text">Rates are approximate and for informational purposes only. For large transactions, verify with your bank.</p>
+</div>
+
+<div class="email-capture" id="emailCapture">
+<p>📧 <strong>Want a daily rate alert for this pair?</strong><br>Plus: free international invoicing guide.</p>
+<div class="email-input">
+<input type="email" id="emailInput" placeholder="your@email.com">
+</div>
+<button class="btn" onclick="captureEmail()">Set Rate Alert →</button>
+<p class="small-text" id="captureStatus"></p>
+<div class="capture-alt">
+<p>Emails saved locally. <a href="#" onclick="showAdmin();return false">View collected emails →</a></p>
+</div>
+</div>
+</div>
+
+<footer>
+<p>Built by <a href="https://pingpaid.online?utm_source=calculator&utm_medium=footer&utm_campaign=currency">PingPaid</a> — automated invoice collection</p>
+<p style="margin-top:8px;font-size:13px"><a href="./">← Back to Calculator Hub</a></p>
+</footer>
+</div>
+
+<button class="admin-toggle" onclick="showAdmin()">📊 Admin</button>
+<div class="admin-panel" id="adminPanel">
+<div class="container">
+<h2>📊 Email Capture Admin</h2>
+<div id="adminContent"><div class="empty-state"><p>No emails captured yet.</p></div></div>
+<div style="margin-top:24px">
+<button class="admin-btn" onclick="exportCSV()">📥 Export CSV</button>
+<button class="admin-btn secondary" onclick="clearEmails()">🗑️ Clear All</button>
+<button class="admin-btn secondary" onclick="hideAdmin()">Close</button>
+</div>
+</div>
+</div>
+
+<script>
+let currentRates = {};
+let lastFetch = 0;
+
+async function fetchRates() {
+  const btn = document.getElementById('convertBtn');
+  btn.disabled = true;
+  btn.textContent = 'Loading rates...';
+  try {
+    const from = document.getElementById('fromCurrency').value;
+    const res = await fetch('https://api.exchangerate-api.com/v4/latest/' + from);
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+    currentRates = data.rates;
+    lastFetch = Date.now();
+    document.getElementById('rateInfo').textContent = 'Rates last updated: ' + new Date(data.date).toLocaleDateString();
+    btn.disabled = false;
+    btn.textContent = 'Convert →';
+    return true;
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Convert →';
+    alert('Could not fetch live rates. Using cached rates if available, or try again.');
+    return false;
+  }
+}
+
+function convert() {
+  const amount = parseFloat(document.getElementById('amount').value);
+  const from = document.getElementById('fromCurrency').value;
+  const to = document.getElementById('toCurrency').value;
+
+  if (!amount || amount <= 0) { alert('Please enter a valid amount.'); return; }
+
+  if (Date.now() - lastFetch > 300000 || !currentRates[to]) {
+    fetchRates().then(ok => { if (ok) doConvert(amount, from, to); });
+  } else {
+    doConvert(amount, from, to);
+  }
+}
+
+function doConvert(amount, from, to) {
+  const rate = currentRates[to] || 1;
+  const converted = amount * rate;
+  document.getElementById('resAmount').textContent = amount.toFixed(2) + ' ' + from;
+  document.getElementById('resRate').textContent = '1 ' + from + ' = ' + rate.toFixed(4) + ' ' + to;
+  document.getElementById('resConverted').textContent = converted.toFixed(2) + ' ' + to;
+  document.getElementById('resUpdated').textContent = new Date().toLocaleString();
+  document.getElementById('results').classList.add('show');
+  document.getElementById('emailCapture').classList.add('show');
+  localStorage.setItem('lastConv', JSON.stringify({amount, from, to, rate, converted, timestamp: new Date().toISOString()}));
+}
+
+function swapCurrencies() {
+  const from = document.getElementById('fromCurrency');
+  const to = document.getElementById('toCurrency');
+  const temp = from.value;
+  from.value = to.value;
+  to.value = temp;
+  currentRates = {};
+  lastFetch = 0;
+}
+
+function captureEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) { document.getElementById('captureStatus').textContent = 'Please enter a valid email.'; document.getElementById('captureStatus').style.color = '#ef4444'; return; }
+  const conv = JSON.parse(localStorage.getItem('lastConv') || '{}');
+  const record = {email, from: conv.from, to: conv.to, amount: conv.amount, timestamp: new Date().toISOString(), source: 'currency_converter'};
+  let emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  emails.push(record);
+  localStorage.setItem('capturedEmails', JSON.stringify(emails));
+  document.getElementById('captureStatus').textContent = '✅ Email captured! View in Admin panel.';
+  document.getElementById('captureStatus').style.color = '#22c55e';
+  document.getElementById('emailInput').value = '';
+}
+function showAdmin() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  const content = document.getElementById('adminContent');
+  if (emails.length === 0) { content.innerHTML = '<div class="empty-state"><p>No emails captured yet.</p></div>'; }
+  else {
+    let html = '<table class="admin-table"><tr><th>Email</th><th>From</th><th>To</th><th>Amount</th><th>Date</th></tr>';
+    emails.reverse().forEach(e => { html += `<tr><td class="email">${e.email}</td><td>${e.from}</td><td>${e.to}</td><td>${e.amount}</td><td>${new Date(e.timestamp).toLocaleDateString()}</td></tr>`; });
+    html += '</table><p style="color:#94a3b8">Total: ' + emails.length + ' emails</p>';
+    content.innerHTML = html;
+  }
+  document.getElementById('adminPanel').classList.add('show');
+}
+function hideAdmin() { document.getElementById('adminPanel').classList.remove('show'); }
+function exportCSV() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  if (emails.length === 0) { alert('No emails to export.'); return; }
+  let csv = 'Email,From,To,Amount,Date\n';
+  emails.forEach(e => { csv += `"${e.email}",${e.from},${e.to},${e.amount},"${e.timestamp}"\n`; });
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'pingpaid-currency-leads-' + new Date().toISOString().split('T')[0] + '.csv'; a.click(); URL.revokeObjectURL(url);
+}
+function clearEmails() { if (!confirm('Delete all captured emails?')) return; localStorage.removeItem('capturedEmails'); showAdmin(); }
+</script>
+</body>
+</html>

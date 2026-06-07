@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Software for Developers — PingPaid</title>
+<meta name="description" content="Invoice software built for developers. Retainer billing, milestone payments, GitHub integration, and automated collection. 21 days free, then 29.99€/month.">
+<meta property="og:title" content="Invoice Software for Developers">
+<meta property="og:description" content="Retainer billing, milestone payments, and GitHub integration. Built for devs who bill by sprint, not by headache.">
+<style>
+:root{--brand:#0070f3;--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--accent:#00c853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:0}
+.hero{text-align:center;padding:100px 20px;background:linear-gradient(135deg,#0f172a,#1e3a5f)}
+.hero h1{font-size:3.5em;margin-bottom:16px}
+.hero p{font-size:1.3em;color:var(--muted);max-width:600px;margin:0 auto 40px}
+.hero-badge{background:rgba(0,200,83,.2);color:var(--accent);padding:8px 20px;border-radius:20px;font-size:.9em;font-weight:600;display:inline-block;margin-bottom:20px}
+.cta-btn{background:var(--accent);color:#fff;padding:18px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1em;display:inline-block;transition:transform .2s}
+.cta-btn:hover{transform:scale(1.05)}
+.pain-points{padding:80px 20px;text-align:center;background:#0a0f1a}
+.pain-points h2{font-size:2em;margin-bottom:48px}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;max-width:1000px;margin:0 auto}
+.pain-item{padding:32px;background:var(--card);border-radius:16px;border:1px solid #334155;text-align:left}
+.pain-item h3{color:var(--accent);margin-bottom:12px;font-size:1.1em}
+.pain-item p{color:var(--muted);font-size:.9em}
+.features{padding:80px 20px;text-align:center;background:var(--bg)}
+.features h2{font-size:2em;margin-bottom:48px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px;max-width:1000px;margin:0 auto}
+.feature-item{padding:32px;background:var(--card);border-radius:16px;border:1px solid #334155}
+.feature-icon{font-size:2.5em;margin-bottom:16px}
+.feature-item h3{margin-bottom:8px}
+.feature-item p{color:var(--muted);font-size:.9em}
+.social-proof{padding:60px 20px;text-align:center;background:#0a0f1a}
+.social-proof h2{font-size:2em;margin-bottom:32px}
+.testimonial{background:var(--card);border-radius:16px;padding:32px;border:1px solid #334155;max-width:700px;margin:0 auto;text-align:left}
+.testimonial p{color:var(--muted);font-style:italic;margin-bottom:12px;font-size:1.1em}
+.testimonial .author{color:var(--text);font-weight:600}
+.testimonial .role{color:var(--muted);font-size:.9em}
+.faq{padding:80px 20px;text-align:center;background:var(--bg);max-width:800px;margin:0 auto}
+.faq h2{font-size:2em;margin-bottom:48px}
+.faq-item{text-align:left;padding:24px;background:var(--card);border-radius:12px;border:1px solid #334155;margin-bottom:16px}
+.faq-item h3{margin-bottom:8px;font-size:1.1em}
+.faq-item p{color:var(--muted);font-size:.9em}
+.bottom-cta{padding:80px 20px;text-align:center;background:linear-gradient(135deg,#0070f3,#00c853)}
+.bottom-cta h2{font-size:2.5em;margin-bottom:16px;color:#fff}
+.bottom-cta p{color:rgba(255,255,255,.9);max-width:600px;margin:0 auto 32px;font-size:1.1em}
+.bottom-cta a{background:#fff;color:var(--brand);padding:18px 40px;border-radius:8px;text-decoration:none;font-weight:700;display:inline-block;font-size:1.1em}
+footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85em}
+footer a{color:var(--muted);text-decoration:underline}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<div class="hero-badge">💻 Built for Developers · 21 Days Free</div>
+<h1>Invoice Software for Developers</h1>
+<p>Retainer billing, milestone payments, and GitHub integration. Built for devs who bill by sprint, not by headache.</p>
+<a href="https://pingpaid.online" class="cta-btn">Start Free Trial →</a>
+</div>
+
+<div class="pain-points">
+<h2>Developer-Specific Pain Points</h2>
+<div class="pain-grid">
+<div class="pain-item">
+<h3>🔄 Sprint vs. Invoice Mismatch</h3>
+<p>You work in sprints, but your invoicing tool doesn't. Tracking billable hours across Jira tickets and GitHub PRs is manual and error-prone.</p>
+</div>
+<div class="pain-item">
+<h3>📅 Retainer Billing Complexity</h3>
+<p>Monthly retainers sound simple until you need to track rollover hours, overage, and multiple clients with different rates.</p>
+</div>
+<div class="pain-item">
+<h3>🚧 Milestone Payment Chaos</h3>
+<p>Large projects get paid in milestones — 30% upfront, 40% at delivery, 30% at launch. Tracking what's due and when is a spreadsheet nightmare.</p>
+</div>
+<div class="pain-item">
+<h3>🔗 No GitHub Integration</h3>
+<p>Your code lives in GitHub. Your billing lives in a spreadsheet. There's no bridge between commits and cash.</p>
+</div>
+<div class="pain-item">
+<h3>💳 API/Webhook Billing</h3>
+<p>Building a SaaS? You need to bill for API calls, webhook events, or usage tiers. Generic invoice tools don't speak "developer."</p>
+</div>
+<div class="pain-item">
+<h3>🌍 Remote Team Invoicing</h3>
+<p>Your team is in 4 time zones. Contractors invoice in 3 currencies. Consolidating it all is a full-time job.</p>
+</div>
+</div>
+</div>
+
+<div class="features">
+<h2>Features Built for Dev Workflows</h2>
+<div class="features-grid">
+<div class="feature-item">
+<div class="feature-icon">🔄</div>
+<h3>Retainer Billing</h3>
+<p>Set monthly retainers with automatic rollover tracking, overage alerts, and client-specific rates.</p>
+</div>
+<div class="feature-item">
+<div class="feature-icon">🚧</div>
+<h3>Milestone Payments</h3>
+<p>Split projects into milestones with automatic payment triggers. "30% on contract, 40% on beta, 30% on launch."</p>
+</div>
+<div class="feature-item">
+<div class="feature-icon">⚡</div>
+<h3>API & Webhook Billing</h3>
+<p>Bill by API call, event, or usage tier. Perfect for SaaS products, microservices, and infrastructure tools.</p>
+</div>
+<div class="feature-item">
+<div class="feature-icon">🔗</div>
+<h3>GitHub Integration</h3>
+<p>Link PRs, commits, and issues to billable items. Clients see exactly what they're paying for.</p>
+</div>
+<div class="feature-item">
+<div class="feature-icon">🤖</div>
+<h3>Auto-Follow-Up</h3>
+<p>Automated payment reminders with escalating tones. From "friendly nudge" to "final notice" — all on autopilot.</p>
+</div>
+<div class="feature-item">
+<div class="feature-icon">📊</div>
+<h3>Time Tracking</h3>
+<p>Built-in timer or manual entry. Track billable vs. non-billable hours. Export to any format.</p>
+</div>
+</div>
+</div>
+
+<div class="social-proof">
+<h2>What Developers Say</h2>
+<div class="testimonial">
+<p>"I went from invoicing in Google Sheets to PingPaid in a weekend. The retainer billing alone saved me 4 hours a month. And the auto-follow-up? I got paid for 3 invoices I had already written off."</p>
+<div class="author">Alex K.</div>
+<div class="role">Full-Stack Developer, Remote</div>
+</div>
+</div>
+
+<div class="faq">
+<h2>FAQ</h2>
+<div class="faq-item">
+<h3>Can I bill by GitHub issue or PR?</h3>
+<p>Yes. Link any GitHub issue, PR, or milestone to a line item. Clients see the context and the cost in one view.</p>
+</div>
+<div class="faq-item">
+<h3>Does it handle recurring retainer billing?</h3>
+<p>Yes. Set retainer amounts, rollover rules, and overage rates. Invoices auto-generate each month.</p>
+</div>
+<div class="faq-item">
+<h3>Can I invoice for API usage?</h3>
+<p>Absolutely. Usage-based billing with tiered pricing, overage fees, and automatic metered invoicing.</p>
+</div>
+<div class="faq-item">
+<h3>Does it integrate with Stripe?</h3>
+<p>Yes. Native Stripe integration for one-click payment. Also supports PayPal and bank transfers.</p>
+</div>
+<div class="faq-item">
+<h3>What happens after the 21-day free trial?</h3>
+<p>After 21 days of unlimited premium use, your account moves to the 29.99€/month plan. Cancel anytime.</p>
+</div>
+</div>
+
+<div class="bottom-cta">
+<h2>Stop Wrestling with Spreadsheets</h2>
+<p>Your time is worth more than manual invoicing. Automate it, get paid faster, and get back to shipping code.</p>
+<a href="https://pingpaid.online">Start Free Trial →</a>
+</div>
+
+<footer>
+<p>Built by a developer who got tired of billing spreadsheets. <a href="https://github.com/anxovatomica">Open source on GitHub</a>.</p>
+<p style="margin-top:8px">© 2026 PingPaid · <a href="https://pingpaid.online">pingpaid.online</a> · <a href="../index.html">Free Tools</a></p>
+</footer>
+
+</body>
+</html>

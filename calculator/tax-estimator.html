@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Tax Estimator — PingPaid</title>
+<meta name="description" content="Estimate your tax liability by country: US, UK, Spain, Germany, France. Includes deductions. Free tool for freelancers.">
+<meta name="keywords" content="tax estimator, freelance tax calculator, self employed tax, tax by country, deductions calculator">
+<link rel="canonical" href="https://pingpaidonline.dpdns.org/calculator/tax-estimator.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PingPaid Tax Estimator","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#f8fafc;min-height:100vh}
+.container{max-width:700px;margin:0 auto;padding:40px 20px}
+.brand{text-align:center;margin-bottom:40px}
+.brand a{color:#22c55e;text-decoration:none;font-size:24px;font-weight:700}
+.brand a:hover{text-decoration:underline}
+h1{text-align:center;font-size:36px;margin-bottom:12px;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:40px;font-size:18px}
+.card{background:rgba(30,41,59,0.8);backdrop-filter:blur(10px);border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:32px;margin-bottom:24px}
+.card h2{font-size:22px;margin-bottom:20px;color:#e2e8f0}
+.form-group{margin-bottom:20px}
+label{display:block;margin-bottom:8px;color:#94a3b8;font-size:14px;font-weight:500}
+input,select{width:100%;padding:14px 16px;background:#0f172a;border:1px solid rgba(148,163,184,0.2);border-radius:10px;color:#f8fafc;font-size:16px;transition:border-color .2s}
+input:focus,select:focus{outline:none;border-color:#22c55e}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,197,94,0.3)}
+.btn:active{transform:translateY(0)}
+.results{display:none;margin-top:24px;padding:24px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:12px}
+.results.show{display:block}
+.results h3{color:#4ade80;margin-bottom:16px;font-size:20px}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(148,163,184,0.1)}
+.result-row:last-child{border-bottom:none}
+.result-label{color:#94a3b8}
+.result-value{font-weight:700;color:#f8fafc}
+.total{font-size:24px;color:#22c55e;font-weight:800}
+.positive{color:#22c55e}
+.negative{color:#ef4444}
+.email-capture{display:none;margin-top:24px;text-align:center}
+.email-capture.show{display:block}
+.email-capture p{color:#cbd5e1;margin-bottom:16px}
+.email-input{max-width:400px;margin:0 auto 16px}
+.small-text{color:#64748b;font-size:13px;margin-top:12px}
+.capture-alt{margin-top:16px;padding:16px;background:rgba(30,41,59,0.6);border-radius:10px;border:1px solid rgba(148,163,184,0.1)}
+.capture-alt p{color:#94a3b8;font-size:14px;margin-bottom:8px}
+.capture-alt a{color:#22c55e;text-decoration:none;font-weight:500}
+.capture-alt a:hover{text-decoration:underline}
+.admin-toggle{position:fixed;bottom:20px;right:20px;padding:10px 16px;background:rgba(30,41,59,0.9);border:1px solid rgba(148,163,184,0.2);border-radius:8px;color:#94a3b8;font-size:12px;cursor:pointer;z-index:100}
+.admin-toggle:hover{color:#22c55e}
+.admin-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.95);z-index:200;overflow:auto;padding:40px 20px}
+.admin-panel.show{display:block}
+.admin-panel h2{color:#22c55e;margin-bottom:24px}
+.admin-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.admin-table th{background:#1e293b;padding:12px;text-align:left;color:#94a3b8;border-bottom:2px solid #22c55e}
+.admin-table td{padding:12px;border-bottom:1px solid rgba(148,163,184,0.1);color:#e2e8f0;font-size:14px}
+.admin-table td.email{color:#4ade80}
+.admin-btn{padding:10px 20px;background:#22c55e;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-right:8px;margin-bottom:8px}
+.admin-btn.secondary{background:#334155}
+.empty-state{text-align:center;color:#64748b;padding:40px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.deduction-list{margin-top:12px}
+.deduction-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(148,163,184,0.1)}
+.deduction-item:last-child{border-bottom:none}
+footer{text-align:center;color:#64748b;padding:40px 0;border-top:1px solid rgba(148,163,184,0.1);margin-top:40px}
+footer a{color:#22c55e;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="brand"><a href="https://pingpaid.online?utm_source=calculator&utm_medium=tool&utm_campaign=tax">PingPaid</a></div>
+<h1>Tax Estimator</h1>
+<p class="subtitle">Estimate your tax liability by country — includes standard deductions for freelancers</p>
+
+<div class="card">
+<h2>📊 Income</h2>
+<div class="row">
+<div class="form-group">
+<label>Annual Gross Income (local currency)</label>
+<input type="number" id="grossIncome" placeholder="e.g. 60000" min="0" step="0.01">
+</div>
+<div class="form-group">
+<label>Country</label>
+<select id="country">
+<option value="us">United States</option>
+<option value="uk">United Kingdom</option>
+<option value="spain" selected>Spain</option>
+<option value="germany">Germany</option>
+<option value="france">France</option>
+</select>
+</div>
+</div>
+<div class="row">
+<div class="form-group">
+<label>Business Expenses (annual)</label>
+<input type="number" id="expenses" placeholder="e.g. 8000" min="0" step="0.01">
+</div>
+<div class="form-group">
+<label>Other Deductions (annual)</label>
+<input type="number" id="otherDeductions" placeholder="e.g. 2000" min="0" step="0.01">
+</div>
+</div>
+</div>
+
+<div class="card">
+<button class="btn" onclick="calculate()">Calculate Tax →</button>
+
+<div class="results" id="results">
+<h3>🧮 Tax Estimate</h3>
+<div class="result-row"><span class="result-label">Gross Income</span><span class="result-value" id="resGross">—</span></div>
+<div class="result-row"><span class="result-label">Total Deductions</span><span class="result-value positive" id="resDeductions">—</span></div>
+<div class="result-row"><span class="result-label">Taxable Income</span><span class="result-value" id="resTaxable">—</span></div>
+<div class="result-row"><span class="result-label">Estimated Income Tax</span><span class="result-value negative" id="resTax">—</span></div>
+<div class="result-row"><span class="result-label">Social Security / National Insurance</span><span class="result-value negative" id="resSocial">—</span></div>
+<div class="result-row"><span class="result-label">Total Tax Burden</span><span class="result-value negative" id="resTotalTax">—</span></div>
+<div class="result-row"><span class="result-label">Net Income</span><span class="result-value total" id="resNet">—</span></div>
+<div class="result-row"><span class="result-label">Effective Tax Rate</span><span class="result-value" id="resRate">—</span></div>
+<div class="deduction-list" id="breakdown"></div>
+<p class="small-text">This is a rough estimate for planning purposes. Consult a tax professional for your exact situation. Tax rules change frequently.</p>
+</div>
+
+<div class="email-capture" id="emailCapture">
+<p>📧 <strong>Want your tax estimate emailed?</strong><br>Plus: a free tax deduction checklist for freelancers.</p>
+<div class="email-input">
+<input type="email" id="emailInput" placeholder="your@email.com">
+</div>
+<button class="btn" onclick="captureEmail()">Send My Estimate →</button>
+<p class="small-text" id="captureStatus"></p>
+<div class="capture-alt">
+<p>Emails saved locally. <a href="#" onclick="showAdmin();return false">View collected emails →</a></p>
+</div>
+</div>
+</div>
+
+<footer>
+<p>Built by <a href="https://pingpaid.online?utm_source=calculator&utm_medium=footer&utm_campaign=tax">PingPaid</a> — automated invoice collection</p>
+<p style="margin-top:8px;font-size:13px"><a href="./">← Back to Calculator Hub</a></p>
+</footer>
+</div>
+
+<button class="admin-toggle" onclick="showAdmin()">📊 Admin</button>
+<div class="admin-panel" id="adminPanel">
+<div class="container">
+<h2>📊 Email Capture Admin</h2>
+<div id="adminContent"><div class="empty-state"><p>No emails captured yet.</p></div></div>
+<div style="margin-top:24px">
+<button class="admin-btn" onclick="exportCSV()">📥 Export CSV</button>
+<button class="admin-btn secondary" onclick="clearEmails()">🗑️ Clear All</button>
+<button class="admin-btn secondary" onclick="hideAdmin()">Close</button>
+</div>
+</div>
+</div>
+
+<script>
+function calculate() {
+  const gross = parseFloat(document.getElementById('grossIncome').value) || 0;
+  const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+  const other = parseFloat(document.getElementById('otherDeductions').value) || 0;
+  const country = document.getElementById('country').value;
+  const totalDeductions = expenses + other;
+  const taxable = Math.max(0, gross - totalDeductions);
+  let incomeTax = 0, social = 0, breakdown = [];
+
+  if (country === 'us') {
+    // US 2024 single filer brackets
+    if (taxable > 0) { const t = Math.min(taxable, 11600); incomeTax += t * 0.10; breakdown.push({label:'10% bracket', amount:t*0.10}); }
+    if (taxable > 11600) { const t = Math.min(taxable-11600, 47150-11600); incomeTax += t * 0.12; breakdown.push({label:'12% bracket', amount:t*0.12}); }
+    if (taxable > 47150) { const t = Math.min(taxable-47150, 100525-47150); incomeTax += t * 0.22; breakdown.push({label:'22% bracket', amount:t*0.22}); }
+    if (taxable > 100525) { const t = Math.min(taxable-100525, 191950-100525); incomeTax += t * 0.24; breakdown.push({label:'24% bracket', amount:t*0.24}); }
+    if (taxable > 191950) { const t = Math.min(taxable-191950, 243725-191950); incomeTax += t * 0.32; breakdown.push({label:'32% bracket', amount:t*0.32}); }
+    if (taxable > 243725) { const t = Math.min(taxable-243725, 609350-243725); incomeTax += t * 0.35; breakdown.push({label:'35% bracket', amount:t*0.35}); }
+    if (taxable > 609350) { const t = taxable-609350; incomeTax += t * 0.37; breakdown.push({label:'37% bracket', amount:t*0.37}); }
+    social = taxable * 0.153; // self-employment tax (Social Security + Medicare)
+  } else if (country === 'uk') {
+    // UK 2024/25 self-employed
+    if (taxable > 12570) { const t = taxable - 12570; incomeTax += t * 0.20; breakdown.push({label:'Basic rate 20%', amount:t*0.20}); }
+    if (taxable > 50270) { const t = taxable - 50270; incomeTax += t * 0.20; /* adjusted in real life but simplified */ }
+    social = Math.max(0, (taxable - 12570) * 0.09); // Class 4 NIC simplified
+  } else if (country === 'spain') {
+    // Spain IRPF simplified 2024
+    if (taxable > 0) { const t = Math.min(taxable, 12450); incomeTax += t * 0.19; breakdown.push({label:'19% bracket', amount:t*0.19}); }
+    if (taxable > 12450) { const t = Math.min(taxable-12450, 20200-12450); incomeTax += t * 0.24; breakdown.push({label:'24% bracket', amount:t*0.24}); }
+    if (taxable > 20200) { const t = Math.min(taxable-20200, 35200-20200); incomeTax += t * 0.30; breakdown.push({label:'30% bracket', amount:t*0.30}); }
+    if (taxable > 35200) { const t = Math.min(taxable-35200, 60000-35200); incomeTax += t * 0.37; breakdown.push({label:'37% bracket', amount:t*0.37}); }
+    if (taxable > 60000) { const t = Math.min(taxable-60000, 300000-60000); incomeTax += t * 0.45; breakdown.push({label:'45% bracket', amount:t*0.45}); }
+    if (taxable > 300000) { const t = taxable-300000; incomeTax += t * 0.47; breakdown.push({label:'47% bracket', amount:t*0.47}); }
+    social = taxable * 0.294; // autónomo social security (simplified upper estimate)
+  } else if (country === 'germany') {
+    // Germany Einkommensteuer simplified
+    if (taxable > 11604) {
+      const z = (taxable - 11604) / 10000;
+      if (taxable <= 17005) { incomeTax = (922.98 * z + 1400) * z; }
+      else if (taxable <= 66760) { incomeTax = (176.64 * z + 2397) * z + 1025.38; }
+      else if (taxable <= 277825) { incomeTax = 0.42 * taxable - 10602.13; }
+      else { incomeTax = 0.45 * taxable - 18936.88; }
+    }
+    breakdown.push({label:'Einkommensteuer', amount:incomeTax});
+    social = taxable * 0.18; // simplified social security
+  } else if (country === 'france') {
+    // France simplified
+    if (taxable > 0) { const t = Math.min(taxable, 11294); incomeTax += t * 0.00; }
+    if (taxable > 11294) { const t = Math.min(taxable-11294, 28797-11294); incomeTax += t * 0.11; breakdown.push({label:'11% bracket', amount:t*0.11}); }
+    if (taxable > 28797) { const t = Math.min(taxable-28797, 82341-28797); incomeTax += t * 0.30; breakdown.push({label:'30% bracket', amount:t*0.30}); }
+    if (taxable > 82341) { const t = Math.min(taxable-82341, 177106-82341); incomeTax += t * 0.41; breakdown.push({label:'41% bracket', amount:t*0.41}); }
+    if (taxable > 177106) { const t = taxable-177106; incomeTax += t * 0.45; breakdown.push({label:'45% bracket', amount:t*0.45}); }
+    social = taxable * 0.22; // simplified social charges
+  }
+
+  const totalTax = incomeTax + social;
+  const net = gross - totalTax;
+  const rate = gross > 0 ? ((totalTax / gross) * 100).toFixed(1) : 0;
+  const sym = country === 'us' ? '$' : country === 'uk' ? '£' : '€';
+
+  document.getElementById('resGross').textContent = sym + gross.toFixed(2);
+  document.getElementById('resDeductions').textContent = sym + totalDeductions.toFixed(2);
+  document.getElementById('resTaxable').textContent = sym + taxable.toFixed(2);
+  document.getElementById('resTax').textContent = sym + incomeTax.toFixed(2);
+  document.getElementById('resSocial').textContent = sym + social.toFixed(2);
+  document.getElementById('resTotalTax').textContent = sym + totalTax.toFixed(2);
+  document.getElementById('resNet').textContent = sym + net.toFixed(2);
+  document.getElementById('resRate').textContent = rate + '%';
+
+  let bd = '<h4 style="color:#22c55e;margin:12px 0 8px">Bracket Breakdown</h4>';
+  breakdown.forEach(b => { bd += '<div class="deduction-item"><span>' + b.label + '</span><span>' + sym + b.amount.toFixed(2) + '</span></div>'; });
+  document.getElementById('breakdown').innerHTML = bd;
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('emailCapture').classList.add('show');
+  localStorage.setItem('lastTax', JSON.stringify({gross, country, net, totalTax, rate, timestamp: new Date().toISOString()}));
+}
+function captureEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) { document.getElementById('captureStatus').textContent = 'Please enter a valid email.'; document.getElementById('captureStatus').style.color = '#ef4444'; return; }
+  const tax = JSON.parse(localStorage.getItem('lastTax') || '{}');
+  const record = {email, country: tax.country, gross: tax.gross, net: tax.net, totalTax: tax.totalTax, rate: tax.rate, timestamp: new Date().toISOString(), source: 'tax_estimator'};
+  let emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  emails.push(record);
+  localStorage.setItem('capturedEmails', JSON.stringify(emails));
+  document.getElementById('captureStatus').textContent = '✅ Email captured! View in Admin panel.';
+  document.getElementById('captureStatus').style.color = '#22c55e';
+  document.getElementById('emailInput').value = '';
+}
+function showAdmin() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  const content = document.getElementById('adminContent');
+  if (emails.length === 0) { content.innerHTML = '<div class="empty-state"><p>No emails captured yet.</p></div>'; }
+  else {
+    let html = '<table class="admin-table"><tr><th>Email</th><th>Country</th><th>Gross</th><th>Net</th><th>Rate</th><th>Date</th></tr>';
+    emails.reverse().forEach(e => { html += `<tr><td class="email">${e.email}</td><td>${e.country}</td><td>${e.gross}</td><td>${e.net}</td><td>${e.rate}%</td><td>${new Date(e.timestamp).toLocaleDateString()}</td></tr>`; });
+    html += '</table><p style="color:#94a3b8">Total: ' + emails.length + ' emails</p>';
+    content.innerHTML = html;
+  }
+  document.getElementById('adminPanel').classList.add('show');
+}
+function hideAdmin() { document.getElementById('adminPanel').classList.remove('show'); }
+function exportCSV() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  if (emails.length === 0) { alert('No emails to export.'); return; }
+  let csv = 'Email,Country,Gross,Net,Rate,Date\n';
+  emails.forEach(e => { csv += `"${e.email}",${e.country},${e.gross},${e.net},${e.rate},"${e.timestamp}"\n`; });
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'pingpaid-tax-leads-' + new Date().toISOString().split('T')[0] + '.csv'; a.click(); URL.revokeObjectURL(url);
+}
+function clearEmails() { if (!confirm('Delete all captured emails?')) return; localStorage.removeItem('capturedEmails'); showAdmin(); }
+</script>
+</body>
+</html>

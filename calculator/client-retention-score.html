@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Client Retention Score — PingPaid</title>
+<meta name="description" content="Score your client relationship health and get a personalized action plan. Free quiz-style tool for freelancers and agencies.">
+<meta name="keywords" content="client retention score, client health check, freelance client relationship, client retention calculator">
+<link rel="canonical" href="https://pingpaidonline.dpdns.org/calculator/client-retention-score.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PingPaid Client Retention Score","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#f8fafc;min-height:100vh}
+.container{max-width:700px;margin:0 auto;padding:40px 20px}
+.brand{text-align:center;margin-bottom:40px}
+.brand a{color:#22c55e;text-decoration:none;font-size:24px;font-weight:700}
+.brand a:hover{text-decoration:underline}
+h1{text-align:center;font-size:36px;margin-bottom:12px;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:40px;font-size:18px}
+.card{background:rgba(30,41,59,0.8);backdrop-filter:blur(10px);border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:32px;margin-bottom:24px}
+.card h2{font-size:22px;margin-bottom:20px;color:#e2e8f0}
+.form-group{margin-bottom:20px}
+label{display:block;margin-bottom:8px;color:#94a3b8;font-size:14px;font-weight:500}
+input,select,textarea{width:100%;padding:14px 16px;background:#0f172a;border:1px solid rgba(148,163,184,0.2);border-radius:10px;color:#f8fafc;font-size:16px;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#22c55e}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,197,94,0.3)}
+.btn:active{transform:translateY(0)}
+.results{display:none;margin-top:24px;padding:24px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:12px}
+.results.show{display:block}
+.results h3{color:#4ade80;margin-bottom:16px;font-size:20px}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(148,163,184,0.1)}
+.result-row:last-child{border-bottom:none}
+.result-label{color:#94a3b8}
+.result-value{font-weight:700;color:#f8fafc}
+.total{font-size:24px;color:#22c55e;font-weight:800}
+.score-big{font-size:48px;font-weight:800;text-align:center;margin:16px 0}
+.score-excellent{color:#22c55e}
+.score-good{color:#4ade80}
+.score-warning{color:#f59e0b}
+.score-danger{color:#ef4444}
+.action-list{margin-top:16px;padding:16px;background:#0f172a;border-radius:10px}
+.action-list li{color:#cbd5e1;margin-bottom:8px;margin-left:20px}
+.email-capture{display:none;margin-top:24px;text-align:center}
+.email-capture.show{display:block}
+.email-capture p{color:#cbd5e1;margin-bottom:16px}
+.email-input{max-width:400px;margin:0 auto 16px}
+.small-text{color:#64748b;font-size:13px;margin-top:12px}
+.capture-alt{margin-top:16px;padding:16px;background:rgba(30,41,59,0.6);border-radius:10px;border:1px solid rgba(148,163,184,0.1)}
+.capture-alt p{color:#94a3b8;font-size:14px;margin-bottom:8px}
+.capture-alt a{color:#22c55e;text-decoration:none;font-weight:500}
+.capture-alt a:hover{text-decoration:underline}
+.admin-toggle{position:fixed;bottom:20px;right:20px;padding:10px 16px;background:rgba(30,41,59,0.9);border:1px solid rgba(148,163,184,0.2);border-radius:8px;color:#94a3b8;font-size:12px;cursor:pointer;z-index:100}
+.admin-toggle:hover{color:#22c55e}
+.admin-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.95);z-index:200;overflow:auto;padding:40px 20px}
+.admin-panel.show{display:block}
+.admin-panel h2{color:#22c55e;margin-bottom:24px}
+.admin-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.admin-table th{background:#1e293b;padding:12px;text-align:left;color:#94a3b8;border-bottom:2px solid #22c55e}
+.admin-table td{padding:12px;border-bottom:1px solid rgba(148,163,184,0.1);color:#e2e8f0;font-size:14px}
+.admin-table td.email{color:#4ade80}
+.admin-btn{padding:10px 20px;background:#22c55e;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-right:8px;margin-bottom:8px}
+.admin-btn.secondary{background:#334155}
+.empty-state{text-align:center;color:#64748b;padding:40px}
+.quiz-option{display:block;padding:14px 16px;background:#0f172a;border:1px solid rgba(148,163,184,0.2);border-radius:10px;margin-bottom:10px;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:#22c55e;background:rgba(34,197,94,0.05)}
+.quiz-option.selected{border-color:#22c55e;background:rgba(34,197,94,0.1)}
+.quiz-question{font-size:16px;color:#e2e8f0;margin-bottom:16px;font-weight:600}
+.quiz-score{display:inline-block;padding:4px 10px;background:#334155;border-radius:6px;font-size:13px;color:#94a3b8;margin-left:8px}
+footer{text-align:center;color:#64748b;padding:40px 0;border-top:1px solid rgba(148,163,184,0.1);margin-top:40px}
+footer a{color:#22c55e;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="brand"><a href="https://pingpaid.online?utm_source=calculator&utm_medium=tool&utm_campaign=retention">PingPaid</a></div>
+<h1>Client Retention Score</h1>
+<p class="subtitle">Answer 6 quick questions — get a health score + action plan</p>
+
+<div class="card" id="quizCard">
+<h2>📝 Client Health Quiz</h2>
+
+<div id="q1">
+<p class="quiz-question">1. How often does this client pay on time? <span class="quiz-score" id="s1"></span></p>
+<div class="quiz-option" onclick="select(1,5,this)">Always — within the agreed terms</div>
+<div class="quiz-option" onclick="select(1,4,this)">Usually — occasional 1-5 day delay</div>
+<div class="quiz-option" onclick="select(1,3,this)">Sometimes — 1-2 weeks late</div>
+<div class="quiz-option" onclick="select(1,2,this)">Rarely — often 3+ weeks late</div>
+<div class="quiz-option" onclick="select(1,1,this)">Never — chronic late payment</div>
+</div>
+
+<div id="q2" style="display:none">
+<p class="quiz-question">2. How clear are their project requirements? <span class="quiz-score" id="s2"></span></p>
+<div class="quiz-option" onclick="select(2,5,this)">Very clear — detailed briefs, minimal revisions</div>
+<div class="quiz-option" onclick="select(2,4,this)">Mostly clear — occasional clarification needed</div>
+<div class="quiz-option" onclick="select(2,3,this)">Somewhat clear — frequent scope changes</div>
+<div class="quiz-option" onclick="select(2,2,this)">Unclear — constant direction changes</div>
+<div class="quiz-option" onclick="select(2,1,this)">Chaotic — no clear direction, endless rework</div>
+</div>
+
+<div id="q3" style="display:none">
+<p class="quiz-question">3. How do they communicate? <span class="quiz-score" id="s3"></span></p>
+<div class="quiz-option" onclick="select(3,5,this)">Excellent — responsive, respectful, collaborative</div>
+<div class="quiz-option" onclick="select(3,4,this)">Good — responsive, occasional delays</div>
+<div class="quiz-option" onclick="select(3,3,this)">Fair — slow responses, sometimes dismissive</div>
+<div class="quiz-option" onclick="select(3,2,this)">Poor — unresponsive, disrespectful</div>
+<div class="quiz-option" onclick="select(3,1,this)">Toxic — abusive, gaslighting, threatens</div>
+</div>
+
+<div id="q4" style="display:none">
+<p class="quiz-question">4. What's their lifetime value to you? <span class="quiz-score" id="s4"></span></p>
+<div class="quiz-option" onclick="select(4,5,this)">Top 10% — one of my highest-paying clients</div>
+<div class="quiz-option" onclick="select(4,4,this)">High value — consistent, significant revenue</div>
+<div class="quiz-option" onclick="select(4,3,this)">Moderate — decent but not core revenue</div>
+<div class="quiz-option" onclick="select(4,2,this)">Low — small projects, not growing</div>
+<div class="quiz-option" onclick="select(4,1,this)">Minimal — not worth the overhead</div>
+</div>
+
+<div id="q5" style="display:none">
+<p class="quiz-question">5. How long have you worked together? <span class="quiz-score" id="s5"></span></p>
+<div class="quiz-option" onclick="select(5,5,this)">3+ years — established trust</div>
+<div class="quiz-option" onclick="select(5,4,this)">1-3 years — solid relationship forming</div>
+<div class="quiz-option" onclick="select(5,3,this)">6-12 months — still getting to know each other</div>
+<div class="quiz-option" onclick="select(5,2,this)">1-6 months — new relationship</div>
+<div class="quiz-option" onclick="select(5,1,this)">First project — no history yet</div>
+</div>
+
+<div id="q6" style="display:none">
+<p class="quiz-question">6. Do they respect your boundaries? <span class="quiz-score" id="s6"></span></p>
+<div class="quiz-option" onclick="select(6,5,this)">Fully — respects scope, hours, and weekends</div>
+<div class="quiz-option" onclick="select(6,4,this)">Mostly — occasional after-hours requests</div>
+<div class="quiz-option" onclick="select(6,3,this)">Sometimes — pushes boundaries occasionally</div>
+<div class="quiz-option" onclick="select(6,2,this)">Rarely — frequently demands out-of-scope work</div>
+<div class="quiz-option" onclick="select(6,1,this)">Never — zero respect for boundaries or contracts</div>
+</div>
+</div>
+
+<div class="card">
+<div class="results" id="results">
+<h3>🎯 Your Client Retention Score</h3>
+<div class="score-big" id="scoreDisplay">—</div>
+<p style="text-align:center;color:#94a3b8;margin-bottom:16px" id="scoreLabel">Complete the quiz to see your score</p>
+<div class="result-row"><span class="result-label">Payment Reliability</span><span class="result-value" id="resPayment">—</span></div>
+<div class="result-row"><span class="result-label">Clarity & Scope</span><span class="result-value" id="resClarity">—</span></div>
+<div class="result-row"><span class="result-label">Communication</span><span class="result-value" id="resComm">—</span></div>
+<div class="result-row"><span class="result-label">Value & Growth</span><span class="result-value" id="resValue">—</span></div>
+<div class="result-row"><span class="result-label">Relationship Depth</span><span class="result-value" id="resDepth">—</span></div>
+<div class="result-row"><span class="result-label">Boundary Respect</span><span class="result-value" id="resBound">—</span></div>
+<div style="margin-top:20px">
+<h4 style="color:#22c55e;margin-bottom:12px">📋 Action Plan</h4>
+<ul class="action-list" id="actionPlan"></ul>
+</div>
+</div>
+
+<div class="email-capture" id="emailCapture">
+<p>📧 <strong>Want your retention score + action plan emailed?</strong><br>Plus: client relationship templates and weekly tips.</p>
+<div class="email-input">
+<input type="email" id="emailInput" placeholder="your@email.com">
+</div>
+<button class="btn" onclick="captureEmail()">Send My Score →</button>
+<p class="small-text" id="captureStatus"></p>
+<div class="capture-alt">
+<p>Emails saved locally. <a href="#" onclick="showAdmin();return false">View collected emails →</a></p>
+</div>
+</div>
+</div>
+
+<footer>
+<p>Built by <a href="https://pingpaid.online?utm_source=calculator&utm_medium=footer&utm_campaign=retention">PingPaid</a> — automated invoice collection</p>
+<p style="margin-top:8px;font-size:13px"><a href="./">← Back to Calculator Hub</a></p>
+</footer>
+</div>
+
+<button class="admin-toggle" onclick="showAdmin()">📊 Admin</button>
+<div class="admin-panel" id="adminPanel">
+<div class="container">
+<h2>📊 Email Capture Admin</h2>
+<div id="adminContent"><div class="empty-state"><p>No emails captured yet.</p></div></div>
+<div style="margin-top:24px">
+<button class="admin-btn" onclick="exportCSV()">📥 Export CSV</button>
+<button class="admin-btn secondary" onclick="clearEmails()">🗑️ Clear All</button>
+<button class="admin-btn secondary" onclick="hideAdmin()">Close</button>
+</div>
+</div>
+</div>
+
+<script>
+const scores = {};
+const labels = {1:'Payment Reliability',2:'Clarity & Scope',3:'Communication',4:'Value & Growth',5:'Relationship Depth',6:'Boundary Respect'};
+const resIds = {1:'resPayment',2:'resClarity',3:'resComm',4:'resValue',5:'resDepth',6:'resBound'};
+
+function select(q, val, el) {
+  scores[q] = val;
+  const opts = el.parentElement.querySelectorAll('.quiz-option');
+  opts.forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('s'+q).textContent = val + '/5';
+  if (q < 6) {
+    setTimeout(() => { document.getElementById('q'+q).style.display='none'; document.getElementById('q'+(q+1)).style.display='block'; }, 300);
+  } else {
+    setTimeout(() => { document.getElementById('quizCard').style.display='none'; showResults(); }, 300);
+  }
+}
+
+function showResults() {
+  const total = Object.values(scores).reduce((a,b)=>a+b,0);
+  const max = 30;
+  const pct = Math.round((total / max) * 100);
+  const disp = document.getElementById('scoreDisplay');
+  disp.textContent = pct + '%';
+  if (pct >= 85) { disp.className='score-big score-excellent'; document.getElementById('scoreLabel').textContent='Excellent — this is a keeper client!'; }
+  else if (pct >= 70) { disp.className='score-big score-good'; document.getElementById('scoreLabel').textContent='Good — solid relationship with room to grow'; }
+  else if (pct >= 50) { disp.className='score-big score-warning'; document.getElementById('scoreLabel').textContent='At Risk — needs attention and clear boundaries'; }
+  else { disp.className='score-big score-danger'; document.getElementById('scoreLabel').textContent='Critical — consider ending the relationship'; }
+
+  for (let i=1;i<=6;i++) {
+    const s = scores[i] || 0;
+    const el = document.getElementById(resIds[i]);
+    el.textContent = s + '/5';
+    el.style.color = s >= 4 ? '#22c55e' : s >= 3 ? '#f59e0b' : '#ef4444';
+  }
+
+  const actions = [];
+  if (scores[1] < 4) actions.push('Set up automated payment reminders with PingPaid');
+  if (scores[1] < 3) actions.push('Require upfront deposit (50%) before starting new work');
+  if (scores[2] < 4) actions.push('Write a detailed SOW and get written sign-off before each project');
+  if (scores[3] < 4) actions.push('Establish communication hours and response time expectations');
+  if (scores[3] < 3) actions.push('Document all requests in writing; use project management tools');
+  if (scores[4] < 4) actions.push('Propose a retainer or ongoing engagement to increase value');
+  if (scores[5] < 3) actions.push('Focus on building trust through small, consistent wins');
+  if (scores[6] < 4) actions.push('Explicitly restate boundaries in your next project agreement');
+  if (scores[6] < 3) actions.push('Consider firing this client — your mental health is worth more');
+  if (actions.length === 0) actions.push('Keep doing what you\'re doing — this is a model client relationship!');
+  document.getElementById('actionPlan').innerHTML = actions.map(a => `<li>• ${a}</li>`).join('');
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('emailCapture').classList.add('show');
+  localStorage.setItem('lastQuiz', JSON.stringify({scores, total, pct, timestamp: new Date().toISOString()}));
+}
+
+function captureEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) { document.getElementById('captureStatus').textContent = 'Please enter a valid email.'; document.getElementById('captureStatus').style.color = '#ef4444'; return; }
+  const quiz = JSON.parse(localStorage.getItem('lastQuiz') || '{}');
+  const record = {email, score: quiz.pct, timestamp: new Date().toISOString(), source: 'client_retention_score'};
+  let emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  emails.push(record);
+  localStorage.setItem('capturedEmails', JSON.stringify(emails));
+  document.getElementById('captureStatus').textContent = '✅ Email captured! View in Admin panel.';
+  document.getElementById('captureStatus').style.color = '#22c55e';
+  document.getElementById('emailInput').value = '';
+}
+function showAdmin() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  const content = document.getElementById('adminContent');
+  if (emails.length === 0) { content.innerHTML = '<div class="empty-state"><p>No emails captured yet.</p></div>'; }
+  else {
+    let html = '<table class="admin-table"><tr><th>Email</th><th>Score</th><th>Date</th></tr>';
+    emails.reverse().forEach(e => { html += `<tr><td class="email">${e.email}</td><td>${e.score}%</td><td>${new Date(e.timestamp).toLocaleDateString()}</td></tr>`; });
+    html += '</table><p style="color:#94a3b8">Total: ' + emails.length + ' emails</p>';
+    content.innerHTML = html;
+  }
+  document.getElementById('adminPanel').classList.add('show');
+}
+function hideAdmin() { document.getElementById('adminPanel').classList.remove('show'); }
+function exportCSV() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  if (emails.length === 0) { alert('No emails to export.'); return; }
+  let csv = 'Email,Score,Date\n';
+  emails.forEach(e => { csv += `"${e.email}",${e.score},"${e.timestamp}"\n`; });
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'pingpaid-retention-leads-' + new Date().toISOString().split('T')[0] + '.csv'; a.click(); URL.revokeObjectURL(url);
+}
+function clearEmails() { if (!confirm('Delete all captured emails?')) return; localStorage.removeItem('capturedEmails'); showAdmin(); }
+</script>
+</body>
+</html>

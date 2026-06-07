@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free ROI Calculator — What If You Used PingPaid? — PingPaid</title>
+<meta name="description" content="Calculate your ROI from using automated invoice collection: time saved × hourly rate = money earned back. Free tool for freelancers.">
+<meta name="keywords" content="invoice collection ROI, time saved calculator, freelancer ROI, automated invoice collection savings">
+<link rel="canonical" href="https://pingpaidonline.dpdns.org/calculator/roi-calculator.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PingPaid ROI Calculator","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#f8fafc;min-height:100vh}
+.container{max-width:700px;margin:0 auto;padding:40px 20px}
+.brand{text-align:center;margin-bottom:40px}
+.brand a{color:#22c55e;text-decoration:none;font-size:24px;font-weight:700}
+.brand a:hover{text-decoration:underline}
+h1{text-align:center;font-size:36px;margin-bottom:12px;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:40px;font-size:18px}
+.card{background:rgba(30,41,59,0.8);backdrop-filter:blur(10px);border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:32px;margin-bottom:24px}
+.card h2{font-size:22px;margin-bottom:20px;color:#e2e8f0}
+.form-group{margin-bottom:20px}
+label{display:block;margin-bottom:8px;color:#94a3b8;font-size:14px;font-weight:500}
+input,select{width:100%;padding:14px 16px;background:#0f172a;border:1px solid rgba(148,163,184,0.2);border-radius:10px;color:#f8fafc;font-size:16px;transition:border-color .2s}
+input:focus,select:focus{outline:none;border-color:#22c55e}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,197,94,0.3)}
+.btn:active{transform:translateY(0)}
+.results{display:none;margin-top:24px;padding:24px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:12px}
+.results.show{display:block}
+.results h3{color:#4ade80;margin-bottom:16px;font-size:20px}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(148,163,184,0.1)}
+.result-row:last-child{border-bottom:none}
+.result-label{color:#94a3b8}
+.result-value{font-weight:700;color:#f8fafc}
+.total{font-size:24px;color:#22c55e;font-weight:800}
+.positive{color:#22c55e}
+.negative{color:#ef4444}
+.email-capture{display:none;margin-top:24px;text-align:center}
+.email-capture.show{display:block}
+.email-capture p{color:#cbd5e1;margin-bottom:16px}
+.email-input{max-width:400px;margin:0 auto 16px}
+.small-text{color:#64748b;font-size:13px;margin-top:12px}
+.capture-alt{margin-top:16px;padding:16px;background:rgba(30,41,59,0.6);border-radius:10px;border:1px solid rgba(148,163,184,0.1)}
+.capture-alt p{color:#94a3b8;font-size:14px;margin-bottom:8px}
+.capture-alt a{color:#22c55e;text-decoration:none;font-weight:500}
+.capture-alt a:hover{text-decoration:underline}
+.admin-toggle{position:fixed;bottom:20px;right:20px;padding:10px 16px;background:rgba(30,41,59,0.9);border:1px solid rgba(148,163,184,0.2);border-radius:8px;color:#94a3b8;font-size:12px;cursor:pointer;z-index:100}
+.admin-toggle:hover{color:#22c55e}
+.admin-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.95);z-index:200;overflow:auto;padding:40px 20px}
+.admin-panel.show{display:block}
+.admin-panel h2{color:#22c55e;margin-bottom:24px}
+.admin-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.admin-table th{background:#1e293b;padding:12px;text-align:left;color:#94a3b8;border-bottom:2px solid #22c55e}
+.admin-table td{padding:12px;border-bottom:1px solid rgba(148,163,184,0.1);color:#e2e8f0;font-size:14px}
+.admin-table td.email{color:#4ade80}
+.admin-btn{padding:10px 20px;background:#22c55e;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-right:8px;margin-bottom:8px}
+.admin-btn.secondary{background:#334155}
+.empty-state{text-align:center;color:#64748b;padding:40px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.highlight-box{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;padding:20px;margin-top:16px;text-align:center}
+.highlight-box .big{font-size:32px;font-weight:800;color:#22c55e}
+.highlight-box .small{color:#94a3b8;font-size:14px}
+footer{text-align:center;color:#64748b;padding:40px 0;border-top:1px solid rgba(148,163,184,0.1);margin-top:40px}
+footer a{color:#22c55e;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="brand"><a href="https://pingpaid.online?utm_source=calculator&utm_medium=tool&utm_campaign=roi">PingPaid</a></div>
+<h1>ROI Calculator</h1>
+<p class="subtitle">What if you used PingPaid? See how much time and money you get back</p>
+
+<div class="card">
+<h2>📊 Your Current Situation</h2>
+<div class="row">
+<div class="form-group">
+<label>How many invoices do you send per month?</label>
+<input type="number" id="invoicesPerMonth" placeholder="e.g. 12" min="0">
+</div>
+<div class="form-group">
+<label>Your Hourly Rate (€)</label>
+<input type="number" id="hourlyRate" placeholder="e.g. 85" min="0" step="0.01">
+</div>
+</div>
+<div class="row">
+<div class="form-group">
+<label>Minutes spent chasing each late invoice</label>
+<input type="number" id="chaseTime" placeholder="e.g. 45" min="0">
+</div>
+<div class="form-group">
+<label>% of invoices that are late</label>
+<input type="number" id="latePercent" placeholder="e.g. 35" min="0" max="100">
+</div>
+</div>
+<div class="row">
+<div class="form-group">
+<label>Avg invoice amount (€)</label>
+<input type="number" id="avgInvoice" placeholder="e.g. 2500" min="0" step="0.01">
+</div>
+<div class="form-group">
+<label>PingPaid monthly cost (€)</label>
+<input type="number" id="pingpaidCost" placeholder="29.99" min="0" step="0.01" value="29.99">
+</div>
+</div>
+</div>
+
+<div class="card">
+<button class="btn" onclick="calculate()">Calculate My ROI →</button>
+
+<div class="results" id="results">
+<h3>💰 Your PingPaid ROI</h3>
+<div class="result-row"><span class="result-label">Late invoices per month</span><span class="result-value" id="resLateCount">—</span></div>
+<div class="result-row"><span class="result-label">Time wasted chasing (hours/month)</span><span class="result-value negative" id="resTimeWasted">—</span></div>
+<div class="result-row"><span class="result-label">Money lost to time waste (€/month)</span><span class="result-value negative" id="resMoneyLost">—</span></div>
+<div class="result-row"><span class="result-label">Extra revenue from late fees (€/month)</span><span class="result-value positive" id="resLateFees">—</span></div>
+<div class="result-row"><span class="result-label">Total monthly value of PingPaid</span><span class="result-value positive" id="resTotalValue">—</span></div>
+<div class="result-row"><span class="result-label">PingPaid cost</span><span class="result-value negative" id="resCost">—</span></div>
+<div class="result-row"><span class="result-label">Net Monthly ROI</span><span class="result-value total" id="resNetROI">—</span></div>
+<div class="result-row"><span class="result-label">ROI Multiplier</span><span class="result-value" id="resMultiplier">—</span></div>
+<div class="highlight-box">
+<div class="big" id="annualSavings">—</div>
+<div class="small">Annual savings with PingPaid</div>
+</div>
+<p class="small-text">Based on average late fee collection of €40 + 12.5% statutory interest. PingPaid automates reminders, escalates to collection, and applies legal fees automatically.</p>
+</div>
+
+<div class="email-capture" id="emailCapture">
+<p>📧 <strong>Want your ROI report emailed?</strong><br>Plus: a free 21-day trial of PingPaid.</p>
+<div class="email-input">
+<input type="email" id="emailInput" placeholder="your@email.com">
+</div>
+<button class="btn" onclick="captureEmail()">Send My ROI Report →</button>
+<p class="small-text" id="captureStatus"></p>
+<div class="capture-alt">
+<p>Emails saved locally. <a href="#" onclick="showAdmin();return false">View collected emails →</a></p>
+</div>
+</div>
+</div>
+
+<footer>
+<p>Built by <a href="https://pingpaid.online?utm_source=calculator&utm_medium=footer&utm_campaign=roi">PingPaid</a> — automated invoice collection</p>
+<p style="margin-top:8px;font-size:13px"><a href="./">← Back to Calculator Hub</a></p>
+</footer>
+</div>
+
+<button class="admin-toggle" onclick="showAdmin()">📊 Admin</button>
+<div class="admin-panel" id="adminPanel">
+<div class="container">
+<h2>📊 Email Capture Admin</h2>
+<div id="adminContent"><div class="empty-state"><p>No emails captured yet.</p></div></div>
+<div style="margin-top:24px">
+<button class="admin-btn" onclick="exportCSV()">📥 Export CSV</button>
+<button class="admin-btn secondary" onclick="clearEmails()">🗑️ Clear All</button>
+<button class="admin-btn secondary" onclick="hideAdmin()">Close</button>
+</div>
+</div>
+</div>
+
+<script>
+function calculate() {
+  const invoices = parseFloat(document.getElementById('invoicesPerMonth').value) || 0;
+  const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
+  const chaseTime = parseFloat(document.getElementById('chaseTime').value) || 0;
+  const latePct = parseFloat(document.getElementById('latePercent').value) || 0;
+  const avgInvoice = parseFloat(document.getElementById('avgInvoice').value) || 0;
+  const cost = parseFloat(document.getElementById('pingpaidCost').value) || 0;
+
+  const lateCount = Math.round(invoices * (latePct / 100));
+  const timeWasted = (lateCount * chaseTime) / 60;
+  const moneyLost = timeWasted * rate;
+  const interestRate = 12.5 / 100;
+  const avgDaysLate = 30;
+  const lateFees = lateCount * (40 + avgInvoice * interestRate * (avgDaysLate / 365));
+  const totalValue = moneyLost + lateFees;
+  const netROI = totalValue - cost;
+  const multiplier = cost > 0 ? (totalValue / cost).toFixed(1) : 0;
+  const annual = netROI * 12;
+
+  document.getElementById('resLateCount').textContent = lateCount;
+  document.getElementById('resTimeWasted').textContent = timeWasted.toFixed(1) + ' hrs';
+  document.getElementById('resMoneyLost').textContent = '€' + moneyLost.toFixed(2);
+  document.getElementById('resLateFees').textContent = '€' + lateFees.toFixed(2);
+  document.getElementById('resTotalValue').textContent = '€' + totalValue.toFixed(2);
+  document.getElementById('resCost').textContent = '€' + cost.toFixed(2);
+  document.getElementById('resNetROI').textContent = '€' + netROI.toFixed(2);
+  document.getElementById('resNetROI').className = 'result-value total ' + (netROI >= 0 ? 'positive' : 'negative');
+  document.getElementById('resMultiplier').textContent = multiplier + 'x';
+  document.getElementById('annualSavings').textContent = '€' + annual.toFixed(2);
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('emailCapture').classList.add('show');
+  localStorage.setItem('lastROI', JSON.stringify({invoices, rate, netROI, annual, timestamp: new Date().toISOString()}));
+}
+function captureEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) { document.getElementById('captureStatus').textContent = 'Please enter a valid email.'; document.getElementById('captureStatus').style.color = '#ef4444'; return; }
+  const roi = JSON.parse(localStorage.getItem('lastROI') || '{}');
+  const record = {email, rate: roi.rate, netROI: roi.netROI, annual: roi.annual, timestamp: new Date().toISOString(), source: 'roi_calculator'};
+  let emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  emails.push(record);
+  localStorage.setItem('capturedEmails', JSON.stringify(emails));
+  document.getElementById('captureStatus').textContent = '✅ Email captured! View in Admin panel.';
+  document.getElementById('captureStatus').style.color = '#22c55e';
+  document.getElementById('emailInput').value = '';
+}
+function showAdmin() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  const content = document.getElementById('adminContent');
+  if (emails.length === 0) { content.innerHTML = '<div class="empty-state"><p>No emails captured yet.</p></div>'; }
+  else {
+    let html = '<table class="admin-table"><tr><th>Email</th><th>Rate</th><th>Net ROI</th><th>Annual</th><th>Date</th></tr>';
+    emails.reverse().forEach(e => { html += `<tr><td class="email">${e.email}</td><td>€${e.rate}</td><td>€${e.netROI}</td><td>€${e.annual}</td><td>${new Date(e.timestamp).toLocaleDateString()}</td></tr>`; });
+    html += '</table><p style="color:#94a3b8">Total: ' + emails.length + ' emails</p>';
+    content.innerHTML = html;
+  }
+  document.getElementById('adminPanel').classList.add('show');
+}
+function hideAdmin() { document.getElementById('adminPanel').classList.remove('show'); }
+function exportCSV() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  if (emails.length === 0) { alert('No emails to export.'); return; }
+  let csv = 'Email,Rate,Net ROI,Annual,Date\n';
+  emails.forEach(e => { csv += `"${e.email}",${e.rate},${e.netROI},${e.annual},"${e.timestamp}"\n`; });
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'pingpaid-roi-leads-' + new Date().toISOString().split('T')[0] + '.csv'; a.click(); URL.revokeObjectURL(url);
+}
+function clearEmails() { if (!confirm('Delete all captured emails?')) return; localStorage.removeItem('capturedEmails'); showAdmin(); }
+</script>
+</body>
+</html>

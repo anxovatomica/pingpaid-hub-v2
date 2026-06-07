@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Invoice Generator — PingPaid</title>
+<meta name="description" content="Create professional invoices instantly. Download as PDF-ready HTML. Free invoice generator for freelancers and small businesses.">
+<meta name="keywords" content="invoice generator, free invoice creator, freelance invoice, invoice template, create invoice online">
+<link rel="canonical" href="https://pingpaidonline.dpdns.org/calculator/invoice-generator.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PingPaid Invoice Generator","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#f8fafc;min-height:100vh}
+.container{max-width:700px;margin:0 auto;padding:40px 20px}
+.brand{text-align:center;margin-bottom:40px}
+.brand a{color:#22c55e;text-decoration:none;font-size:24px;font-weight:700}
+.brand a:hover{text-decoration:underline}
+h1{text-align:center;font-size:36px;margin-bottom:12px;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:40px;font-size:18px}
+.card{background:rgba(30,41,59,0.8);backdrop-filter:blur(10px);border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:32px;margin-bottom:24px}
+.card h2{font-size:22px;margin-bottom:20px;color:#e2e8f0}
+.form-group{margin-bottom:20px}
+label{display:block;margin-bottom:8px;color:#94a3b8;font-size:14px;font-weight:500}
+input,select,textarea{width:100%;padding:14px 16px;background:#0f172a;border:1px solid rgba(148,163,184,0.2);border-radius:10px;color:#f8fafc;font-size:16px;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#22c55e}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,197,94,0.3)}
+.btn:active{transform:translateY(0)}
+.btn-secondary{width:100%;padding:14px;background:#334155;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;margin-top:12px;transition:background .2s}
+.btn-secondary:hover{background:#475569}
+.results{display:none;margin-top:24px;padding:24px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:12px}
+.results.show{display:block}
+.results h3{color:#4ade80;margin-bottom:16px;font-size:20px}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(148,163,184,0.1)}
+.result-row:last-child{border-bottom:none}
+.result-label{color:#94a3b8}
+.result-value{font-weight:700;color:#f8fafc}
+.total{font-size:24px;color:#22c55e;font-weight:800}
+.email-capture{display:none;margin-top:24px;text-align:center}
+.email-capture.show{display:block}
+.email-capture p{color:#cbd5e1;margin-bottom:16px}
+.email-input{max-width:400px;margin:0 auto 16px}
+.small-text{color:#64748b;font-size:13px;margin-top:12px}
+.capture-alt{margin-top:16px;padding:16px;background:rgba(30,41,59,0.6);border-radius:10px;border:1px solid rgba(148,163,184,0.1)}
+.capture-alt p{color:#94a3b8;font-size:14px;margin-bottom:8px}
+.capture-alt a{color:#22c55e;text-decoration:none;font-weight:500}
+.capture-alt a:hover{text-decoration:underline}
+.admin-toggle{position:fixed;bottom:20px;right:20px;padding:10px 16px;background:rgba(30,41,59,0.9);border:1px solid rgba(148,163,184,0.2);border-radius:8px;color:#94a3b8;font-size:12px;cursor:pointer;z-index:100}
+.admin-toggle:hover{color:#22c55e}
+.admin-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.95);z-index:200;overflow:auto;padding:40px 20px}
+.admin-panel.show{display:block}
+.admin-panel h2{color:#22c55e;margin-bottom:24px}
+.admin-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.admin-table th{background:#1e293b;padding:12px;text-align:left;color:#94a3b8;border-bottom:2px solid #22c55e}
+.admin-table td{padding:12px;border-bottom:1px solid rgba(148,163,184,0.1);color:#e2e8f0;font-size:14px}
+.admin-table td.email{color:#4ade80}
+.admin-btn{padding:10px 20px;background:#22c55e;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-right:8px;margin-bottom:8px}
+.admin-btn.secondary{background:#334155}
+.empty-state{text-align:center;color:#64748b;padding:40px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.line-item{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:12px}
+.line-item input{padding:10px 12px;font-size:14px}
+.line-item .btn-del{padding:10px 12px;background:#ef4444;color:#fff;border:none;border-radius:8px;font-size:12px;cursor:pointer}
+.line-item .btn-del:hover{background:#dc2626}
+.invoice-preview{background:#fff;color:#1e293b;padding:40px;border-radius:12px;margin-top:20px;display:none}
+.invoice-preview.show{display:block}
+.invoice-preview h2{color:#1e293b;font-size:28px;margin-bottom:8px}
+.invoice-preview p{color:#475569}
+.invoice-preview table{width:100%;border-collapse:collapse;margin:20px 0}
+.invoice-preview th{text-align:left;padding:10px;border-bottom:2px solid #1e293b;color:#1e293b;font-weight:600}
+.invoice-preview td{padding:10px;border-bottom:1px solid #e2e8f0;color:#334155}
+.invoice-preview .total-row{font-weight:700;font-size:18px;color:#1e293b}
+.invoice-preview .meta{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+.invoice-preview .meta div h4{color:#64748b;font-size:12px;text-transform:uppercase;margin-bottom:4px}
+.invoice-preview .meta div p{color:#1e293b;font-size:15px}
+footer{text-align:center;color:#64748b;padding:40px 0;border-top:1px solid rgba(148,163,184,0.1);margin-top:40px}
+footer a{color:#22c55e;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="brand"><a href="https://pingpaid.online?utm_source=calculator&utm_medium=tool&utm_campaign=invoice_gen">PingPaid</a></div>
+<h1>Invoice Generator</h1>
+<p class="subtitle">Create professional invoices in seconds — download as HTML</p>
+
+<div class="card">
+<h2>🏢 Your Details</h2>
+<div class="row">
+<div class="form-group"><label>Your Name / Company</label><input type="text" id="fromName" placeholder="Your Company Ltd"></div>
+<div class="form-group"><label>Your Email</label><input type="email" id="fromEmail" placeholder="you@company.com"></div>
+</div>
+<div class="row">
+<div class="form-group"><label>Your Address</label><input type="text" id="fromAddress" placeholder="123 Main St, City, Country"></div>
+<div class="form-group"><label>Tax ID / VAT</label><input type="text" id="fromTax" placeholder="VAT123456789"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>👤 Client Details</h2>
+<div class="row">
+<div class="form-group"><label>Client Name</label><input type="text" id="toName" placeholder="Client Company"></div>
+<div class="form-group"><label>Client Email</label><input type="email" id="toEmail" placeholder="client@company.com"></div>
+</div>
+<div class="row">
+<div class="form-group"><label>Client Address</label><input type="text" id="toAddress" placeholder="456 Business Ave, City, Country"></div>
+<div class="form-group"><label>Invoice Number</label><input type="text" id="invNumber" placeholder="INV-2024-001"></div>
+</div>
+<div class="row">
+<div class="form-group"><label>Invoice Date</label><input type="date" id="invDate"></div>
+<div class="form-group"><label>Due Date</label><input type="date" id="dueDate"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>🧾 Line Items</h2>
+<div id="lineItems">
+<div class="line-item">
+<input type="text" placeholder="Description" class="li-desc">
+<input type="number" placeholder="Qty" class="li-qty" min="0" value="1">
+<input type="number" placeholder="Price" class="li-price" min="0" step="0.01">
+<button class="btn-del" onclick="removeLine(this)">✕</button>
+</div>
+</div>
+<button class="btn-secondary" onclick="addLine()">+ Add Line Item</button>
+<div class="row" style="margin-top:16px">
+<div class="form-group"><label>Tax Rate (%)</label><input type="number" id="taxRate" placeholder="21" min="0" max="100" value="21"></div>
+<div class="form-group"><label>Currency</label>
+<select id="currency">
+<option value="EUR" selected>EUR (€)</option>
+<option value="USD">USD ($)</option>
+<option value="GBP">GBP (£)</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label>Notes / Terms</label>
+<textarea id="invNotes" placeholder="Payment terms, bank details, late fee notice...">Payment due within 30 days. Late payments subject to statutory interest and collection fees under EU Directive 2011/7/EU.</textarea>
+</div>
+</div>
+
+<div class="card">
+<button class="btn" onclick="generateInvoice()">Generate Invoice →</button>
+
+<div class="results" id="results">
+<h3>✅ Invoice Generated</h3>
+<div class="result-row"><span class="result-label">Subtotal</span><span class="result-value" id="resSubtotal">—</span></div>
+<div class="result-row"><span class="result-label">Tax</span><span class="result-value" id="resTax">—</span></div>
+<div class="result-row"><span class="result-label">Total</span><span class="result-value total" id="resTotal">—</span></div>
+<div class="invoice-preview" id="preview"></div>
+<button class="btn-secondary" onclick="downloadInvoice()">💾 Download Invoice (HTML)</button>
+<button class="btn-secondary" onclick="printInvoice()">🖨️ Print Invoice</button>
+</div>
+
+<div class="email-capture" id="emailCapture">
+<p>📧 <strong>Want your invoice template saved to your email?</strong><br>Plus: free invoice tracking with PingPaid.</p>
+<div class="email-input">
+<input type="email" id="emailInput" placeholder="your@email.com">
+</div>
+<button class="btn" onclick="captureEmail()">Save My Invoice →</button>
+<p class="small-text" id="captureStatus"></p>
+<div class="capture-alt">
+<p>Emails saved locally. <a href="#" onclick="showAdmin();return false">View collected emails →</a></p>
+</div>
+</div>
+</div>
+
+<footer>
+<p>Built by <a href="https://pingpaid.online?utm_source=calculator&utm_medium=footer&utm_campaign=invoice_gen">PingPaid</a> — automated invoice collection</p>
+<p style="margin-top:8px;font-size:13px"><a href="./">← Back to Calculator Hub</a></p>
+</footer>
+</div>
+
+<button class="admin-toggle" onclick="showAdmin()">📊 Admin</button>
+<div class="admin-panel" id="adminPanel">
+<div class="container">
+<h2>📊 Email Capture Admin</h2>
+<div id="adminContent"><div class="empty-state"><p>No emails captured yet.</p></div></div>
+<div style="margin-top:24px">
+<button class="admin-btn" onclick="exportCSV()">📥 Export CSV</button>
+<button class="admin-btn secondary" onclick="clearEmails()">🗑️ Clear All</button>
+<button class="admin-btn secondary" onclick="hideAdmin()">Close</button>
+</div>
+</div>
+</div>
+
+<script>
+const today = new Date().toISOString().split('T')[0];
+const due = new Date(Date.now() + 30*86400000).toISOString().split('T')[0];
+document.getElementById('invDate').value = today;
+document.getElementById('dueDate').value = due;
+
+function addLine() {
+  const div = document.createElement('div');
+  div.className = 'line-item';
+  div.innerHTML = '<input type="text" placeholder="Description" class="li-desc"><input type="number" placeholder="Qty" class="li-qty" min="0" value="1"><input type="number" placeholder="Price" class="li-price" min="0" step="0.01"><button class="btn-del" onclick="removeLine(this)">✕</button>';
+  document.getElementById('lineItems').appendChild(div);
+}
+function removeLine(btn) {
+  const items = document.querySelectorAll('.line-item');
+  if (items.length > 1) btn.parentElement.remove();
+}
+
+function generateInvoice() {
+  const items = [];
+  let subtotal = 0;
+  document.querySelectorAll('.line-item').forEach(row => {
+    const desc = row.querySelector('.li-desc').value;
+    const qty = parseFloat(row.querySelector('.li-qty').value) || 0;
+    const price = parseFloat(row.querySelector('.li-price').value) || 0;
+    if (desc && qty > 0 && price > 0) {
+      const total = qty * price;
+      items.push({desc, qty, price, total});
+      subtotal += total;
+    }
+  });
+  if (items.length === 0) { alert('Add at least one line item.'); return; }
+
+  const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+  const tax = subtotal * (taxRate / 100);
+  const total = subtotal + tax;
+  const currency = document.getElementById('currency').value;
+  const sym = currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : '$';
+
+  document.getElementById('resSubtotal').textContent = sym + subtotal.toFixed(2);
+  document.getElementById('resTax').textContent = sym + tax.toFixed(2);
+  document.getElementById('resTotal').textContent = sym + total.toFixed(2);
+
+  const fromName = document.getElementById('fromName').value || 'Your Company';
+  const fromEmail = document.getElementById('fromEmail').value;
+  const fromAddress = document.getElementById('fromAddress').value;
+  const fromTax = document.getElementById('fromTax').value;
+  const toName = document.getElementById('toName').value || 'Client';
+  const toEmail = document.getElementById('toEmail').value;
+  const toAddress = document.getElementById('toAddress').value;
+  const invNumber = document.getElementById('invNumber').value || 'INV-' + Date.now().toString().slice(-6);
+  const invDate = document.getElementById('invDate').value;
+  const dueDate = document.getElementById('dueDate').value;
+  const notes = document.getElementById('invNotes').value;
+
+  let html = '<div style="max-width:700px;margin:0 auto;font-family:system-ui,sans-serif;color:#1e293b">';
+  html += '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px">';
+  html += '<div><h2 style="font-size:28px;margin-bottom:4px;color:#1e293b">INVOICE</h2><p style="color:#64748b">' + invNumber + '</p></div>';
+  html += '<div style="text-align:right"><p style="font-size:24px;font-weight:800;color:#22c55e">' + sym + total.toFixed(2) + '</p><p style="color:#64748b">Due: ' + dueDate + '</p></div>';
+  html += '</div>';
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px">';
+  html += '<div><h4 style="color:#64748b;font-size:12px;text-transform:uppercase;margin-bottom:4px">From</h4><p style="font-weight:600">' + fromName + '</p><p>' + fromAddress + '</p><p>' + fromEmail + '</p><p>' + (fromTax ? 'Tax: ' + fromTax : '') + '</p></div>';
+  html += '<div><h4 style="color:#64748b;font-size:12px;text-transform:uppercase;margin-bottom:4px">Bill To</h4><p style="font-weight:600">' + toName + '</p><p>' + toAddress + '</p><p>' + toEmail + '</p></div>';
+  html += '</div>';
+  html += '<table style="width:100%;border-collapse:collapse;margin-bottom:24px">';
+  html += '<thead><tr style="border-bottom:2px solid #1e293b"><th style="text-align:left;padding:10px">Description</th><th style="text-align:center;padding:10px">Qty</th><th style="text-align:right;padding:10px">Price</th><th style="text-align:right;padding:10px">Total</th></tr></thead><tbody>';
+  items.forEach(i => {
+    html += '<tr style="border-bottom:1px solid #e2e8f0"><td style="padding:10px">' + i.desc + '</td><td style="text-align:center;padding:10px">' + i.qty + '</td><td style="text-align:right;padding:10px">' + sym + i.price.toFixed(2) + '</td><td style="text-align:right;padding:10px;font-weight:600">' + sym + i.total.toFixed(2) + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  html += '<div style="text-align:right;margin-bottom:24px">';
+  html += '<p style="color:#64748b">Subtotal: <span style="color:#1e293b;font-weight:600">' + sym + subtotal.toFixed(2) + '</span></p>';
+  html += '<p style="color:#64748b">Tax (' + taxRate + '%): <span style="color:#1e293b;font-weight:600">' + sym + tax.toFixed(2) + '</span></p>';
+  html += '<p style="font-size:20px;font-weight:800;color:#1e293b;margin-top:8px">Total: ' + sym + total.toFixed(2) + '</p>';
+  html += '</div>';
+  html += '<div style="border-top:1px solid #e2e8f0;padding-top:16px"><p style="color:#64748b;font-size:14px">' + notes.replace(/\n/g, '<br>') + '</p></div>';
+  html += '<div style="text-align:center;margin-top:32px;padding-top:16px;border-top:1px solid #e2e8f0"><p style="color:#94a3b8;font-size:13px">Generated by PingPaid — automated invoice collection</p></div>';
+  html += '</div>';
+
+  document.getElementById('preview').innerHTML = html;
+  document.getElementById('preview').classList.add('show');
+  document.getElementById('results').classList.add('show');
+  document.getElementById('emailCapture').classList.add('show');
+  localStorage.setItem('lastInvoice', JSON.stringify({invNumber, total, currency, items: items.length, timestamp: new Date().toISOString()}));
+}
+
+function downloadInvoice() {
+  const html = document.getElementById('preview').innerHTML;
+  const full = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice</title></head><body style="background:#f8fafc;padding:40px">' + html + '</body></html>';
+  const blob = new Blob([full], {type: 'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'invoice-' + document.getElementById('invNumber').value + '.html'; a.click(); URL.revokeObjectURL(url);
+}
+function printInvoice() {
+  const w = window.open('', '_blank');
+  w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice</title></head><body style="padding:40px">' + document.getElementById('preview').innerHTML + '</body></html>');
+  w.document.close(); w.print();
+}
+function captureEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) { document.getElementById('captureStatus').textContent = 'Please enter a valid email.'; document.getElementById('captureStatus').style.color = '#ef4444'; return; }
+  const inv = JSON.parse(localStorage.getItem('lastInvoice') || '{}');
+  const record = {email, invNumber: inv.invNumber, total: inv.total, timestamp: new Date().toISOString(), source: 'invoice_generator'};
+  let emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  emails.push(record);
+  localStorage.setItem('capturedEmails', JSON.stringify(emails));
+  document.getElementById('captureStatus').textContent = '✅ Email captured! View in Admin panel.';
+  document.getElementById('captureStatus').style.color = '#22c55e';
+  document.getElementById('emailInput').value = '';
+}
+function showAdmin() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  const content = document.getElementById('adminContent');
+  if (emails.length === 0) { content.innerHTML = '<div class="empty-state"><p>No emails captured yet.</p></div>'; }
+  else {
+    let html = '<table class="admin-table"><tr><th>Email</th><th>Invoice</th><th>Total</th><th>Date</th></tr>';
+    emails.reverse().forEach(e => { html += `<tr><td class="email">${e.email}</td><td>${e.invNumber}</td><td>${e.total}</td><td>${new Date(e.timestamp).toLocaleDateString()}</td></tr>`; });
+    html += '</table><p style="color:#94a3b8">Total: ' + emails.length + ' emails</p>';
+    content.innerHTML = html;
+  }
+  document.getElementById('adminPanel').classList.add('show');
+}
+function hideAdmin() { document.getElementById('adminPanel').classList.remove('show'); }
+function exportCSV() {
+  const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+  if (emails.length === 0) { alert('No emails to export.'); return; }
+  let csv = 'Email,Invoice,Total,Date\n';
+  emails.forEach(e => { csv += `"${e.email}",${e.invNumber},${e.total},"${e.timestamp}"\n`; });
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'pingpaid-invoice-leads-' + new Date().toISOString().split('T')[0] + '.csv'; a.click(); URL.revokeObjectURL(url);
+}
+function clearEmails() { if (!confirm('Delete all captured emails?')) return; localStorage.removeItem('capturedEmails'); showAdmin(); }
+</script>
+</body>
+</html>
