@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate Invoice Checklist: 25-Point Checklist Before Sending — PingPaid</title>
+<meta name="description" content="Free 25-point invoice checklist for freelancers. Make sure every invoice is complete, professional, and gets paid faster. Interactive checklist with progress tracking.">
+<meta property="og:title" content="The Ultimate Invoice Checklist: 25 Points Before Sending">
+<meta property="og:description" content="Never miss a detail on your invoices again. Free interactive checklist with save state.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://anxovatomica.github.io/pingpaid-hub-v2/pages/invoice-checklist.html">
+<!-- Schema.org -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"The Ultimate Invoice Checklist: 25-Point Checklist Before Sending","description":"A comprehensive checklist to ensure every invoice is complete and professional before sending to clients.","totalTime":"PT10M","step":[{"@type":"HowToStep","name":"Business Information","text":"Ensure your business name, address, and contact details are clearly listed."},{"@type":"HowToStep","name":"Client Details","text":"Verify the client's correct legal name, billing address, and contact person."},{"@type":"HowToStep","name":"Invoice Number","text":"Assign a unique, sequential invoice number for tracking."},{"@type":"HowToStep","name":"Invoice Date","text":"Include the date the invoice was issued."},{"@type":"HowToStep","name":"Due Date","text":"Clearly state the payment due date aligned with your terms."}],"publisher":{"@type":"Organization","name":"PingPaid","url":"https://anxovatomica.github.io/pingpaid-hub-v2/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What should be included on every invoice?","acceptedAnswer":{"@type":"Answer","text":"Every invoice should include: your business info, client details, unique invoice number, invoice date, due date, itemized list of services/products, rates, quantities, subtotal, taxes, total amount due, payment terms, accepted payment methods, and late fee policy."}},{"@type":"Question","name":"How do I make sure my invoice gets paid faster?","acceptedAnswer":{"@type":"Answer","text":"Send invoices promptly, use clear payment terms, offer multiple payment methods, include late fees, follow up before the due date, and make your invoice easy to understand with itemized details."}}]}</script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3N4GH5M7QF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3N4GH5M7QF');</script>
+<style>
+:root{--brand:#0070f3;--bg:#fafafa;--card:#fff;--text:#111;--muted:#666;--border:#e5e5e5;--accent:#00c853;--danger:#ef4444;--warning:#f59e0b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:800px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px}
+h1{font-size:2.2em;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.4em;margin:32px 0 16px;color:var(--brand)}
+h3{font-size:1.1em;margin:20px 0 8px}
+p{margin-bottom:16px}
+.meta{color:var(--muted);font-size:.9em;margin-bottom:24px}
+a{color:var(--brand);text-decoration:none}
+ul{margin-left:24px;margin-bottom:16px}
+li{margin-bottom:8px}
+
+/* Progress */
+.progress-container{background:var(--card);border-radius:16px;padding:24px 40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px;text-align:center;position:sticky;top:0;z-index:10}
+.progress-bar{background:#e5e5e5;border-radius:12px;height:16px;margin:12px 0;overflow:hidden}
+.progress-fill{background:linear-gradient(90deg,var(--brand),var(--accent));height:100%;border-radius:12px;transition:width 0.4s ease}
+.progress-text{font-size:1.1em;font-weight:700;color:var(--brand)}
+.progress-sub{color:var(--muted);font-size:.85em}
+
+/* Checklist */
+.checklist-item{background:#f8f9fa;padding:16px;border-radius:10px;margin:8px 0;display:flex;align-items:flex-start;gap:14px;transition:background .2s;border:1px solid transparent}
+.checklist-item:hover{background:#f0f4ff;border-color:#dbeafe}
+.checklist-item.checked{background:#e8f5e9;border-color:#c8e6c9}
+.checklist-item input[type="checkbox"]{margin-top:3px;width:20px;height:20px;cursor:pointer;accent-color:var(--brand);flex-shrink:0}
+.checklist-item label{cursor:pointer;flex:1}
+.checklist-item .item-title{font-weight:600;display:block;margin-bottom:4px}
+.checklist-item .item-desc{color:var(--muted);font-size:.9em}
+.checklist-item .tag{background:var(--brand);color:#fff;padding:3px 10px;border-radius:12px;font-size:.7em;font-weight:600;white-space:nowrap;flex-shrink:0}
+.checklist-item .tag.legal{background:var(--danger)}
+.checklist-item .tag.financial{background:var(--warning);color:#111}
+.checklist-item .tag.professional{background:var(--accent)}
+
+.phase-header{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:14px 20px;border-radius:12px;margin:28px 0 12px;font-weight:700;font-size:1.05em;display:flex;align-items:center;gap:10px}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:24px;border-radius:12px;text-align:center;margin:32px 0;font-weight:600}
+.cta a{color:#fff;font-size:1.1em}
+
+/* Buttons */
+button{background:var(--brand);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:1em;font-weight:600}
+button:hover{background:#0051a8}
+button.secondary{background:#334155}
+button.secondary:hover{background:#475569}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border-radius:16px;padding:40px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.2);text-align:center}
+.modal h3{margin-bottom:8px;font-size:1.3em}
+.modal p{color:var(--muted);margin-bottom:20px;font-size:.95em}
+.modal input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:1em;margin-bottom:12px;font-family:inherit}
+.modal input:focus{outline:none;border-color:var(--brand)}
+.modal .close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.5em;cursor:pointer;color:var(--muted)}
+.modal-wrap{position:relative}
+
+/* Social */
+.social-share{display:flex;gap:10px;justify-content:center;margin:20px 0}
+.share-btn{padding:10px 18px;border-radius:8px;color:#fff;font-weight:600;font-size:.85em;cursor:pointer;border:none}
+.share-btn.x{background:#000}
+.share-btn.linkedin{background:#0a66c2}
+.share-btn.facebook{background:#1877f2}
+.share-btn.email{background:#ea4335}
+
+/* Footer */
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:24px 0;font-size:.9em}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--brand)}
+.tip{background:#d1ecf1;border-left:4px solid #17a2b8;padding:16px;border-radius:8px;margin:16px 0}
+
+/* Download section */
+.download-section{background:linear-gradient(135deg,#f0f4ff,#e8f5e9);border-radius:12px;padding:24px;margin:24px 0;text-align:center;border:1px solid #dbeafe}
+.download-section h3{margin-bottom:8px}
+.download-section p{color:var(--muted);font-size:.9em;margin-bottom:16px}
+.locked{opacity:.6;pointer-events:none;filter:grayscale(.5)}
+
+/* Print */
+@media print{.progress-container,.social-share,.download-section,button{display:none}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Sticky Progress -->
+<div class="progress-container">
+<div class="progress-text" id="progressText">0% Complete</div>
+<div class="progress-bar"><div class="progress-fill" id="progressBar" style="width:0%"></div></div>
+<div class="progress-sub" id="progressSub">0 of 25 items checked</div>
+</div>
+
+<div class="card">
+<h1>📋 The Ultimate Invoice Checklist</h1>
+<div class="meta">25-point checklist before sending any invoice · Updated June 2026</div>
+<p>Missing one detail on an invoice can delay payment by weeks. Use this checklist every time to ensure your invoice is complete, professional, and gets paid faster.</p>
+
+<div class="btn-row">
+<button onclick="resetChecklist()">🔄 Reset</button>
+<button class="secondary" onclick="checkAll()">✅ Check All</button>
+<button class="secondary" onclick="window.print()">🖨️ Print</button>
+</div>
+
+<div class="phase-header">🏢 1. Header & Business Info</div>
+
+<div class="checklist-item" id="row1">
+<input type="checkbox" id="c1" onchange="updateProgress()">
+<label for="c1">
+<span class="item-title">Your business name is clearly displayed</span>
+<span class="item-desc">Use your registered business name or full legal name. Include logo if you have one.</span>
+</label>
+<span class="tag">Branding</span>
+</div>
+
+<div class="checklist-item" id="row2">
+<input type="checkbox" id="c2" onchange="updateProgress()">
+<label for="c2">
+<span class="item-title">Your business address is included</span>
+<span class="item-desc">Physical address builds trust. Required for some jurisdictions. P.O. box is acceptable.</span>
+</label>
+<span class="tag">Legal</span>
+</div>
+
+<div class="checklist-item" id="row3">
+<input type="checkbox" id="c3" onchange="updateProgress()">
+<label for="c3">
+<span class="item-title">Contact information is visible</span>
+<span class="item-desc">Phone, email, and website so the client can reach you with questions.</span>
+</label>
+<span class="tag">Branding</span>
+</div>
+
+<div class="checklist-item" id="row4">
+<input type="checkbox" id="c4" onchange="updateProgress()">
+<label for="c4">
+<span class="item-title">Tax ID / VAT number is listed</span>
+<span class="item-desc">Required for B2B invoices in most countries. Check your local regulations.</span>
+</label>
+<span class="tag legal">Legal</span>
+</div>
+
+<div class="phase-header">👤 2. Client Details</div>
+
+<div class="checklist-item" id="row5">
+<input type="checkbox" id="c5" onchange="updateProgress()">
+<label for="c5">
+<span class="item-title">Client's legal business name is correct</span>
+<span class="item-desc">Verify the exact legal name. "Acme Inc." not "Acme" — wrong names delay payment.</span>
+</label>
+<span class="tag">Details</span>
+</div>
+
+<div class="checklist-item" id="row6">
+<input type="checkbox" id="c6" onchange="updateProgress()">
+<label for="c6">
+<span class="item-title">Client's billing address is accurate</span>
+<span class="item-desc">The address their accounts payable department uses. May differ from office location.</span>
+</label>
+<span class="tag">Details</span>
+</div>
+
+<div class="checklist-item" id="row7">
+<input type="checkbox" id="c7" onchange="updateProgress()">
+<label for="c7">
+<span class="item-title">Point of contact is named</span>
+<span class="item-desc">Include the person who approved the work. Helps AP route the invoice correctly.</span>
+</label>
+<span class="tag">Details</span>
+</div>
+
+<div class="phase-header">📄 3. Invoice Core Data</div>
+
+<div class="checklist-item" id="row8">
+<input type="checkbox" id="c8" onchange="updateProgress()">
+<label for="c8">
+<span class="item-title">Unique invoice number assigned</span>
+<span class="item-desc">Sequential numbering (e.g., INV-2026-001). Never reuse numbers. Critical for accounting.</span>
+</label>
+<span class="tag">Tracking</span>
+</div>
+
+<div class="checklist-item" id="row9">
+<input type="checkbox" id="c9" onchange="updateProgress()">
+<label for="c9">
+<span class="item-title">Invoice date is clearly stated</span>
+<span class="item-desc">The date the invoice was issued. This starts the payment countdown.</span>
+</label>
+<span class="tag">Tracking</span>
+</div>
+
+<div class="checklist-item" id="row10">
+<input type="checkbox" id="c10" onchange="updateProgress()">
+<label for="c10">
+<span class="item-title">Payment due date is prominent</span>
+<span class="item-desc">"Net 30", "Due on receipt", or a specific date. Make it impossible to miss.</span>
+</label>
+<span class="tag financial">Financial</span>
+</div>
+
+<div class="checklist-item" id="row11">
+<input type="checkbox" id="c11" onchange="updateProgress()">
+<label for="c11">
+<span class="item-title">Purchase order (PO) number included</span>
+<span class="item-desc">If the client requires a PO, this is mandatory. Without it, they cannot pay.</span>
+</label>
+<span class="tag">Tracking</span>
+</div>
+
+<div class="phase-header">💰 4. Line Items & Pricing</div>
+
+<div class="checklist-item" id="row12">
+<input type="checkbox" id="c12" onchange="updateProgress()">
+<label for="c12">
+<span class="item-title">Each service is itemized</span>
+<span class="item-desc">Break down work into line items. "Website design" → "Homepage mockup", "About page", etc.</span>
+</label>
+<span class="tag professional">Professional</span>
+</div>
+
+<div class="checklist-item" id="row13">
+<input type="checkbox" id="c13" onchange="updateProgress()">
+<label for="c13">
+<span class="item-title">Rate and quantity are specified per line</span>
+<span class="item-desc">"$75/hr × 12 hours = $900". Transparency prevents disputes.</span>
+</label>
+<span class="tag financial">Financial</span>
+</div>
+
+<div class="checklist-item" id="row14">
+<input type="checkbox" id="c14" onchange="updateProgress()">
+<label for="c14">
+<span class="item-title">Subtotal is calculated correctly</span>
+<span class="item-desc">Sum of all line items before tax and discounts. Double-check the math.</span>
+</label>
+<span class="tag financial">Financial</span>
+</div>
+
+<div class="checklist-item" id="row15">
+<input type="checkbox" id="c15" onchange="updateProgress()">
+<label for="c15">
+<span class="item-title">Taxes are calculated and labeled</span>
+<span class="item-desc">VAT, GST, sales tax — show the rate and amount separately. Required by law in many places.</span>
+</label>
+<span class="tag legal">Legal</span>
+</div>
+
+<div class="checklist-item" id="row16">
+<input type="checkbox" id="c16" onchange="updateProgress()">
+<label for="c16">
+<span class="item-title">Discounts or credits are clearly shown</span>
+<span class="item-desc">If you offered a discount, show it as a separate line item. "Early bird: -$200"</span>
+</label>
+<span class="tag financial">Financial</span>
+</div>
+
+<div class="checklist-item" id="row17">
+<input type="checkbox" id="c17" onchange="updateProgress()">
+<label for="c17">
+<span class="item-title">Total amount due is bold and prominent</span>
+<span class="item-desc">The final number the client pays. Make it the most visible figure on the page.</span>
+</label>
+<span class="tag financial">Financial</span>
+</div>
+
+<div class="phase-header">⚖️ 5. Terms & Conditions</div>
+
+<div class="checklist-item" id="row18">
+<input type="checkbox" id="c18" onchange="updateProgress()">
+<label for="c18">
+<span class="item-title">Payment terms are stated</span>
+<span class="item-desc">"Net 30", "Net 14", "Due on receipt". Match what was agreed in the contract.</span>
+</label>
+<span class="tag legal">Legal</span>
+</div>
+
+<div class="checklist-item" id="row19">
+<input type="checkbox" id="c19" onchange="updateProgress()">
+<label for="c19">
+<span class="item-title">Accepted payment methods are listed</span>
+<span class="item-desc">Bank transfer, PayPal, Stripe, Wise. More options = faster payment.</span>
+</label>
+<span class="tag professional">Professional</span>
+</div>
+
+<div class="checklist-item" id="row20">
+<input type="checkbox" id="c20" onchange="updateProgress()">
+<label for="c20">
+<span class="item-title">Late fee policy is included</span>
+<span class="item-desc">"1.5% per month on overdue balances." Sets expectations and encourages on-time payment.</span>
+</label>
+<span class="tag legal">Legal</span>
+</div>
+
+<div class="checklist-item" id="row21">
+<input type="checkbox" id="c21" onchange="updateProgress()">
+<label for="c21">
+<span class="item-title">Currency is clearly specified</span>
+<span class="item-desc">USD, EUR, GBP. If working internationally, specify the currency code (ISO 4217).</span>
+</label>
+<span class="tag">Details</span>
+</div>
+
+<div class="phase-header">✨ 6. Polish & Professionalism</div>
+
+<div class="checklist-item" id="row22">
+<input type="checkbox" id="c22" onchange="updateProgress()">
+<label for="c22">
+<span class="item-title">Invoice is free of typos and errors</span>
+<span class="item-desc">Typos undermine professionalism. Proofread client name, amounts, and dates.</span>
+</label>
+<span class="tag professional">Professional</span>
+</div>
+
+<div class="checklist-item" id="row23">
+<input type="checkbox" id="c23" onchange="updateProgress()">
+<label for="c23">
+<span class="item-title">Branding is consistent</span>
+<span class="item-desc">Colors, fonts, and logo match your other materials. A polished invoice signals professionalism.</span>
+</label>
+<span class="tag professional">Professional</span>
+</div>
+
+<div class="checklist-item" id="row24">
+<input type="checkbox" id="c24" onchange="updateProgress()">
+<label for="c24">
+<span class="item-title">Thank-you note is included</span>
+<span class="item-desc">A simple "Thank you for your business" goes a long way in client relationships.</span>
+</label>
+<span class="tag professional">Professional</span>
+</div>
+
+<div class="checklist-item" id="row25">
+<input type="checkbox" id="c25" onchange="updateProgress()">
+<label for="c25">
+<span class="item-title">Invoice was sent promptly after work completion</span>
+<span class="item-desc">Send within 24-48 hours of project delivery. Fresh work = faster payment.</span>
+</label>
+<span class="tag professional">Professional</span>
+</div>
+
+<div class="tip">
+<strong>💡 Pro tip:</strong> Use <a href="https://anxovatomica.github.io/pingpaid-hub-v2/">PingPaid</a> to automate invoice tracking and late fee calculation. The best invoice is one that gets paid on time.
+</div>
+
+<div class="download-section" id="downloadSection">
+<h3>📥 Download the PDF Checklist</h3>
+<p>Get a printable version of this checklist for your desk. No spam, ever.</p>
+<button id="downloadBtn" onclick="showEmailModal()">Download PDF Checklist</button>
+</div>
+
+<div class="social-share">
+<button class="share-btn x" onclick="shareX()">𝕏 Share</button>
+<button class="share-btn linkedin" onclick="shareLinkedIn()">LinkedIn</button>
+<button class="share-btn facebook" onclick="shareFacebook()">Facebook</button>
+<button class="share-btn email" onclick="shareEmail()">Email</button>
+</div>
+
+<div class="footer-links">
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/">← All Tools</a>
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/late-fee-landing.html">Late Fee Calculator</a>
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/email-templates.html">Email Templates</a>
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/client-onboarding-kit.html">Onboarding Kit</a>
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/pricing-calculator.html">Pricing Calculator</a>
+</div>
+
+</div>
+</div>
+
+<!-- Email Modal -->
+<div class="modal-overlay" id="emailModal">
+<div class="modal-wrap">
+<div class="modal">
+<h3>📧 Almost there!</h3>
+<p>Enter your email to get the printable PDF checklist.</p>
+<input type="email" id="emailInput" placeholder="you@example.com" required>
+<button onclick="submitDownload()" style="width:100%">Send Me the Checklist</button>
+<p style="font-size:.75em;color:var(--muted);margin-top:12px;margin-bottom:0">Unsubscribe anytime. We never share your email.</p>
+</div>
+<button class="close" onclick="hideEmailModal()">&times;</button>
+</div>
+</div>
+
+<script>
+const totalItems = 25;
+const storageKey = 'invoiceChecklist_v1';
+
+function updateProgress() {
+  let checked = 0;
+  for (let i = 1; i <= totalItems; i++) {
+    const cb = document.getElementById('c' + i);
+    const row = document.getElementById('row' + i);
+    if (cb && cb.checked) {
+      checked++;
+      row.classList.add('checked');
+    } else {
+      row.classList.remove('checked');
+    }
+  }
+  const pct = Math.round((checked / totalItems) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = pct + '% Complete';
+  document.getElementById('progressSub').textContent = checked + ' of ' + totalItems + ' items checked';
+  saveState();
+}
+
+function saveState() {
+  const state = {};
+  for (let i = 1; i <= totalItems; i++) {
+    state['c' + i] = document.getElementById('c' + i).checked;
+  }
+  state.email = localStorage.getItem('pp_email') || '';
+  localStorage.setItem(storageKey, JSON.stringify(state));
+}
+
+function loadState() {
+  const raw = localStorage.getItem(storageKey);
+  if (!raw) return;
+  try {
+    const state = JSON.parse(raw);
+    for (let i = 1; i <= totalItems; i++) {
+      const cb = document.getElementById('c' + i);
+      if (cb && state['c' + i]) cb.checked = true;
+    }
+    updateProgress();
+  } catch (e) { console.error(e); }
+}
+
+function resetChecklist() {
+  for (let i = 1; i <= totalItems; i++) {
+    document.getElementById('c' + i).checked = false;
+  }
+  updateProgress();
+}
+
+function checkAll() {
+  for (let i = 1; i <= totalItems; i++) {
+    document.getElementById('c' + i).checked = true;
+  }
+  updateProgress();
+}
+
+function showEmailModal() {
+  document.getElementById('emailModal').classList.add('active');
+  document.getElementById('emailInput').focus();
+}
+
+function hideEmailModal() {
+  document.getElementById('emailModal').classList.remove('active');
+}
+
+function submitDownload() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  localStorage.setItem('pp_email', email);
+  hideEmailModal();
+  // Generate and download PDF-like HTML
+  downloadChecklistPDF();
+}
+
+function downloadChecklistPDF() {
+  const items = [];
+  for (let i = 1; i <= totalItems; i++) {
+    const title = document.querySelector('#row' + i + ' .item-title').textContent;
+    const desc = document.querySelector('#row' + i + ' .item-desc').textContent;
+    items.push({title, desc});
+  }
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Invoice Checklist - PingPaid</title>
+<style>body{font-family:system-ui,sans-serif;max-width:700px;margin:40px auto;padding:20px;line-height:1.6;color:#111}
+h1{color:#0070f3}h2{color:#00c853;margin-top:24px;font-size:1.1em}
+.item{margin:8px 0;padding:8px;border-bottom:1px solid #eee}
+.item strong{display:block}
+.item span{color:#666;font-size:.9em}
+.footer{margin-top:40px;color:#999;font-size:.8em;text-align:center}
+</style></head><body>
+<h1>📋 The Ultimate Invoice Checklist</h1>
+<p><strong>25-Point Checklist Before Sending Any Invoice</strong></p>
+<p>From PingPaid — https://anxovatomica.github.io/pingpaid-hub-v2/</p>
+<h2>1. Header & Business Info</h2>
+${items.slice(0,4).map((it,idx)=>'<div class="item"><strong>'+(idx+1)+'. '+it.title+'</strong><span>'+it.desc+'</span></div>').join('')}
+<h2>2. Client Details</h2>
+${items.slice(4,7).map((it,idx)=>'<div class="item"><strong>'+(idx+5)+'. '+it.title+'</strong><span>'+it.desc+'</span></div>').join('')}
+<h2>3. Invoice Core Data</h2>
+${items.slice(7,11).map((it,idx)=>'<div class="item"><strong>'+(idx+8)+'. '+it.title+'</strong><span>'+it.desc+'</span></div>').join('')}
+<h2>4. Line Items & Pricing</h2>
+${items.slice(11,17).map((it,idx)=>'<div class="item"><strong>'+(idx+12)+'. '+it.title+'</strong><span>'+it.desc+'</span></div>').join('')}
+<h2>5. Terms & Conditions</h2>
+${items.slice(17,21).map((it,idx)=>'<div class="item"><strong>'+(idx+18)+'. '+it.title+'</strong><span>'+it.desc+'</span></div>').join('')}
+<h2>6. Polish & Professionalism</h2>
+${items.slice(21,25).map((it,idx)=>'<div class="item"><strong>'+(idx+22)+'. '+it.title+'</strong><span>'+it.desc+'</span></div>').join('')}
+<div class="footer">Generated by PingPaid · Free invoice tools for freelancers</div>
+</body></html>`;
+  const blob = new Blob([html], {type: 'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'invoice-checklist-pingpaid.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function shareX() {
+  const text = encodeURIComponent('Just found this 25-point invoice checklist for freelancers. Game changer! 🔥');
+  const url = encodeURIComponent('https://anxovatomica.github.io/pingpaid-hub-v2/pages/invoice-checklist.html');
+  window.open('https://twitter.com/intent/tweet?text=' + text + '&url=' + url, '_blank');
+}
+function shareLinkedIn() {
+  const url = encodeURIComponent('https://anxovatomica.github.io/pingpaid-hub-v2/pages/invoice-checklist.html');
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url, '_blank');
+}
+function shareFacebook() {
+  const url = encodeURIComponent('https://anxovatomica.github.io/pingpaid-hub-v2/pages/invoice-checklist.html');
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
+}
+function shareEmail() {
+  const subject = encodeURIComponent('Invoice Checklist for Freelancers');
+  const body = encodeURIComponent('Check out this 25-point invoice checklist — super helpful for freelancers:\n\nhttps://anxovatomica.github.io/pingpaid-hub-v2/pages/invoice-checklist.html');
+  window.open('mailto:?subject=' + subject + '&body=' + body, '_blank');
+}
+
+// Close modal on backdrop click
+document.getElementById('emailModal').addEventListener('click', function(e) {
+  if (e.target === this) hideEmailModal();
+});
+
+// Init
+loadState();
+</script>
+</body>
+</html>

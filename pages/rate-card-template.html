@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelance Rate Card Template (Free + Customizable) — PingPaid</title>
+<meta name="description" content="Free customizable freelance rate card template. Build your professional rate card, add services, set rates, and download as a printable PDF. No signup required.">
+<meta property="og:title" content="Freelance Rate Card Template (Free + Customizable)">
+<meta property="og:description" content="Build your professional rate card in minutes. Add services, set rates, download. No signup.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://anxovatomica.github.io/pingpaid-hub-v2/pages/rate-card-template.html">
+<!-- Schema.org -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Create a Freelance Rate Card","description":"Step-by-step guide to building a professional freelance rate card with services, pricing, and terms.","totalTime":"PT15M","step":[{"@type":"HowToStep","name":"Add Your Services","text":"List all services you offer with descriptions and pricing structure."},{"@type":"HowToStep","name":"Set Your Rates","text":"Define hourly, daily, or project-based rates for each service."},{"@type":"HowToStep","name":"Add Terms & Conditions","text":"Include payment terms, rush fees, and revision policies."},{"@type":"HowToStep","name":"Download and Share","text":"Export your rate card as a printable document and share with clients."}],"publisher":{"@type":"Organization","name":"PingPaid","url":"https://anxovatomica.github.io/pingpaid-hub-v2/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a rate card and why do I need one?","acceptedAnswer":{"@type":"Answer","text":"A rate card is a standardized document that lists your services and prices. It saves time on proposals, prevents awkward pricing conversations, and shows professionalism. Clients respect freelancers who have clear, published rates."}},{"@type":"Question","name":"Should I publish my rates or keep them private?","acceptedAnswer":{"@type":"Answer","text":"Publishing rates filters out budget clients and attracts serious inquiries. You can always offer custom quotes for large projects. A rate card is a starting point, not a rigid rule."}}]}</script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3N4GH5M7QF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3N4GH5M7QF');</script>
+<style>
+:root{--brand:#0070f3;--bg:#fafafa;--card:#fff;--text:#111;--muted:#666;--border:#e5e5e5;--accent:#00c853;--danger:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.06);margin-bottom:24px}
+h1{font-size:2.2em;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.4em;margin:32px 0 16px;color:var(--brand)}
+h3{font-size:1.1em;margin:20px 0 8px}
+p{margin-bottom:16px}
+.meta{color:var(--muted);font-size:.9em;margin-bottom:24px}
+a{color:var(--brand);text-decoration:none}
+
+/* Builder form */
+.builder-section{background:#f8f9fa;border-radius:12px;padding:24px;margin:20px 0}
+.builder-section h3{margin-top:0}
+.form-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:10px;align-items:end;margin-bottom:10px}
+.form-row label{font-size:.8em;color:var(--muted);margin-bottom:4px;display:block}
+.form-row input, .form-row select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:.95em;font-family:inherit}
+.form-row input:focus, .form-row select:focus{outline:none;border-color:var(--brand)}
+.remove-btn{background:var(--danger);color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:.85em;font-weight:600}
+.remove-btn:hover{background:#dc2626}
+
+/* Info fields */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.info-grid input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:.95em;font-family:inherit}
+.info-grid input:focus{outline:none;border-color:var(--brand)}
+.info-grid label{font-size:.8em;color:var(--muted);margin-bottom:4px;display:block}
+
+/* Buttons */
+button{background:var(--brand);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:1em;font-weight:600}
+button:hover{background:#0051a8}
+button.secondary{background:#334155}
+button.secondary:hover{background:#475569}
+button.outline{background:transparent;border:2px solid var(--brand);color:var(--brand)}
+button.outline:hover{background:var(--brand);color:#fff}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+
+/* Preview */
+.rate-preview{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:32px;margin:24px 0;max-width:700px;margin-left:auto;margin-right:auto}
+.rate-preview-header{text-align:center;border-bottom:2px solid var(--brand);padding-bottom:16px;margin-bottom:20px}
+.rate-preview-header h2{margin:0;color:var(--brand);font-size:1.5em}
+.rate-preview-header p{color:var(--muted);margin:4px 0 0;font-size:.9em}
+.rate-table{width:100%;border-collapse:collapse;margin:16px 0}
+.rate-table th{background:var(--brand);color:#fff;padding:10px 12px;text-align:left;font-size:.85em}
+.rate-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:.9em}
+.rate-table tr:last-child td{border-bottom:none}
+.rate-total{text-align:right;font-weight:700;font-size:1.1em;margin-top:12px;color:var(--text)}
+.rate-terms{font-size:.8em;color:var(--muted);margin-top:16px;border-top:1px solid var(--border);padding-top:12px}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#0070f3,#00c853);color:#fff;padding:24px;border-radius:12px;text-align:center;margin:32px 0;font-weight:600}
+.cta a{color:#fff;font-size:1.1em}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border-radius:16px;padding:40px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.2);text-align:center;position:relative}
+.modal h3{margin-bottom:8px;font-size:1.3em}
+.modal p{color:var(--muted);margin-bottom:20px;font-size:.95em}
+.modal input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:1em;margin-bottom:12px;font-family:inherit}
+.modal input:focus{outline:none;border-color:var(--brand)}
+.modal .close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.5em;cursor:pointer;color:var(--muted)}
+
+/* Social */
+.social-share{display:flex;gap:10px;justify-content:center;margin:20px 0}
+.share-btn{padding:10px 18px;border-radius:8px;color:#fff;font-weight:600;font-size:.85em;cursor:pointer;border:none}
+.share-btn.x{background:#000}
+.share-btn.linkedin{background:#0a66c2}
+.share-btn.facebook{background:#1877f2}
+.share-btn.email{background:#ea4335}
+
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:24px 0;font-size:.9em}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--brand)}
+.tip{background:#d1ecf1;border-left:4px solid #17a2b8;padding:16px;border-radius:8px;margin:16px 0}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+
+<h1>💳 Freelance Rate Card Template</h1>
+<div class="meta">Free · Customizable · Printable · Professional</div>
+<p>A rate card is your pricing menu. It eliminates awkward negotiations, filters out budget clients, and shows you take your business seriously. Build yours below and download it in seconds.</p>
+
+<h2>Your Info</h2>
+<div class="info-grid">
+<div><label>Your Name / Business</label><input type="text" id="bizName" placeholder="Jane Doe Design" oninput="updatePreview()"></div>
+<div><label>Tagline / Specialty</label><input type="text" id="bizTagline" placeholder="Brand Design & Web Development" oninput="updatePreview()"></div>
+<div><label>Email</label><input type="text" id="bizEmail" placeholder="hello@janedoe.com" oninput="updatePreview()"></div>
+<div><label>Website</label><input type="text" id="bizWebsite" placeholder="janedoe.com" oninput="updatePreview()"></div>
+</div>
+
+<h2>Services & Rates</h2>
+<div id="servicesList">
+<div class="form-row">
+<div><label>Service</label><input type="text" class="svc-name" placeholder="Logo Design" value="Logo Design" oninput="updatePreview()"></div>
+<div><label>Rate</label><input type="text" class="svc-rate" placeholder="$1,500" value="$1,500" oninput="updatePreview()"></div>
+<div><label>Unit</label><select class="svc-unit" onchange="updatePreview()"><option>per project</option><option>per hour</option><option>per day</option><option>per week</option><option>per month</option></select></div>
+<div><label>Turnaround</label><input type="text" class="svc-time" placeholder="3-5 days" value="3-5 days" oninput="updatePreview()"></div>
+<div><button class="remove-btn" onclick="removeService(this)">✕</button></div>
+</div>
+<div class="form-row">
+<div><label>Service</label><input type="text" class="svc-name" placeholder="Website Design" value="Website Design" oninput="updatePreview()"></div>
+<div><label>Rate</label><input type="text" class="svc-rate" placeholder="$3,500" value="$3,500" oninput="updatePreview()"></div>
+<div><label>Unit</label><select class="svc-unit" onchange="updatePreview()"><option>per project</option><option selected>per hour</option><option>per day</option><option>per week</option><option>per month</option></select></div>
+<div><label>Turnaround</label><input type="text" class="svc-time" placeholder="2-4 weeks" value="2-4 weeks" oninput="updatePreview()"></div>
+<div><button class="remove-btn" onclick="removeService(this)">✕</button></div>
+</div>
+<div class="form-row">
+<div><label>Service</label><input type="text" class="svc-name" placeholder="Brand Strategy" value="Brand Strategy" oninput="updatePreview()"></div>
+<div><label>Rate</label><input type="text" class="svc-rate" placeholder="$120" value="$120" oninput="updatePreview()"></div>
+<div><label>Unit</label><select class="svc-unit" onchange="updatePreview()"><option>per project</option><option selected>per hour</option><option>per day</option><option>per week</option><option>per month</option></select></div>
+<div><label>Turnaround</label><input type="text" class="svc-time" placeholder="Varies" value="Varies" oninput="updatePreview()"></div>
+<div><button class="remove-btn" onclick="removeService(this)">✕</button></div>
+</div>
+</div>
+<button onclick="addService()">+ Add Service</button>
+
+<h2>Terms & Notes</h2>
+<div class="info-grid">
+<div><label>Payment Terms</label><input type="text" id="termPayment" placeholder="50% deposit, 50% on delivery. Net 14." value="50% deposit, 50% on delivery. Net 14." oninput="updatePreview()"></div>
+<div><label>Rush Fee</label><input type="text" id="termRush" placeholder="25% surcharge for turnaround under 48 hours" value="25% surcharge for turnaround under 48 hours" oninput="updatePreview()"></div>
+<div><label>Revisions</label><input type="text" id="termRevision" placeholder="2 rounds included. Additional at hourly rate." value="2 rounds included. Additional at hourly rate." oninput="updatePreview()"></div>
+<div><label>Currency</label><input type="text" id="termCurrency" placeholder="USD" value="USD" oninput="updatePreview()"></div>
+</div>
+
+<h2>Live Preview</h2>
+<div class="rate-preview" id="ratePreview">
+<div class="rate-preview-header">
+<h2 id="pName">Jane Doe Design</h2>
+<p id="pTagline">Brand Design & Web Development</p>
+<p id="pContact" style="font-size:.8em">hello@janedoe.com · janedoe.com</p>
+</div>
+<table class="rate-table">
+<thead><tr><th>Service</th><th>Rate</th><th>Unit</th><th>Turnaround</th></tr></thead>
+<tbody id="pTableBody"></tbody>
+</table>
+<div class="rate-terms" id="pTerms"></div>
+</div>
+
+<div class="btn-row">
+<button onclick="showEmailModal()">📥 Download Rate Card</button>
+<button class="outline" onclick="window.print()">🖨️ Print</button>
+</div>
+
+<div class="tip">
+<strong>💡 Pro tip:</strong> Not sure what to charge? Check <a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/freelance-rates.html">our freelance rates guide</a> for 2026 market data by industry, or use <a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/hourly-rate-landing.html">the hourly rate calculator</a> to find your minimum viable rate.
+</div>
+
+<div class="cta">
+<p>Stop chasing late payments.</p>
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/">Try PingPaid — automate invoice tracking →</a>
+</div>
+
+<div class="social-share">
+<button class="share-btn x" onclick="shareX()">𝕏 Share</button>
+<button class="share-btn linkedin" onclick="shareLinkedIn()">LinkedIn</button>
+<button class="share-btn facebook" onclick="shareFacebook()">Facebook</button>
+<button class="share-btn email" onclick="shareEmail()">Email</button>
+</div>
+
+<div class="footer-links">
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/">← All Tools</a>
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/freelance-rates.html">Rate Guide</a>
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/hourly-rate-landing.html">Rate Calculator</a>
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/pricing-calculator.html">Pricing Calculator</a>
+<a href="https://anxovatomica.github.io/pingpaid-hub-v2/pages/rate-increase-letter.html">Rate Increase Letter</a>
+</div>
+
+</div>
+</div>
+
+<!-- Email Modal -->
+<div class="modal-overlay" id="emailModal">
+<div class="modal">
+<button class="close" onclick="hideEmailModal()">&times;</button>
+<h3>📧 Get Your Rate Card</h3>
+<p>Enter your email to download your customized rate card. No spam.</p>
+<input type="email" id="emailInput" placeholder="you@example.com" required>
+<button onclick="submitDownload()" style="width:100%">Download My Rate Card</button>
+<p style="font-size:.75em;color:var(--muted);margin-top:12px;margin-bottom:0">We never share your email. Unsubscribe anytime.</p>
+</div>
+</div>
+
+<script>
+let serviceCounter = 3;
+
+function updatePreview() {
+  const name = document.getElementById('bizName').value || 'Your Name';
+  const tagline = document.getElementById('bizTagline').value || 'Your Specialty';
+  const email = document.getElementById('bizEmail').value || '';
+  const website = document.getElementById('bizWebsite').value || '';
+  
+  document.getElementById('pName').textContent = name;
+  document.getElementById('pTagline').textContent = tagline;
+  document.getElementById('pContact').textContent = (email ? email + ' · ' : '') + (website || '');
+  
+  const rows = document.querySelectorAll('#servicesList .form-row');
+  let tbody = '';
+  rows.forEach(row => {
+    const svc = row.querySelector('.svc-name').value;
+    const rate = row.querySelector('.svc-rate').value;
+    const unit = row.querySelector('.svc-unit').value;
+    const time = row.querySelector('.svc-time').value;
+    if (svc || rate) {
+      tbody += `<tr><td><strong>${svc}</strong></td><td>${rate}</td><td>${unit}</td><td>${time}</td></tr>`;
+    }
+  });
+  document.getElementById('pTableBody').innerHTML = tbody;
+  
+  const payment = document.getElementById('termPayment').value;
+  const rush = document.getElementById('termRush').value;
+  const revision = document.getElementById('termRevision').value;
+  const currency = document.getElementById('termCurrency').value;
+  let terms = '';
+  if (payment) terms += '<p><strong>Payment:</strong> ' + payment + '</p>';
+  if (rush) terms += '<p><strong>Rush:</strong> ' + rush + '</p>';
+  if (revision) terms += '<p><strong>Revisions:</strong> ' + revision + '</p>';
+  if (currency) terms += '<p><strong>Currency:</strong> ' + currency + '</p>';
+  document.getElementById('pTerms').innerHTML = terms;
+}
+
+function addService() {
+  serviceCounter++;
+  const div = document.createElement('div');
+  div.className = 'form-row';
+  div.innerHTML = `<div><label>Service</label><input type="text" class="svc-name" placeholder="Service name" oninput="updatePreview()"></div>
+<div><label>Rate</label><input type="text" class="svc-rate" placeholder="$0" oninput="updatePreview()"></div>
+<div><label>Unit</label><select class="svc-unit" onchange="updatePreview()"><option>per project</option><option>per hour</option><option>per day</option><option>per week</option><option>per month</option></select></div>
+<div><label>Turnaround</label><input type="text" class="svc-time" placeholder="e.g., 3-5 days" oninput="updatePreview()"></div>
+<div><button class="remove-btn" onclick="removeService(this)">✕</button></div>`;
+  document.getElementById('servicesList').appendChild(div);
+}
+
+function removeService(btn) {
+  btn.closest('.form-row').remove();
+  updatePreview();
+}
+
+function showEmailModal() {
+  const hasEmail = localStorage.getItem('pp_email');
+  if (hasEmail) {
+    downloadRateCard();
+  } else {
+    document.getElementById('emailModal').classList.add('active');
+    document.getElementById('emailInput').focus();
+  }
+}
+
+function hideEmailModal() {
+  document.getElementById('emailModal').classList.remove('active');
+}
+
+function submitDownload() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  localStorage.setItem('pp_email', email);
+  hideEmailModal();
+  downloadRateCard();
+}
+
+function downloadRateCard() {
+  const name = document.getElementById('bizName').value || 'Freelancer';
+  const tagline = document.getElementById('bizTagline').value || '';
+  const email = document.getElementById('bizEmail').value || '';
+  const website = document.getElementById('bizWebsite').value || '';
+  const payment = document.getElementById('termPayment').value;
+  const rush = document.getElementById('termRush').value;
+  const revision = document.getElementById('termRevision').value;
+  const currency = document.getElementById('termCurrency').value;
+  
+  const rows = document.querySelectorAll('#servicesList .form-row');
+  let tableRows = '';
+  rows.forEach(row => {
+    const svc = row.querySelector('.svc-name').value;
+    const rate = row.querySelector('.svc-rate').value;
+    const unit = row.querySelector('.svc-unit').value;
+    const time = row.querySelector('.svc-time').value;
+    if (svc || rate) {
+      tableRows += `<tr><td style="padding:12px;border-bottom:1px solid #eee"><strong>${svc}</strong></td><td style="padding:12px;border-bottom:1px solid #eee">${rate}</td><td style="padding:12px;border-bottom:1px solid #eee">${unit}</td><td style="padding:12px;border-bottom:1px solid #eee">${time}</td></tr>`;
+    }
+  });
+  
+  let termsHtml = '';
+  if (payment) termsHtml += `<p><strong>Payment Terms:</strong> ${payment}</p>`;
+  if (rush) termsHtml += `<p><strong>Rush Fee:</strong> ${rush}</p>`;
+  if (revision) termsHtml += `<p><strong>Revisions:</strong> ${revision}</p>`;
+  if (currency) termsHtml += `<p><strong>Currency:</strong> ${currency}</p>`;
+  
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Rate Card - ${name}</title>
+<style>body{font-family:system-ui,sans-serif;max-width:700px;margin:40px auto;padding:20px;line-height:1.6;color:#111}
+.header{text-align:center;border-bottom:3px solid #0070f3;padding-bottom:20px;margin-bottom:24px}
+.header h1{color:#0070f3;margin:0;font-size:1.8em}
+.header p{color:#666;margin:6px 0 0}
+.header .contact{color:#999;font-size:.85em;margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.95em}
+th{background:#0070f3;color:#fff;padding:12px;text-align:left}
+td{padding:12px;border-bottom:1px solid #eee}
+.terms{margin-top:24px;padding-top:16px;border-top:2px solid #eee;font-size:.85em;color:#555}
+.footer{margin-top:40px;color:#999;font-size:.75em;text-align:center}
+</style></head><body>
+<div class="header">
+<h1>${name}</h1>
+<p>${tagline}</p>
+<div class="contact">${email}${email && website ? ' · ' : ''}${website}</div>
+</div>
+<table><thead><tr><th>Service</th><th>Rate</th><th>Unit</th><th>Turnaround</th></tr></thead>
+<tbody>${tableRows}</tbody></table>
+<div class="terms">${termsHtml}</div>
+<div class="footer">Rate card generated by PingPaid · https://anxovatomica.github.io/pingpaid-hub-v2/</div>
+</body></html>`;
+  
+  const blob = new Blob([html], {type: 'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'rate-card-' + (name.toLowerCase().replace(/[^a-z0-9]+/g, '-')) + '.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function shareX() {
+  const text = encodeURIComponent('Built my freelance rate card in 2 minutes using this free template. Professional pricing, no more awkward negotiations! 🔥');
+  const url = encodeURIComponent('https://anxovatomica.github.io/pingpaid-hub-v2/pages/rate-card-template.html');
+  window.open('https://twitter.com/intent/tweet?text=' + text + '&url=' + url, '_blank');
+}
+function shareLinkedIn() {
+  const url = encodeURIComponent('https://anxovatomica.github.io/pingpaid-hub-v2/pages/rate-card-template.html');
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url, '_blank');
+}
+function shareFacebook() {
+  const url = encodeURIComponent('https://anxovatomica.github.io/pingpaid-hub-v2/pages/rate-card-template.html');
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
+}
+function shareEmail() {
+  const subject = encodeURIComponent('Free Freelance Rate Card Template');
+  const body = encodeURIComponent('Build a professional rate card in minutes with this free template:\n\nhttps://anxovatomica.github.io/pingpaid-hub-v2/pages/rate-card-template.html');
+  window.open('mailto:?subject=' + subject + '&body=' + body, '_blank');
+}
+
+document.getElementById('emailModal').addEventListener('click', function(e) {
+  if (e.target === this) hideEmailModal();
+});
+
+// Init
+updatePreview();
+</script>
+</body>
+</html>
