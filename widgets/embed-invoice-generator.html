@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embed Invoice Generator Widget — PingPaid</title>
+<style>
+:root{--brand:#0070f3;--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--accent:#00c853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:0}
+.container{max-width:700px;margin:0 auto;padding:40px 20px}
+.hero{text-align:center;padding:80px 20px 40px;background:linear-gradient(135deg,#0f172a,#1e3a5f)}
+.hero h1{font-size:2.5em;margin-bottom:12px}
+.hero p{color:var(--muted);max-width:500px;margin:0 auto 20px}
+.hero-badge{background:rgba(0,200,83,.2);color:var(--accent);padding:6px 16px;border-radius:20px;font-size:.85em;font-weight:600;display:inline-block;margin-bottom:16px}
+.widget-demo{background:var(--card);border-radius:16px;padding:32px;border:1px solid #334155;margin:40px auto;max-width:500px}
+.widget-demo h2{font-size:1.3em;margin-bottom:20px;text-align:center}
+.input-group{margin-bottom:16px}
+.input-group label{display:block;color:var(--muted);font-size:.85em;margin-bottom:6px}
+.input-group input{width:100%;padding:12px 16px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:var(--text);font-size:1em}
+.input-group input:focus{outline:none;border-color:var(--brand)}
+.line-item{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:8px}
+.line-item input{padding:8px 10px;font-size:13px}
+.line-item .btn-del{padding:8px 10px;background:#ef4444;color:#fff;border:none;border-radius:8px;font-size:12px;cursor:pointer}
+.btn-secondary{padding:10px 16px;background:#334155;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s}
+.btn-secondary:hover{background:#475569}
+.result-box{background:linear-gradient(135deg,#0070f3,#00c853);border-radius:12px;padding:24px;text-align:center;margin-top:24px}
+.result-box .label{color:rgba(255,255,255,.8);font-size:.9em;margin-bottom:8px}
+.result-box .value{color:#fff;font-size:2em;font-weight:800}
+.result-box .sub{color:rgba(255,255,255,.7);font-size:.85em;margin-top:4px}
+.embed-code{background:#0a0f1a;border-radius:12px;padding:24px;margin:40px auto;max-width:700px;border:1px solid #334155}
+.embed-code h3{color:var(--accent);margin-bottom:12px;font-size:1.1em}
+.embed-code p{color:var(--muted);font-size:.9em;margin-bottom:12px}
+.embed-code pre{background:#0f172a;border-radius:8px;padding:16px;color:var(--text);font-size:.8em;overflow-x:auto;border:1px solid #334155;white-space:pre-wrap;word-break:break-all}
+.embed-code .copy-btn{background:var(--brand);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px;font-size:.9em}
+.embed-code .copy-btn:hover{background:#0051a8}
+.invoice-preview{background:#fff;color:#1e293b;padding:30px;border-radius:12px;margin-top:20px;display:none}
+.invoice-preview.show{display:block}
+.invoice-preview h3{color:#1e293b;font-size:20px;margin-bottom:8px}
+.invoice-preview p{color:#475569;font-size:14px}
+.invoice-preview table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.invoice-preview th{text-align:left;padding:8px;border-bottom:2px solid #1e293b;color:#1e293b;font-weight:600}
+.invoice-preview td{padding:8px;border-bottom:1px solid #e2e8f0;color:#334155}
+.invoice-preview .total-row{font-weight:700;font-size:16px;color:#1e293b}
+footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85em}
+footer a{color:var(--muted);text-decoration:underline}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<div class="hero-badge">🛠️ Embeddable Widget</div>
+<h1>Invoice Generator Widget</h1>
+<p>A clean, embeddable mini invoice generator anyone can add to their website in seconds.</p>
+</div>
+
+<div class="widget-demo">
+<h2>🧾 Generate Invoice</h2>
+<div class="input-group">
+<label>Your Company</label>
+<input type="text" id="fromName" placeholder="Your Company Ltd">
+</div>
+<div class="input-group">
+<label>Client Name</label>
+<input type="text" id="toName" placeholder="Client Company">
+</div>
+<div id="lineItems">
+<div class="line-item">
+<input type="text" placeholder="Description" class="li-desc">
+<input type="number" placeholder="Qty" class="li-qty" min="0" value="1">
+<input type="number" placeholder="Price" class="li-price" min="0" step="0.01">
+<button class="btn-del" onclick="removeLine(this)">×</button>
+</div>
+</div>
+<button class="btn-secondary" onclick="addLine()" style="margin-top:8px">+ Add Line</button>
+<div class="result-box" id="resultBox">
+<div class="label">Total</div>
+<div class="value" id="total">$0.00</div>
+<div class="sub" id="detail">0 items</div>
+</div>
+<div class="invoice-preview" id="preview">
+<h3>Invoice Preview</h3>
+<p id="previewFrom"></p>
+<p id="previewTo"></p>
+<table>
+<thead><tr><th>Description</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead>
+<tbody id="previewBody"></tbody>
+<tfoot><tr class="total-row"><td colspan="3">Total</td><td id="previewTotal"></td></tr></tfoot>
+</table>
+</div>
+</div>
+
+<div class="embed-code">
+<h3>📋 Embed This Widget on Your Site</h3>
+<p>Copy and paste this code into any HTML page. The widget is responsive and self-contained.</p>
+<pre id="embed-snippet">&lt;iframe src="https://anxovatomica.github.io/pingpaid-hub-v2/widgets/embed-invoice-generator.html?embed=1" width="100%" height="500" style="border:none;border-radius:12px;max-width:500px;"&gt;&lt;/iframe&gt;</pre>
+<button class="copy-btn" onclick="copyEmbed()">Copy Embed Code</button>
+</div>
+
+<footer>
+<p>Built by PingPaid. <a href="https://github.com/anxovatomica">Open source on GitHub</a>.</p>
+<p style="margin-top:8px">© 2026 PingPaid · <a href="https://pingpaid.online">pingpaid.online</a> · <a href="../index.html">Free Tools</a></p>
+</footer>
+
+<script>
+let lineCount = 1;
+function addLine() {
+  const div = document.createElement('div');
+  div.className = 'line-item';
+  div.innerHTML = '<input type="text" placeholder="Description" class="li-desc"><input type="number" placeholder="Qty" class="li-qty" min="0" value="1"><input type="number" placeholder="Price" class="li-price" min="0" step="0.01"><button class="btn-del" onclick="removeLine(this)">×</button>';
+  document.getElementById('lineItems').appendChild(div);
+  lineCount++;
+  calculate();
+}
+function removeLine(btn) {
+  if (lineCount <= 1) { alert('Keep at least one line.'); return; }
+  btn.parentElement.remove();
+  lineCount--;
+  calculate();
+}
+function calculate() {
+  const rows = document.querySelectorAll('.line-item');
+  let total = 0, items = 0;
+  const tbody = document.getElementById('previewBody');
+  tbody.innerHTML = '';
+  rows.forEach(row => {
+    const desc = row.querySelector('.li-desc').value || 'Item';
+    const qty = parseFloat(row.querySelector('.li-qty').value) || 0;
+    const price = parseFloat(row.querySelector('.li-price').value) || 0;
+    const lineTotal = qty * price;
+    total += lineTotal;
+    items += qty;
+    if (qty > 0) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${desc}</td><td>${qty}</td><td>$${price.toFixed(2)}</td><td>$${lineTotal.toFixed(2)}</td>`;
+      tbody.appendChild(tr);
+    }
+  });
+  document.getElementById('total').textContent = '$' + total.toFixed(2);
+  document.getElementById('detail').textContent = items + ' items';
+  document.getElementById('previewTotal').textContent = '$' + total.toFixed(2);
+  document.getElementById('previewFrom').textContent = 'From: ' + (document.getElementById('fromName').value || 'Your Company');
+  document.getElementById('previewTo').textContent = 'To: ' + (document.getElementById('toName').value || 'Client');
+  document.getElementById('preview').classList.add('show');
+}
+['fromName','toName'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+document.getElementById('lineItems').addEventListener('input', calculate);
+function copyEmbed() {
+  const code = document.getElementById('embed-snippet').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy Embed Code', 2000);
+  });
+}
+calculate();
+</script>
+
+</body>
+</html>

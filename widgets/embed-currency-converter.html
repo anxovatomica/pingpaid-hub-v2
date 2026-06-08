@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Converter Widget — PingPaid</title>
+<style>
+:root{--brand:#0070f3;--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--accent:#00c853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:0}
+.container{max-width:700px;margin:0 auto;padding:40px 20px}
+.hero{text-align:center;padding:80px 20px 40px;background:linear-gradient(135deg,#0f172a,#1e3a5f)}
+.hero h1{font-size:2.5em;margin-bottom:12px}
+.hero p{color:var(--muted);max-width:500px;margin:0 auto 20px}
+.hero-badge{background:rgba(0,200,83,.2);color:var(--accent);padding:6px 16px;border-radius:20px;font-size:.85em;font-weight:600;display:inline-block;margin-bottom:16px}
+.widget-demo{background:var(--card);border-radius:16px;padding:32px;border:1px solid #334155;margin:40px auto;max-width:500px}
+.widget-demo h2{font-size:1.3em;margin-bottom:20px;text-align:center}
+.input-group{margin-bottom:16px}
+.input-group label{display:block;color:var(--muted);font-size:.85em;margin-bottom:6px}
+.input-group input, .input-group select{width:100%;padding:12px 16px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:var(--text);font-size:1em}
+.input-group input:focus, .input-group select:focus{outline:none;border-color:var(--brand)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.result-box{background:linear-gradient(135deg,#0070f3,#00c853);border-radius:12px;padding:24px;text-align:center;margin-top:24px}
+.result-box .label{color:rgba(255,255,255,.8);font-size:.9em;margin-bottom:8px}
+.result-box .value{color:#fff;font-size:2em;font-weight:800}
+.result-box .sub{color:rgba(255,255,255,.7);font-size:.85em;margin-top:4px}
+.rates-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:.9em}
+.rates-table th, .rates-table td{padding:8px;text-align:left;border-bottom:1px solid #334155;color:#94a3b8}
+.rates-table th{color:var(--accent);font-weight:600}
+.embed-code{background:#0a0f1a;border-radius:12px;padding:24px;margin:40px auto;max-width:700px;border:1px solid #334155}
+.embed-code h3{color:var(--accent);margin-bottom:12px;font-size:1.1em}
+.embed-code p{color:var(--muted);font-size:.9em;margin-bottom:12px}
+.embed-code pre{background:#0f172a;border-radius:8px;padding:16px;color:var(--text);font-size:.8em;overflow-x:auto;border:1px solid #334155;white-space:pre-wrap;word-break:break-all}
+.embed-code .copy-btn{background:var(--brand);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px;font-size:.9em}
+.embed-code .copy-btn:hover{background:#0051a8}
+footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85em}
+footer a{color:var(--muted);text-decoration:underline}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<div class="hero-badge">🛠️ Embeddable Widget</div>
+<h1>Currency Converter Widget</h1>
+<p>A clean, embeddable currency converter for international freelancers. Supports major currencies.</p>
+</div>
+
+<div class="widget-demo">
+<h2>💱 Convert Currency</h2>
+<div class="row">
+<div class="input-group">
+<label>Amount</label>
+<input type="number" id="amount" placeholder="e.g. 1000" value="1000">
+</div>
+<div class="input-group">
+<label>From</label>
+<select id="fromCurrency">
+<option value="USD">USD ($)</option>
+<option value="EUR">EUR (€)</option>
+<option value="GBP">GBP (£)</option>
+<option value="JPY">JPY (¥)</option>
+<option value="CAD">CAD (C$)</option>
+<option value="AUD">AUD (A$)</option>
+<option value="CHF">CHF (Fr)</option>
+</select>
+</div>
+</div>
+<div class="input-group">
+<label>To</label>
+<select id="toCurrency">
+<option value="EUR">EUR (€)</option>
+<option value="USD">USD ($)</option>
+<option value="GBP">GBP (£)</option>
+<option value="JPY">JPY (¥)</option>
+<option value="CAD">CAD (C$)</option>
+<option value="AUD">AUD (A$)</option>
+<option value="CHF">CHF (Fr)</option>
+</select>
+</div>
+<div class="result-box">
+<div class="label">Converted Amount</div>
+<div class="value" id="converted">€920.00</div>
+<div class="sub" id="detail">1,000 USD → EUR @ 0.9200</div>
+</div>
+<table class="rates-table">
+<thead><tr><th>Currency</th><th>Rate</th></tr></thead>
+<tbody id="ratesBody"></tbody>
+</table>
+</div>
+
+<div class="embed-code">
+<h3>📋 Embed This Widget on Your Site</h3>
+<p>Copy and paste this code into any HTML page. The widget is responsive and self-contained.</p>
+<pre id="embed-snippet">&lt;iframe src="https://anxovatomica.github.io/pingpaid-hub-v2/widgets/embed-currency-converter.html?embed=1" width="100%" height="400" style="border:none;border-radius:12px;max-width:500px;"&gt;&lt;/iframe&gt;</pre>
+<button class="copy-btn" onclick="copyEmbed()">Copy Embed Code</button>
+</div>
+
+<footer>
+<p>Built by PingPaid. <a href="https://github.com/anxovatomica">Open source on GitHub</a>.</p>
+<p style="margin-top:8px">© 2026 PingPaid · <a href="https://pingpaid.online">pingpaid.online</a> · <a href="../index.html">Free Tools</a></p>
+</footer>
+
+<script>
+const rates = {
+  USD: { EUR: 0.92, GBP: 0.79, JPY: 150.0, CAD: 1.35, AUD: 1.52, CHF: 0.88, USD: 1.0 },
+  EUR: { USD: 1.09, GBP: 0.86, JPY: 163.0, CAD: 1.47, AUD: 1.65, CHF: 0.96, EUR: 1.0 },
+  GBP: { USD: 1.27, EUR: 1.16, JPY: 190.0, CAD: 1.71, AUD: 1.92, CHF: 1.12, GBP: 1.0 },
+  JPY: { USD: 0.0067, EUR: 0.0061, GBP: 0.0053, CAD: 0.0090, AUD: 0.0101, CHF: 0.0059, JPY: 1.0 },
+  CAD: { USD: 0.74, EUR: 0.68, GBP: 0.58, JPY: 111.0, AUD: 1.12, CHF: 0.65, CAD: 1.0 },
+  AUD: { USD: 0.66, EUR: 0.61, GBP: 0.52, JPY: 99.0, CAD: 0.89, CHF: 0.58, AUD: 1.0 },
+  CHF: { USD: 1.14, EUR: 1.04, GBP: 0.89, JPY: 171.0, CAD: 1.54, AUD: 1.73, CHF: 1.0 }
+};
+const symbols = { USD: '$', EUR: '€', GBP: '£', JPY: '¥', CAD: 'C$', AUD: 'A$', CHF: 'Fr' };
+
+function calculate() {
+  const amount = parseFloat(document.getElementById('amount').value) || 0;
+  const from = document.getElementById('fromCurrency').value;
+  const to = document.getElementById('toCurrency').value;
+  const rate = rates[from][to];
+  const converted = amount * rate;
+  document.getElementById('converted').textContent = symbols[to] + converted.toFixed(2);
+  document.getElementById('detail').textContent = amount.toLocaleString() + ' ' + from + ' → ' + to + ' @ ' + rate.toFixed(4);
+
+  const tbody = document.getElementById('ratesBody');
+  tbody.innerHTML = '';
+  Object.keys(rates[from]).forEach(currency => {
+    if (currency === from) return;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${currency}</td><td>1 ${from} = ${rates[from][currency].toFixed(4)} ${currency}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+['amount', 'fromCurrency', 'toCurrency'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calculate);
+  document.getElementById(id).addEventListener('change', calculate);
+});
+
+function copyEmbed() {
+  const code = document.getElementById('embed-snippet').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy Embed Code', 2000);
+  });
+}
+
+calculate();
+</script>
+
+</body>
+</html>
