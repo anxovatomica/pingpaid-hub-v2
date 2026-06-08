@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+>
+<channel>
+  <title>PingPaid Hub — Free Business Tools for Freelancers</title>
+  <link>https://anxovatomica.github.io/pingpaid-hub-v2/</link>
+  <description>133+ free calculators, guides, templates, and resources for freelancers and small businesses. No signup required.</description>
+  <language>en</language>
+  <lastBuildDate>Mon, 08 Jun 2026 00:00:00 GMT</lastBuildDate>
+  <atom:link href="https://anxovatomica.github.io/pingpaid-hub-v2/feed.xml" rel="self" type="application/rss+xml" />
+  <image>
+    <url>https://anxovatomica.github.io/pingpaid-hub-v2/favicon.ico</url>
+    <title>PingPaid Hub</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/</link>
+  </image>
+
+  <item>
+    <title>How to Write an Invoice (Step-by-Step + Free Template)</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/blog/how-to-write-invoice.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/blog/how-to-write-invoice.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Invoicing</category>
+    <description><![CDATA[Step-by-step guide to writing professional invoices. Includes free template, essential elements, and best practices.]]></description>
+  </item>
+
+  <item>
+    <title>Client Won't Pay? 7-Step Recovery Plan</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/blog/client-wont-pay.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/blog/client-wont-pay.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Collections</category>
+    <description><![CDATA[What to do when a client won't pay. Escalation ladder, legal options, and scripts that actually work.]]></description>
+  </item>
+
+  <item>
+    <title>Best Invoicing Software 2026 — 10 Tools Ranked</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/pages/best-invoicing-software-2026.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/pages/best-invoicing-software-2026.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Comparison</category>
+    <description><![CDATA[Honest comparison of 10 invoicing tools. Feature matrix, pricing table, and PingPaid ranks #1 for collection.]]></description>
+  </item>
+
+  <item>
+    <title>Cash Flow Calculator for Freelancers</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/calculator/cash-flow-calculator.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/calculator/cash-flow-calculator.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Calculator</category>
+    <description><![CDATA[Monthly cash flow projection: income minus expenses minus late payment impact. Plan ahead.]]></description>
+  </item>
+
+  <item>
+    <title>ROI Calculator — What If You Used PingPaid?</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/calculator/roi-calculator.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/calculator/roi-calculator.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Calculator</category>
+    <description><![CDATA[Time saved × hourly rate = your annual ROI. See how much PingPaid could save you.]]></description>
+  </item>
+
+  <item>
+    <title>Invoice Software for Designers</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/pages/designers-invoice.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/pages/designers-invoice.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Niche</category>
+    <description><![CDATA[Brand consistency, portfolio integration, revision rounds, multi-currency, auto-follow-up. Built for designers.]]></description>
+  </item>
+
+  <item>
+    <title>Invoice Software for Developers</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/pages/developers-invoice.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/pages/developers-invoice.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Niche</category>
+    <description><![CDATA[Retainer billing, milestone payments, GitHub integration, API/webhook billing. Built for developers.]]></description>
+  </item>
+
+  <item>
+    <title>Payment Reminder Email Scripts — 10 Templates</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/blog/payment-reminder-email.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/blog/payment-reminder-email.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Email</category>
+    <description><![CDATA[10 scripts that work. Friendly, firm, and final notice templates. Copy-paste ready.]]></description>
+  </item>
+
+  <item>
+    <title>Late Fee Calculator — Exact Fees by Jurisdiction</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/calculator/late-fee-calculator.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/calculator/late-fee-calculator.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Calculator</category>
+    <description><![CDATA[Calculate exact late fees by amount, days late, and interest rate. Jurisdiction presets included.]]></description>
+  </item>
+
+  <item>
+    <title>PingPaid vs Competitors — Direct Comparison</title>
+    <link>https://anxovatomica.github.io/pingpaid-hub-v2/pages/pingpaid-vs-competitors.html</link>
+    <guid>https://anxovatomica.github.io/pingpaid-hub-v2/pages/pingpaid-vs-competitors.html</guid>
+    <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Comparison</category>
+    <description><![CDATA[Direct comparison: FreshBooks, Wave, QuickBooks, Zoho, PayPal. Feature table, pricing, verdict.]]></description>
+  </item>
+
+</channel>
+</rss>

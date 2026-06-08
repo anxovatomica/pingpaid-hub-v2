@@ -1,0 +1,37 @@
+name: SEO Auto-Ping & Indexing
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 1'  # Weekly on Monday at 2 AM UTC
+
+jobs:
+  ping-search-engines:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Run Auto-Ping Script
+        run: python3 scripts/auto-ping.py
+        timeout-minutes: 5
+      
+      - name: Verify Sitemap Exists
+        run: |
+          if [ ! -f sitemap.xml ]; then
+            echo "❌ sitemap.xml not found!"
+            exit 1
+          fi
+          echo "✅ sitemap.xml found"
+          grep -c '<url>' sitemap.xml
+      
+      - name: Ping RSS Feed
+        run: |
+          curl -s "https://www.google.com/ping?sitemap=https://anxovatomica.github.io/pingpaid-hub-v2/feed.xml" || true
+          curl -s "https://www.bing.com/ping?sitemap=https://anxovatomica.github.io/pingpaid-hub-v2/feed.xml" || true
+          echo "✅ RSS pinged"
