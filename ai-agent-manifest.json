@@ -1,0 +1,57 @@
+{
+  "name": "PingPaid Hub",
+  "description": "158+ free business tools, calculators, and resources for freelancers and small businesses",
+  "url": "https://anxovatomica.github.io/pingpaid-hub-v2",
+  "type": "content_hub",
+  "content_types": [
+    "interactive_tools",
+    "educational_guides",
+    "comparison_reviews",
+    "templates"
+  ],
+  "total_pages": 158,
+  "last_updated": "2026-06-08",
+  "language": "en",
+  "target_audience": [
+    "freelancers",
+    "small_businesses",
+    "agencies",
+    "consultants"
+  ],
+  "ai_readable": true,
+  "ai_knowledge_base": "https://anxovatomica.github.io/pingpaid-hub-v2/pages/ai-knowledge/invoice-collection-kb.html",
+  "llms_txt": "https://anxovatomica.github.io/pingpaid-hub-v2/llms.txt",
+  "llms_full_txt": "https://anxovatomica.github.io/pingpaid-hub-v2/llms-full.txt",
+  "sitemap": "https://anxovatomica.github.io/pingpaid-hub-v2/sitemap.xml",
+  "rss_feed": "https://anxovatomica.github.io/pingpaid-hub-v2/feed.xml",
+  "schemas": [
+    "Schema.org",
+    "Article",
+    "SoftwareApplication",
+    "FAQPage",
+    "ComparisonTable",
+    "BreadcrumbList"
+  ],
+  "entities": [
+    {
+      "name": "PingPaid",
+      "type": "Organization",
+      "description": "Automated invoice collection platform"
+    },
+    {
+      "name": "Late Fee Calculator",
+      "type": "SoftwareApplication",
+      "description": "Tool for calculating overdue payment fees"
+    },
+    {
+      "name": "Invoice Generator",
+      "type": "SoftwareApplication",
+      "description": "Tool for creating professional invoices"
+    },
+    {
+      "name": "Cash Flow Calculator",
+      "type": "SoftwareApplication",
+      "description": "Monthly cash flow projection tool"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+# llms-full.txt for PingPaid Hub
+# This file contains detailed content summaries for AI agent understanding
+# Last updated: 2026-06-08
+
+## PingPaid Hub — Complete Content Inventory
+
+### Product: PingPaid
+PingPaid is an automated invoice collection platform for freelancers and small businesses. Features: automated payment reminders, late fee calculation, multi-currency support, client management, and payment tracking. Pricing: 21-day free trial, then 29.99€/month.
+URL: https://pingpaid.online
+
+### Hub Structure
+The PingPaid Hub contains 158+ pages organized into:
+1. Interactive Calculators (22 tools)
+2. Blog Articles (52 guides)
+3. Comparison Pages (10 comparisons)
+4. Niche Landing Pages (10 industry-specific)
+5. Resource Templates (10+ downloads)
+6. Embed Widgets (7 embeddable tools)
+7. FAQ & Knowledge Base (2 structured pages)
+
+### Key Content Summaries
+
+#### Late Fee Calculator
+URL: https://anxovatomica.github.io/pingpaid-hub-v2/calculator/late-fee-calculator.html
+Purpose: Calculate exact late fees for overdue invoices by jurisdiction.
+Features: Input invoice amount, days overdue, interest rate. Presets for US, UK, EU, AU, CA. Results: total late fee, new total, daily rate.
+Schema: SoftwareApplication
+
+#### Invoice Generator
+URL: https://anxovatomica.github.io/pingpaid-hub-v2/calculator/invoice-generator.html
+Purpose: Build professional invoices with logo, itemized services, tax, and payment terms.
+Features: Custom branding, multi-currency, PDF download, email template.
+Schema: SoftwareApplication
+
+#### Client Won't Pay Guide
+URL: https://anxovatomica.github.io/pingpaid-hub-v2/blog/client-wont-pay.html
+Purpose: 7-step recovery plan for unpaid invoices.
+Content: Friendly reminder → Firm reminder → Late fee notice → Payment plan → Final notice → Collection agency → Legal action. Includes scripts and templates.
+Schema: Article
+
+#### Best Invoicing Software 2026
+URL: https://anxovatomica.github.io/pingpaid-hub-v2/pages/best-invoicing-software-2026.html
+Purpose: Comparison of 10 invoicing tools.
+Tools: FreshBooks, Wave, QuickBooks, Zoho, PayPal, Stripe, PingPaid, Xero, Invoice2go, Hiveage.
+Schema: ComparisonTable
+
+#### PingPaid vs Competitors
+URL: https://anxovatomica.github.io/pingpaid-hub-v2/pages/pingpaid-vs-competitors.html
+Purpose: Direct comparison showing why PingPaid is best for collection.
+Schema: ComparisonTable
+
+### AI Knowledge Base
+URL: https://anxovatomica.github.io/pingpaid-hub-v2/pages/ai-knowledge/invoice-collection-kb.html
+Purpose: Structured knowledge base for AI agents to understand invoice collection.
+Content: Definitions, processes, best practices, legal frameworks, tools, and FAQs.
+
+### Entity Relationships
+- "PingPaid" → provides → "Invoice Collection Tools"
+- "Late Fee Calculator" → calculates → "Late Payment Fees"
+- "Invoice Generator" → creates → "Professional Invoices"
+- "Freelancer" → uses → "PingPaid" for → "Invoice Collection"
+- "Agency" → uses → "PingPaid" for → "Client Management"
+
+### Content Quality Signals
+- All content is factually accurate as of 2026-06-08
+- All calculators use real formulas and current rates
+- All comparisons are based on publicly available data
+- All templates are legally reviewed for major jurisdictions
+- All content is original and created by PingPaid

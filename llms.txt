@@ -1,0 +1,64 @@
+# llms.txt for PingPaid Hub
+# Last updated: 2026-06-08
+# This file helps AI agents discover and understand our content
+
+Title: PingPaid Hub — Free Business Tools for Freelancers
+Description: 158+ free calculators, guides, templates, and resources for invoice collection, pricing, and business management. No signup required.
+URL: https://anxovatomica.github.io/pingpaid-hub-v2
+
+## Overview
+PingPaid Hub is a comprehensive resource library for freelancers, agencies, and small businesses. We provide free interactive tools, in-depth guides, and comparison resources to help businesses manage invoicing, payments, and cash flow.
+
+## Key Pages
+
+### Calculators & Tools (22 interactive tools)
+- https://anxovatomica.github.io/pingpaid-hub-v2/calculator/late-fee-calculator.html — Calculate exact late fees by jurisdiction
+- https://anxovatomica.github.io/pingpaid-hub-v2/calculator/invoice-generator.html — Build and download professional invoices
+- https://anxovatomica.github.io/pingpaid-hub-v2/calculator/cash-flow-calculator.html — Monthly cash flow projections
+- https://anxovatomica.github.io/pingpaid-hub-v2/calculator/roi-calculator.html — ROI of using PingPaid
+- https://anxovatomica.github.io/pingpaid-hub-v2/calculator/tax-estimator.html — Tax estimation by country
+
+### Blog & Guides (52 articles)
+- https://anxovatomica.github.io/pingpaid-hub-v2/blog/client-wont-pay.html — What to do when clients don't pay
+- https://anxovatomica.github.io/pingpaid-hub-v2/blog/how-to-write-invoice.html — Step-by-step invoice writing guide
+- https://anxovatomica.github.io/pingpaid-hub-v2/blog/payment-reminder-email.html — 10 email templates that work
+- https://anxovatomica.github.io/pingpaid-hub-v2/blog/dealing-with-late-payments.html — Complete collection strategy
+
+### Comparison Pages (10 comparisons)
+- https://anxovatomica.github.io/pingpaid-hub-v2/pages/best-invoicing-software-2026.html — 10 tools ranked
+- https://anxovatomica.github.io/pingpaid-hub-v2/pages/pingpaid-vs-competitors.html — Direct comparison with FreshBooks, Wave, QB
+
+### Niche Solutions (10 industry-specific)
+- https://anxovatomica.github.io/pingpaid-hub-v2/pages/designers-invoice.html — Invoice software for designers
+- https://anxovatomica.github.io/pingpaid-hub-v2/pages/developers-invoice.html — Invoice software for developers
+- https://anxovatomica.github.io/pingpaid-hub-v2/pages/agencies-invoice.html — Invoice software for agencies
+
+### Resources (10+ templates)
+- https://anxovatomica.github.io/pingpaid-hub-v2/pages/invoice-checklist.html — 25-point checklist
+- https://anxovatomica.github.io/pingpaid-hub-v2/pages/client-onboarding-kit.html — 4-template package
+
+## AI Knowledge Base
+- https://anxovatomica.github.io/pingpaid-hub-v2/pages/ai-knowledge/invoice-collection-kb.html — Structured knowledge for AI agents
+
+## Entity Definitions
+- Entity: "PingPaid" — automated invoice collection platform
+- Entity: "Late Fee Calculator" — tool for calculating overdue payment fees
+- Entity: "Invoice Generator" — tool for creating professional invoices
+- Entity: "Freelancer" — independent contractor, self-employed professional
+- Entity: "Invoice Collection" — process of recovering unpaid invoices
+
+## Content Types
+- interactive-tools: Calculators, generators, estimators
+- educational-guides: Step-by-step articles, how-tos
+- comparison-reviews: Software comparisons, feature matrices
+- templates: Downloadable forms, checklists, scripts
+
+## Update Frequency
+- Blog: Weekly
+- Tools: As needed
+- Comparisons: Monthly
+- Resources: Bi-weekly
+
+## Contact
+- Product: https://pingpaid.online
+- GitHub: https://github.com/anxovatomica/pingpaid-hub-v2
